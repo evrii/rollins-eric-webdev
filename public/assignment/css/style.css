@@ -4,9 +4,11 @@ input.form-control {
 
 body {
     padding-top: 36px;
+    overflow-x: hidden;
 }
 
-input {
+input.form-control,
+textarea.form-control {
     margin-bottom: 5px;
 }
 
@@ -20,5 +22,39 @@ body {
 }
 
 nav.navbar.navbar-default.navbar-default.navbar-fixed-top div.container-fluid div.navbar-header {
-    float: none;
+    width: 100%;
+}
+
+nav.navbar.navbar-default.navbar-default {
+    background-color: darkkhaki;
+    border-color: darkkhaki;
+}
+
+nav.navbar.navbar-default .navbar-brand {
+     color: white;
+ }
+
+nav.navbar.navbar-default .navbar-link {
+    color: white;
+}
+
+nav.navbar.navbar-default a {
+    color: white;
+}
+
+.wd-widget {
+    margin-bottom: 10px;
+}
+
+.wd-widget > img {
+    width: 100%;
+}
+
+.wd-widget > .wd-widget-toolbar {
+    position: absolute;
+    right: 15px;
+    background: white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
 }
