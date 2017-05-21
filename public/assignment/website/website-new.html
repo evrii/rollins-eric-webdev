@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>New Website</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
@@ -12,8 +12,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <a class="navbar-brand" href="website-list.html">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
             <a class="navbar-brand" href="#">
-                Fixed Top
+                New Website
             </a>
             <p class="navbar-text pull-right">
                 <a href="website-new.html" class="navbar-link">
@@ -74,37 +77,19 @@
                    id="name"
                    placeholder="cnn">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="5" placeholder="news site">
-            </textarea>
-            <a href="website-list.html" class="btn btn-block btn-danger">Delete</a>
+            <textarea id="description" class="form-control" rows="5" placeholder="news site"></textarea>
+            <a href="website-list.html" class="btn btn-block btn-primary">OK</a>
         </div>
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </a>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="../user/profile.html" class="navbar-link">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
     </div>
 </nav>
 
