@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Widget Edit: Heading</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
@@ -12,13 +12,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Top
+            <a class="navbar-brand" href="widget-list.html">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
+            <a class="navbar-brand" href="#">Edit Heading</a>
             <p class="navbar-text pull-right">
-                <a href="website-new.html" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
+                <a href="widget-list.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
         </div>
@@ -30,47 +30,30 @@
             <label for="name">Name</label>
             <input class="form-control"
                    id="name"
-                   placeholder="cnn"
-                   value="top heading">
+                   placeholder="top heading"
+                   value="Breaking News">
             <label for="text">Text</label>
-            <textarea class="form-control" id="text" rows="5" placeholder="news site">U.S. Senate Reaches Compromise
-            </textarea>
-            <select class="form-control">
+            <textarea class="form-control" id="text" rows="5" placeholder="news site">U.S. Senate Reaches Compromise</textarea>
+            <label for="heading-size">Size</label>
+            <select id="heading-size" class="form-control">
                 <option>1 (The Biggest)</option>
-                <option>1 (X-Large)</option>
-                <option>1 (Large)</option>
-                <option>1 (Medium)</option>
-                <option>1 (Small)</option>
-                <option>1 (X-Small)</option>
+                <option>2 (X-Large)</option>
+                <option>3 (Large)</option>
+                <option>4 (Medium)</option>
+                <option>5 (Small)</option>
+                <option>6 (X-Small)</option>
             </select>
             <a href="widget-list.html" class="btn btn-block btn-danger">Delete</a>
 
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </a>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="../user/profile.html" class="navbar-link">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
     </div>
 </nav>
 
