@@ -59,3 +59,26 @@ nav.navbar.navbar-default a {
     padding: 5px;
     border-bottom-left-radius: 10px;
 }
+
+.youtube-dynamic {
+    position: relative;
+    padding-bottom: 55%;
+    height:0;
+}
+
+.youtube-dynamic iframe {
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height: 100%;
+}
+
+.youtube-dynamic .wd-widget-toolbar {
+    position: absolute;
+    right: 0px;
+    background: white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+}
