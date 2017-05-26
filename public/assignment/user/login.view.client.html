@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="WAM">
-<head>
-    <script src="../vendor/angular/angular.min.js"></script>
-    <script src="app.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>Login</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-    <div ng-controller="loginController"
-         class="container-fluid">
-        <h1>Login</h1>
-        <h3 ng-show="message" class="alert alert-info">{{message}}</h3>
-        <label for="username">Username</label>
-        <input ng-model="username"
-               id="username"
-               type="text"
-               class="form-control"
-               placeholder="eric_1"/>
-        <label for="password">Password</label>
-        <input ng-model="password"
-                id="password"
-               type="password"
-               class="form-control"
-               placeholder="whgn9687piunvh"/>
-        <a ng-click="login(username, password)"
-           class="btn btn-primary btn-block">
-            Login
-        </a>
-        <a class="btn btn-success btn-block"
-           href="register.html">Register</a>
-    </div>
-</body>
-</html>
+<div class="container-fluid">
+
+    <h1>Login</h1>
+
+    <h3 ng-show="model.message"
+        class="alert alert-info">{{model.message}}</h3>
+    <label for="username">Username</label>
+    <input ng-model="username"
+           id="username"
+           type="text"
+           class="form-control"
+           placeholder="eric_1"/>
+    <label for="password">Password</label>
+    <input ng-model="password"
+            id="password"
+           type="password"
+           class="form-control"
+           placeholder="whgn9687piunvh"/>
+    <a ng-click="model.login(username, password)"
+       class="btn btn-primary btn-block">
+        Login
+    </a>
+    <a class="btn btn-success btn-block"
+       href="register.html">Register</a>
+</div>
