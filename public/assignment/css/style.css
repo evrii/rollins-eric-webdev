@@ -22,13 +22,12 @@ body {
     padding-bottom: 60px;
 }
 
-nav.navbar.navbar-default.navbar-default.navbar-fixed-top div.container-fluid div.navbar-header {
+nav.navbar.navbar-default.navbar-fixed-top div.container-fluid div.navbar-header {
     width: 100%;
 }
 
-nav.navbar.navbar-default.navbar-default {
-    background-color: darkkhaki;
-    border-color: darkkhaki;
+nav.navbar-default {
+    background: darkkhaki;
 }
 
 nav.navbar.navbar-default .navbar-brand {
