@@ -12,14 +12,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="website-list.html">
+            <a class="navbar-brand" href="website-list.view.client.html">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand" href="#">
                 New Website
             </a>
             <p class="navbar-text pull-right">
-                <a href="website-new.html" class="navbar-link">
+                <a href="website-new.view.client.html" class="navbar-link">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -41,31 +41,31 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Cras justo odio</a></div>
-                            <div class="col-xs-2 "><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2 "><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Dapibus ac facilisis in</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Morbi leo risus</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Porta ac consectetur ac</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Vestibulum at eros</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                 </ul>
@@ -73,12 +73,18 @@
         </div>
         <div class="col-xs-12 col-md-8">
             <label for="name">Name</label>
-            <input class="form-control"
-                   id="name"
+            <input id="name"
+                   ng-model="website.name"
+                   class="form-control"
                    placeholder="cnn">
             <label for="description">Description</label>
-            <textarea id="description" class="form-control" rows="5" placeholder="news site"></textarea>
-            <a href="website-list.html" class="btn btn-block btn-primary">OK</a>
+            <textarea id="description"
+                      ng-model="website.description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="news site"></textarea>
+            <a ng-click="model.createWebsite(website)"
+               class="btn btn-block btn-success">Create</a>
         </div>
     </div>
 </div>

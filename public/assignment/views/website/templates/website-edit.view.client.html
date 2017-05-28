@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>Edit Website</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="website-list.html">
+            <a class="navbar-brand" href="website-list.view.client.html">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand" href="#">
@@ -41,31 +30,31 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Cras justo odio</a></div>
-                            <div class="col-xs-2 "><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2 "><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Dapibus ac facilisis in</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Morbi leo risus</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Porta ac consectetur ac</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10"><a href="../../page/templates/page-list.html">Vestibulum at eros</a></div>
-                            <div class="col-xs-2"><a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-2"><a href="website-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                 </ul>
@@ -73,14 +62,20 @@
         </div>
         <div class="col-xs-12 col-md-8">
             <label for="name">Name</label>
-            <input class="form-control"
+            <input ng-model="model.website.name"
+                    class="form-control"
                    id="name"
-                   placeholder="cnn"
-                   value="Engadget">
+                   placeholder="cnn">
             <label for="description">Description</label>
-            <textarea id="description" class="form-control" rows="5" placeholder="news site">Tech News</textarea>
-            <a href="website-list.html" class="btn btn-block btn-success">Update</a>
-            <a href="website-list.html" class="btn btn-block btn-danger">Delete</a>
+            <textarea ng-model="model.website.description"
+                      id="description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="news site"></textarea>
+            <a href="website-list.view.client.html"
+               class="btn btn-block btn-success">Update</a>
+            <a ng-click="model.deleteWebsite(model.website._id)"
+               class="btn btn-block btn-danger">Delete</a>
         </div>
     </div>
 </div>
@@ -94,6 +89,3 @@
         </p>
     </div>
 </nav>
-
-</body>
-</html>
