@@ -34,8 +34,8 @@
             pages.push(page);
         }
 
-        function deletePage(websiteId) {
-            var page = findPageById(websiteId);
+        function deletePage(pageId) {
+            var page = findPageById(pageId);
             var index = pages.indexOf(page);
             pages.splice(index, 1);
         }

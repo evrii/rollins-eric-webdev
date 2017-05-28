@@ -12,7 +12,6 @@
 
         function init() {
             model.pages = pageService.findAllPagesForWebsite(model.websiteId);
-            var boop = "ploop";
         }
         init();
 
