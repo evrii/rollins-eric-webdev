@@ -62,12 +62,18 @@
         </div>
         <div class="col-xs-12 col-md-8">
             <label for="name">Name</label>
-            <input class="form-control"
-                   id="name"
+            <input id="name"
+                   ng-model="page.name"
+                   class="form-control"
                    placeholder="Home Page">
             <label for="title">Title</label>
-            <textarea id="title" class="form-control" rows="5" placeholder="CNN - Home"></textarea>
-            <a href="page-list.view.client.html" class="btn btn-block btn-primary">OK</a>
+            <textarea id="title"
+                      ng-model="page.description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="CNN - Home"></textarea>
+            <a ng-click="model.createPage(page)"
+               class="btn btn-block btn-success">Create</a>
         </div>
     </div>
 </div>
