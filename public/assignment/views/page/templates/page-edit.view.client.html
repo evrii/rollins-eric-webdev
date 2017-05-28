@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>New Page</title>
+    <title>Edit Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../../css/style.css" rel="stylesheet"/>
 </head>
@@ -12,14 +12,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="page-list.html">
+            <a class="navbar-brand" href="page-list.view.client.html">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand" href="#">
-                New Page
+                Edit Page
             </a>
             <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
+                <a href="page-list.view.client.html" class="navbar-link">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -40,32 +40,32 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.html">Home</a></div>
-                            <div class="col-xs-2 "><a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Home</a></div>
+                            <div class="col-xs-2 "><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.html">Profile</a></div>
-                            <div class="col-xs-2"><a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Profile</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.html">Settings</a></div>
-                            <div class="col-xs-2"><a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Settings</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.html">Error</a></div>
-                            <div class="col-xs-2"><a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Error</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.html">Random</a></div>
-                            <div class="col-xs-2"><a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Random</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
                         </div>
                     </li>
                 </ul>
@@ -75,10 +75,12 @@
             <label for="name">Name</label>
             <input class="form-control"
                    id="name"
-                   placeholder="Home Page">
-            <label for="title">Title</label>
-            <textarea id="title" class="form-control" rows="5" placeholder="CNN - Home"></textarea>
-            <a href="page-list.html" class="btn btn-block btn-primary">OK</a>
+                   placeholder="Homepage"
+                   value="Account Settings">
+            <label for="title">Description</label>
+            <textarea id="title" class="form-control" rows="5" placeholder="CNN - Home">Evrii's Account Settings</textarea>
+            <a href="st.html" class="btn btn-block btn-success">Update</a>
+            <a href="st.html" class="btn btn-block btn-danger">Delete</a>
         </div>
     </div>
 </div>
