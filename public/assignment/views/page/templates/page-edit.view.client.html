@@ -62,14 +62,21 @@
         </div>
         <div class="col-xs-12 col-md-8">
             <label for="name">Name</label>
-            <input class="form-control"
+            <input ng-model="model.page.name"
                    id="name"
-                   placeholder="Homepage"
-                   value="Account Settings">
+                   class="form-control"
+                   placeholder="Homepage">
             <label for="title">Description</label>
-            <textarea id="title" class="form-control" rows="5" placeholder="CNN - Home">Evrii's Account Settings</textarea>
-            <a href="st.html" class="btn btn-block btn-success">Update</a>
-            <a href="st.html" class="btn btn-block btn-danger">Delete</a>
+            <textarea id="title"
+                      ng-model="model.page.description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="CNN - Home">
+            </textarea>
+            <a href="st.html"
+               class="btn btn-block btn-success">Update</a>
+            <a ng-click="model.deletePage(model.page._id)"
+               class="btn btn-block btn-danger">Delete</a>
         </div>
     </div>
 </div>
