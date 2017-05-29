@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">Edit Youtube</a>
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input ng-model="model.widget.name"
+           class="form-control"
+           id="name"
+           placeholder="Dog Video"
+           value="Cat video!">
+    <label for="text">Text</label>
+    <textarea ng-model="model.widget.text"
+              class="form-control"
+              id="text"
+              rows="5"
+              placeholder="Look at that dog!"></textarea>
+    <label for="url">URL</label>
+    <input id="url"
+           ng-model="model.widget.url"
+           type="url"
+           class="form-control"/>
+    <label for="width">Width (1%-100%)</label>
+    <input ng-model="model.widget.width"
+           id="width"
+           type="text"
+           class="form-control"
+           placeholder="1%"/>
+    <a ng-click="model.deleteWidget(model.widget.widget_id)"
+       class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

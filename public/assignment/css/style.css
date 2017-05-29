@@ -22,13 +22,12 @@ body {
     padding-bottom: 60px;
 }
 
-nav.navbar.navbar-default.navbar-default.navbar-fixed-top div.container-fluid div.navbar-header {
+nav.navbar.navbar-default.navbar-fixed-top div.container-fluid div.navbar-header {
     width: 100%;
 }
 
-nav.navbar.navbar-default.navbar-default {
-    background-color: darkkhaki;
-    border-color: darkkhaki;
+nav.navbar-default {
+    background: darkkhaki;
 }
 
 nav.navbar.navbar-default .navbar-brand {
@@ -58,6 +57,7 @@ nav.navbar.navbar-default a {
     opacity: 0.9;
     padding: 5px;
     border-bottom-left-radius: 10px;
+    z-index: 2;
 }
 
 .wd-youtube-dynamic {

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">Edit Image</a>
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input ng-model="model.widget.name"
+           class="form-control"
+           id="name"
+           placeholder="Cat Picture">
+    <label for="text">Text</label>
+    <textarea ng-model="model.widget.text"
+              class="form-control"
+              id="text"
+              rows="5"
+              placeholder="That's a funny cat picture!">
+    </textarea>
+    <label for="url">URL</label>
+    <input ng-model="model.widget.url"
+           id="url"
+           type="url"
+           class="form-control"
+           placeholder="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"/>
+    <label for="width">Width (1%-100%)</label>
+    <input ng-model="model.widget.width"
+           id="width"
+           type="text"
+           class="form-control"
+           placeholder="1%"/>
+    <label for="file">Upload</label>
+    <input ng-model="model.widget.file"
+           id="file"
+           type="file"
+           class="form-control" />
+    <a class="btn btn-block btn-primary">Upload Image</a>
+    <a ng-click="model.deleteWidget(model.widget.widget_id)"
+       class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
