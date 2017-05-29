@@ -57,6 +57,7 @@ nav.navbar.navbar-default a {
     opacity: 0.9;
     padding: 5px;
     border-bottom-left-radius: 10px;
+    z-index: 2;
 }
 
 .wd-youtube-dynamic {

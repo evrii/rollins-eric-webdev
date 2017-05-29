@@ -5,7 +5,7 @@
                href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
-            <a class="navbar-brand" href="#">Edit Youtube</a>
+            <a class="navbar-brand">Edit Heading</a>
             <p class="navbar-text pull-right">
                 <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
                    class="navbar-link">
@@ -19,32 +19,27 @@
 <div class="container-fluid">
 
             <label for="name">Name</label>
-            <input class="form-control"
+            <input ng-model="model.widget.name"
+                   class="form-control"
                    id="name"
-                   placeholder="top heading"
-                   value="Breaking News">
+                   placeholder="top heading">
             <label for="text">Text</label>
-            <textarea class="form-control" id="text" rows="5" placeholder="news site">U.S. Senate Reaches Compromise</textarea>
+            <textarea ng-model="model.widget.text"
+                      class="form-control"
+                      id="text"
+                      rows="5"
+                      placeholder="news site">
+            </textarea>
             <label for="heading-size">Size</label>
-            <select id="heading-size" class="form-control">
-                <option>1 (The Biggest)</option>
-                <option>2 (X-Large)</option>
-                <option>3 (Large)</option>
-                <option>4 (Medium)</option>
-                <option>5 (Small)</option>
-                <option>6 (X-Small)</option>
-            </select>
+            <input id="heading-size"
+                   ng-model="model.widget.size"
+                   type="number"
+                   placeholder="1"
+                   min="1"
+                   max="6">
     <a ng-click="model.deleteWidget(model.widget.widget_id)"
        class="btn btn-block btn-danger">Delete</a>
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <p class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html" class="navbar-link">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </p>
-    </div>
-</nav>
+<div ng-include="'views/common/footer.view.client.html'"></div>

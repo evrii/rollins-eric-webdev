@@ -31,7 +31,7 @@
                 widget.width = "100%";
             }
             else if("heading" == widgetType.toLowerCase()){
-                widget.size = 1;
+                widget.size = 3;
                 widget.text = "Default Heading";
             }
 

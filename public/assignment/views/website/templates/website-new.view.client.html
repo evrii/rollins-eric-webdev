@@ -12,10 +12,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="website-list.view.client.html">
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/website">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand">
                 New Website
             </a>
             <p class="navbar-text pull-right">
@@ -89,15 +90,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <p class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html" class="navbar-link">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </p>
-    </div>
-</nav>
+<div ng-include="'views/common/footer.view.client.html'"></div>
 
 </body>
 </html>

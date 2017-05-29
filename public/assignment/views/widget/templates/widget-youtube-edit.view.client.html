@@ -5,7 +5,7 @@
                href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
-            <a class="navbar-brand" href="#">Edit Youtube</a>
+            <a class="navbar-brand">Edit Youtube</a>
             <p class="navbar-text pull-right">
                 <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
                    class="navbar-link">
@@ -46,12 +46,4 @@
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <p class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html" class="navbar-link">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </p>
-    </div>
-</nav>
+<div ng-include="'views/common/footer.view.client.html'"></div>
