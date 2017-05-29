@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Widget Selector
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="widget-choose.view.client.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="wd-standalone-link">
+        <a ng-click="model.createWidget('heading')"
+           class="btn btn-block btn-success">
+            <span>Create Header Widget</span>
+        </a>
+    </div>
+    <div class="wd-standalone-link">
+        <a ng-click="model.createWidget('image')"
+           class="btn btn-block btn-success">
+            <span>Create Image Widget</span>
+        </a>
+    </div>
+    <div class="wd-standalone-link">
+        <a ng-click="model.createWidget('youtube')"
+           class="btn btn-block btn-success">
+            <span>Create Youtube Widget</span>
+        </a>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

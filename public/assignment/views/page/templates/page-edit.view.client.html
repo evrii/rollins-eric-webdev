@@ -1,0 +1,84 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Edit Page
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="page-list.view.client.html" class="navbar-link">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 visible-lg visible-md">
+            <div class="container-fluid">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <div class="row">
+                            <div class="col-xs-10">Name</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Home</a></div>
+                            <div class="col-xs-2 "><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Profile</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Settings</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Error</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10"><a href="../../widget/templates/widget-list.view.client.html">Random</a></div>
+                            <div class="col-xs-2"><a href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <label for="name">Name</label>
+            <input ng-model="model.page.name"
+                   id="name"
+                   class="form-control"
+                   placeholder="Homepage">
+            <label for="title">Description</label>
+            <textarea id="title"
+                      ng-model="model.page.description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="CNN - Home">
+            </textarea>
+            <a href="st.html"
+               class="btn btn-block btn-success">Update</a>
+            <a ng-click="model.deletePage(model.page._id)"
+               class="btn btn-block btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
