@@ -59,13 +59,13 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
-                templateUrl: 'views/widget/templates/widget-new.view.client.html',
-                controller: 'widgetEditController',
+                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+                controller: 'widgetNewController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
-                controller: 'pageEditController',
+                controller: 'widgetEditController',
                 controllerAs: 'model'
             })
     }

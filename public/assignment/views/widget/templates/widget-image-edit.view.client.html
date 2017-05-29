@@ -1,12 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="widget-list.view.client.html">
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
-            <a class="navbar-brand" href="#">Edit Image</a>
+            <a class="navbar-brand" href="#">Edit Youtube</a>
             <p class="navbar-text pull-right">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -17,25 +19,36 @@
 <div class="container-fluid">
 
     <label for="name">Name</label>
-    <input class="form-control"
+    <input ng-model="model.widget.name"
+           class="form-control"
            id="name"
-           placeholder="Cat Picture"
-           value="Dog Picture">
+           placeholder="Cat Picture">
     <label for="text">Text</label>
-    <textarea class="form-control" id="text" rows="5" placeholder="That's a funny cat picture!">Look at that dog!</textarea>
+    <textarea ng-model="model.widget.text"
+              class="form-control"
+              id="text"
+              rows="5"
+              placeholder="That's a funny cat picture!">
+    </textarea>
     <label for="url">URL</label>
-    <input id="url"
+    <input ng-model="model.widget.url"
+           id="url"
            type="url"
            class="form-control"
-           placeholder="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-           value="https://upload.wikimedia.org/wikipedia/commons/1/18/Bartagame_fcm.jpg"/>
-    <label for="width">Width (1-100)</label>
-    <input id="width" type="number" class="form-control" min="1" max="100" placeholder="1" value="100"/>
+           placeholder="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"/>
+    <label for="width">Width (1%-100%)</label>
+    <input ng-model="model.widget.width"
+           id="width"
+           type="text"
+           class="form-control"
+           placeholder="1%"/>
     <label for="file">Upload</label>
-    <input id="file" type="file" class="form-control" />
-    <a href="#"
-       class="btn btn-block btn-primary">Upload Image</a>
-    <a href="widget-list.view.client.html"
+    <input ng-model="model.widget.file"
+           id="file"
+           type="file"
+           class="form-control" />
+    <a class="btn btn-block btn-primary">Upload Image</a>
+    <a ng-click="model.deleteWidget(model.widget.widget_id)"
        class="btn btn-block btn-danger">Delete</a>
 
 </div>

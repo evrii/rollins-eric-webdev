@@ -18,18 +18,21 @@
 
 <div class="container-fluid">
     <div class="wd-standalone-link">
-        <a href="widget-heading-edit.view.client.html" class="navbar-link">
-            <span>Header</span>
+        <a ng-click="model.createWidget('heading')"
+           class="btn btn-block btn-success">
+            <span>Create Header Widget</span>
         </a>
     </div>
     <div class="wd-standalone-link">
-        <a href="widget-heading-edit.view.client.html" class="navbar-link">
-            <span>Image</span>
+        <a ng-click="model.createWidget('image')"
+           class="btn btn-block btn-success">
+            <span>Create Image Widget</span>
         </a>
     </div>
     <div class="wd-standalone-link">
-        <a href="widget-youtube-edit.view.client.html" class="navbar-link">
-            <span>Youtube</span>
+        <a ng-click="model.createWidget('youtube')"
+           class="btn btn-block btn-success">
+            <span>Create Youtube Widget</span>
         </a>
     </div>
 </div>
