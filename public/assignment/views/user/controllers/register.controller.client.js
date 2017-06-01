@@ -15,7 +15,25 @@
                 model.error = "Please enter a valid username"
                 return;
             }
-            var found = userService.findUserByUsername(username);
+            userService
+                .findUserByUsername(username)
+                .then(
+                    function(){
+                        model.error = "";
+                    },
+                    function(){
+                        var newUser = {
+                            username: username,
+                            password: password
+                        }
+                        return userService
+                            .createUser(newUser);
+
+                    }
+                )
+                .then(function (user){
+                    $location.url('/user/'+userId)
+                });
 
             if(password === null ||
                 typeof password === 'undefined'){

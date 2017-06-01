@@ -3,7 +3,7 @@
         .module('WAM')
         .service('websiteService', websiteService)
 
-    function websiteService() {
+    function websiteService($http) {
         this.findAllWebsitesForUser = findAllWebsitesForUser;
         this.findWebsiteById = findWebsiteById;
         this.createWebsite = createWebsite;
@@ -20,6 +20,13 @@
         ];
 
         function findAllWebsitesForUser(userId){
+
+            var url = "/api/assignment/user/"+userId+"/website";
+            $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
             var results = [];
 
             for (var v in websites){
