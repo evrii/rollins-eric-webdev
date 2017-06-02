@@ -10,7 +10,7 @@
 
         function login(username, password) {
             //var found = userService.findUserByCredentials(username, password);
-            var found = userService
+            userService
                 .findUserByCredentials(username, password)
                 .then(function (found) {
                     if (found !== null) {

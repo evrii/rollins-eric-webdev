@@ -29,9 +29,11 @@ function findAllUsers(req, res) {
             if (user.username === username &&
                 user.password === password) {
                 res.json(user);
+                return;
             }
         }
         res.sendStatus(404);
+        return;
     }
     else if(username){
         for(var u in users) {
