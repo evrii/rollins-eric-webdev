@@ -13,11 +13,16 @@
         //model.user = userService.findUserById(model.userId);
         userService
             .findUserById(model.userId)
-            .then(renderUser);
+            .then(renderUser, userError);
 
         function renderUser(response) {
             console.log(response);
             model.user = response;
+        }
+
+        function userError(error) {
+            model.error = "User not found"
+
         }
 
         function updateUser(){
