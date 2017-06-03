@@ -31,13 +31,13 @@
         function findUserById(userId) {
             var url = '/api/assignment/user/'+userId;
             return $http.get(url)
-                .then(renderUser);
+                .then(function (response) {
+                    return response.data;
+                });
 
         }
 
-        function renderUser(user) {
-            return resonse.data;
-        }
+
 
         function findUserByCredentials(username, password){
             var url = "/api/assignment/user?username="+username+"&password="+password;

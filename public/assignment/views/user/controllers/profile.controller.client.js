@@ -15,6 +15,11 @@
             .findUserById(model.userId)
             .then(renderUser);
 
+        function renderUser(response) {
+            console.log(response);
+            model.user = response;
+        }
+
         function updateUser(){
             userService
                 .updateUser(user._id, user)
