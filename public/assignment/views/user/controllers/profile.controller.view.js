@@ -33,7 +33,7 @@
             });
         }
 
-        function deleteUser(userId) {
+        function deleteUser(user) {
             userService
                 .deleteUser(user._id)
                 .then(function () {

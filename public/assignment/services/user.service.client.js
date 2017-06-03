@@ -16,7 +16,8 @@
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
-            updateUser: updateUser
+            updateUser: updateUser,
+            deleteUser: deleteUser
         }
         return api;
         
@@ -74,7 +75,7 @@
         }
 
         function deleteUser(userId){
-            var url = "/api/assignment/user"+userId;
+            var url = "/api/assignment/user/"+userId;
             return $http.delete(url)
                 .then(function(){
 

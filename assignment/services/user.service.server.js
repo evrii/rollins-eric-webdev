@@ -10,7 +10,7 @@ app.get('/api/assignment/user/:userId', findUserById);
 app.get('/api/assignment/user', findAllUsers);
 app.post('/api/assignment/user', createUser);
 app.put('/api/assignment/user/:userId', updateUser);
-app.delete('/api/assignment/user', deleteUser);
+app.delete('/api/assignment/user/:userId', deleteUser);
 
 function createUser(req, res){
     var user = req.body;
