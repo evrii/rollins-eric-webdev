@@ -25,7 +25,7 @@
 
         }
 
-        function updateUser(){
+        function updateUser(user){
             userService
                 .updateUser(user._id, user)
                 .then(function () {

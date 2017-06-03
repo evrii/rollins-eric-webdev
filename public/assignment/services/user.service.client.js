@@ -15,7 +15,8 @@
             createUser: createUser,
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            updateUser: updateUser
         }
         return api;
         
@@ -65,10 +66,10 @@
         }
 
         function updateUser(userId, user){
-            var url = "/api/assignment/user"+userId;
+            var url = "/api/assignment/user/"+userId;
             return $http.put(url, user)
-                .then(function(){
-
+                .then(function(response){
+                    return response.data;
                 })
         }
 
