@@ -19,7 +19,7 @@
                 .findUserByUsername(username)
                 .then(
                     function(){
-                        model.error = "";
+                        model.error = "Sorry, that username is taken.";
                     },
                     function(){
                         var newUser = {
@@ -32,10 +32,10 @@
                     }
                 )
                 .then(function (user){
-                    $location.url('/user/'+userId)
+                    $location.url('/user/'+user._id)
                 });
 
-            if(password === null ||
+            /*if(password === null ||
                 typeof password === 'undefined'){
                 model.error = "Please enter a value for password"
                 return;
@@ -55,7 +55,7 @@
                 };
                 newUser = userService.createUser(newUser);
                 $location.url('/user/' + newUser._id)
-            }
+            }*/
         }
 
     }

@@ -15,7 +15,7 @@ app.delete('/api/assignment/user', deleteUser);
 function createUser(req, res){
     var user = req.body;
     user._id = (new Date()).getTime() + "";
-    user.push(user);
+    users.push(user);
     res.json(user);
 }
 
@@ -44,6 +44,7 @@ function findAllUsers(req, res) {
             }
         }
         res.sendStatus(404);
+        return;
     }
     else {
         res.send(users);

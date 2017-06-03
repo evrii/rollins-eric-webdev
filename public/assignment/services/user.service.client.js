@@ -21,10 +21,10 @@
         
         function createUser(user) {
             var url = "/api/assignment/user";
-            $http
+            return $http
                 .post(url, user)
-                .then(function (user) {
-                    $location.url('/user/' + userId);
+                .then(function (response) {
+                    return response.data;
                 });
         }
 
@@ -57,9 +57,9 @@
                 return null;
             }
             return user;*/
-            var url = "/api/assignment/user?username="+username+"&password="+password;
-            $http.get(url)
-                .then(function () {
+            var url = "/api/assignment/user?username="+username;
+            return $http.get(url)
+                .then(function (response) {
                     return response.data
                 });
         }
