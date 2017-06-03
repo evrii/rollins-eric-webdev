@@ -13,7 +13,8 @@ var websites = [
 
 app.get("/api/assignment/user/:userId/website", findAllWebsitesForUser)
 
-function findAllWebsitesForUser() {
+function findAllWebsitesForUser(req, res) {
+    var userId = req.params['userId'];
     for (var v in websites){
         if(websites[v].developerId === userId){
             websites[v].accessed = new Date();

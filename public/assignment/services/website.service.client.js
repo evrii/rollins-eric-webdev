@@ -22,12 +22,12 @@
         function findAllWebsitesForUser(userId){
 
             var url = "/api/assignment/user/"+userId+"/website";
-            $http
+            return $http
                 .get(url)
                 .then(function (response) {
                     return response.data;
                 });
-            var results = [];
+            /*var results = [];
 
             for (var v in websites){
                 if(websites[v].developerId === userId){
@@ -37,7 +37,7 @@
                 }
             }
 
-            return results;
+            return results;*/
         }
 
         function createWebsite(website) {
