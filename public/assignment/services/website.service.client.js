@@ -19,6 +19,15 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
         ];
 
+        var api = {
+            createWebsite: createWebsite,
+            findWebsiteById: findWebsiteById,
+            findAllWebsitesForUser: findAllWebsitesForUser,
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
+        }
+        return api;
+
         function findAllWebsitesForUser(userId){
 
             var url = "/api/assignment/user/"+userId+"/website";
@@ -41,20 +50,36 @@
         }
 
         function createWebsite(website) {
-            website._id = (new Date()).getTime() + "";
-            websites.push(website);
+            var url = "/api/assignment/user/"+website.developerId+"/website";
+            return $http
+                .post(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateWebsite(websiteId, website){
+            var url = "/api/assignment/website/"+websiteId;
+            return $http.put(url, website)
+                .then(function(response){
+                    return response.data;
+                })
         }
 
         function deleteWebsite(websiteId) {
-            var website = findWebsiteById(websiteId);
-            var index = websites.indexOf(website);
-            websites.splice(index, 1);
+            var url = "/api/assignment/website/"+websiteId;
+            return $http.delete(url)
+                .then(function(){
+
+                })
         }
 
         function findWebsiteById(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId
-            });
+            var url = '/api/assignment/website/'+websiteId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

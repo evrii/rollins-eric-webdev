@@ -7,19 +7,29 @@
                                    $location,
                                    websiteService) {
         var model = this;
-
-        model.userId = $routeParams['userId'];
         model.createWebsite = createWebsite;
 
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            model.userId = $routeParams['userId'];
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(renderWebsites, websitesError);
         }
         init();
 
         function createWebsite(website) {
             website.developerId = model.userId;
-            websiteService.createWebsite(website);
+            websiteService
+                .createWebsite(website);
             $location.url('/user/'+model.userId+'/website');
+        }
+        function renderWebsites(response) {
+            console.log("RENDER WEBSITES: "+response);
+            model.websites = response;
+        }
+
+        function websitesError(response) {
+            model.error = "Websites not found."
         }
 
     }

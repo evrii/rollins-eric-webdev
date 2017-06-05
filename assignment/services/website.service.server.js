@@ -21,12 +21,14 @@ app.delete('/api/assignment/website/:websiteId', deleteWebsite);
 function createWebsite(req, res) {
     var website = req.body;
     website._id = (new Date()).getTime() + "";
-    websites.push(user);
+    websites.push(website);
     res.json(website);
 }
 
 function findAllWebsitesForUser(req, res) {
+    results = []
     var userId = req.params['userId'];
+    console.log(websites)
     for (var v in websites){
         if(websites[v].developerId === userId){
             websites[v].accessed = new Date();
@@ -66,7 +68,7 @@ function deleteWebsite(req, res) {
 
     for(var w in websites) {
         if(websites[w]._id === websiteId){
-            websites.splice(u, 1);
+            websites.splice(w, 1);
             res.sendStatus(200);
             return;
         }
