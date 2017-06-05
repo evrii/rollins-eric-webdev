@@ -4,11 +4,6 @@
         .service('websiteService', websiteService)
 
     function websiteService($http) {
-        this.findAllWebsitesForUser = findAllWebsitesForUser;
-        this.findWebsiteById = findWebsiteById;
-        this.createWebsite = createWebsite;
-        this.deleteWebsite = deleteWebsite;
-
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
             { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
@@ -29,24 +24,12 @@
         return api;
 
         function findAllWebsitesForUser(userId){
-
             var url = "/api/assignment/user/"+userId+"/website";
             return $http
                 .get(url)
                 .then(function (response) {
                     return response.data;
                 });
-            /*var results = [];
-
-            for (var v in websites){
-                if(websites[v].developerId === userId){
-                    websites[v].created = new Date();
-                    websites[v].accessed = new Date();
-                    results.push(websites[v]);
-                }
-            }
-
-            return results;*/
         }
 
         function createWebsite(website) {
