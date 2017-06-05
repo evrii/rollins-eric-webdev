@@ -7,13 +7,20 @@
                                 pageService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams['websiteId'];
+
 
         function init() {
-            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
+            model.userId = $routeParams['userId'];
+            model.websiteId = $routeParams['websiteId'];
+            pageService
+                .findAllPagesForWebsite(model.websiteId)
+                .then(renderPages)
         }
         init();
+
+        function renderPages (pages) {
+            model.pages = pages
+        }
 
 
     }
