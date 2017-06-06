@@ -48,7 +48,6 @@
                 .then(function () {
                     $location.url('/user/'+model.userId+'/website');
                 })
-
         }
 
         function deleteWebsite(websiteId) {
