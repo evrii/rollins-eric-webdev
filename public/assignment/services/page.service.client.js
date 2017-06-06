@@ -38,15 +38,19 @@
         }
 
         function deletePage(pageId) {
-            var page = findPageById(pageId);
-            var index = pages.indexOf(page);
-            pages.splice(index, 1);
+            var url = "/api/assignment/page/"+pageId;
+            return $http.delete(url)
+                .then(function(response){
+                    return response.data;
+                });
         }
 
         function findPageById(pageId) {
-            return pages.find(function (page) {
-                return page._id === pageId
-            });
+            var url = "/api/assignment/page/"+pageId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function updatePage(pageId, page){
@@ -54,7 +58,7 @@
             return $http.put(url, page)
                 .then(function(response){
                     return response.data;
-                })
+                });
         }
     }
 })();

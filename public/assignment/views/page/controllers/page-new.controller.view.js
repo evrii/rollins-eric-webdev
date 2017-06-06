@@ -12,9 +12,19 @@
         function init() {
             model.userId = $routeParams['userId'];
             model.websiteId = $routeParams['websiteId'];
-            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
+            pageService
+                .findAllPagesForWebsite(model.websiteId)
+                .then(renderPages, pagesError);
         }
         init();
+
+        function renderPages(response) {
+            model.pages = response;
+        }
+
+        function pagesError(response) {
+            model.error = "Page list not found."
+        }
 
         function createPage(page) {
             //Look into this

@@ -10,40 +10,53 @@ var pages = [
 app.post('/api/assignment/website/:websiteId/page', createPage);
 app.get('/api/assignment/website/:websiteId/page', findAllPagesForWebsite);
 app.get('/api/assignment/page/:pageId', findPageById);
-app.put('/api/assignment/page/:websiteId', updatePage);
-app.delete('/api/assignment/page/:websiteId', deletePage);
+app.put('/api/assignment/page/:pageId', updatePage);
+app.delete('/api/assignment/page/:pageId', deletePage);
 
 function findAllPagesForWebsite(req, res) {
     results = []
     var websiteId = req.params['websiteId'];
-    console.log(pages)
     for (var p in pages){
-        if(pages[p].developerId === websiteId){
+        if(pages[p].websiteId === websiteId){
             pages[p].accessed = new Date();
-            results.push(pages[v]);
+            results.push(pages[p]);
         }
     }
-
     res.json(results);
 }
 
 function createPage(req, res) {
     var page = req.body;
-    page._id = (new Date()).getTime() + "";
+    var currentDate = new Date();
+    page._id = (currentDate).getTime() + "";
+    page.created = currentDate;
+    page.accessed = currentDate;
     pages.push(page);
     res.json(page);
 }
 
-function deletePage(pageId) {
-    var page = findPageById(pageId);
-    var index = pages.indexOf(page);
-    pages.splice(index, 1);
+function deletePage(req, res) {
+    var pageId = req.params['pageId'];
+
+    for(var p in pages) {
+        if(pages[p]._id === pageId){
+            pages.splice(p, 1);
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
 }
 
-function findPageById(pageId) {
-    return pages.find(function (page) {
-        return page._id === pageId
-    });
+function findPageById(req, res) {
+    var pageId = req.params['pageId'];
+    for(var p in pages) {
+        if(pages[p]._id === pageId){
+            res.send(pages[p]);
+            return;
+        }
+    }
+    res.sendStatus(404);
 }
 
 function updatePage(req, res) {
@@ -51,6 +64,7 @@ function updatePage(req, res) {
 
     for (var p in pages) {
         if (pages[p]._id === req.params['pageId']) {
+            page.accessed = new Date();
             pages[p] = page;
             res.sendStatus(200);
             return;
