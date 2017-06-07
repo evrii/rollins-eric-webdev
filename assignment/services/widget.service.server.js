@@ -21,6 +21,7 @@ app.post('/api/assignment/page/:pageId/widget', createWidget);
 app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
 app.get('/api/assignment/widget/:widgetId', findWidgetById);
 app.put('/api/assignment/widget/:widgetId', updateWidget);
+app.put('/api/assignment/page/:pageId/widget', moveWidget);
 app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
 app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
@@ -120,3 +121,26 @@ function uploadImage(req, res) {
     res.redirect(callbackUrl);
 }
 
+function moveWidget(req, res){
+    var initialIndex = req.query['initial'];
+    var finalIndex = req.query['final'];
+
+    var originalWidget = widgets[initialIndex];
+
+    console.log("Start:" + initialIndex)
+    console.log("End:" + finalIndex)
+
+    if(finalIndex < initialIndex){
+        console.log("Cowboy");
+        widgets.splice(finalIndex,0,originalWidget);
+        widgets.splice(initialIndex+1, 1)
+    }
+    else if(finalIndex > initialIndex){
+        console.log("Space Ranger");
+        widgets.splice(finalIndex+1,0,originalWidget);
+        widgets.splice(initialIndex, 1)
+    }
+
+;
+    res.sendStatus(200);
+}

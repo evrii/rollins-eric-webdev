@@ -12,6 +12,7 @@
             updateWidgetUrl: updateWidgetUrl,
             createWidget: createWidget,
             deleteWidget: deleteWidget,
+            moveWidget: moveWidget
         }
         return api;
 
@@ -71,7 +72,14 @@
                             return response.data;
                         });
                 })
-;
+        }
+
+        function moveWidget(initialIndex, finalIndex, pageId){
+            var url = "/api/assignment/page/"+pageId+"/widget/?initial="+initialIndex+"+&final="+finalIndex;
+            return $http.put(url)
+                .then(function(response){
+                    return response.data;
+                })
         }
     }
 })();
