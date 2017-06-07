@@ -3,12 +3,7 @@
         .module('WAM')
         .service('websiteService', websiteService)
 
-    function websiteService() {
-        this.findAllWebsitesForUser = findAllWebsitesForUser;
-        this.findWebsiteById = findWebsiteById;
-        this.createWebsite = createWebsite;
-        this.deleteWebsite = deleteWebsite;
-
+    function websiteService($http) {
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
             { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
@@ -19,35 +14,55 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
         ];
 
+        var api = {
+            createWebsite: createWebsite,
+            findWebsiteById: findWebsiteById,
+            findAllWebsitesForUser: findAllWebsitesForUser,
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
+        }
+        return api;
+
         function findAllWebsitesForUser(userId){
-            var results = [];
-
-            for (var v in websites){
-                if(websites[v].developerId === userId){
-                    websites[v].created = new Date();
-                    websites[v].accessed = new Date();
-                    results.push(websites[v]);
-                }
-            }
-
-            return results;
+            var url = "/api/assignment/user/"+userId+"/website";
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function createWebsite(website) {
-            website._id = (new Date()).getTime() + "";
-            websites.push(website);
+            var url = "/api/assignment/user/"+website.developerId+"/website";
+            return $http
+                .post(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateWebsite(websiteId, website){
+            var url = "/api/assignment/website/"+websiteId;
+            return $http.put(url, website)
+                .then(function(response){
+                    return response.data;
+                })
         }
 
         function deleteWebsite(websiteId) {
-            var website = findWebsiteById(websiteId);
-            var index = websites.indexOf(website);
-            websites.splice(index, 1);
+            var url = "/api/assignment/website/"+websiteId;
+            return $http.delete(url)
+                .then(function(){
+
+                })
         }
 
         function findWebsiteById(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId
-            });
+            var url = '/api/assignment/website/'+websiteId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

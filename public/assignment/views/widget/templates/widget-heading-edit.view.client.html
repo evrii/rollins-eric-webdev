@@ -1,21 +1,3 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand"
-               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
-            </a>
-            <a class="navbar-brand">Edit Heading</a>
-            <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
-                   class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
 <div class="container-fluid">
 
             <label for="name">Name</label>
@@ -37,7 +19,7 @@
                    placeholder="1"
                    min="1"
                    max="6">
-    <a ng-click="model.deleteWidget(model.widget.widget_id)"
+    <a ng-click="model.deleteWidget(model.widgetId)"
        class="btn btn-block btn-danger">Delete</a>
 
 </div>
