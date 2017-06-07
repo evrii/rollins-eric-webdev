@@ -40,10 +40,11 @@ function createWidget(req, res) {
 function findAllWidgetsForPage(req, res) {
     results = []
     var pageId = req.params['pageId'];
-    for (var w in widgets){
-        if(widgets[w].pageId === pageId){
-            widgets[w].accessed = new Date();
-            results.push(widgets[w]);
+    var count;
+    for (count = 0; count<widgets.length; count++){
+        if(widgets[count].pageId === pageId){
+            widgets[count].accessed = new Date();
+            results.push(widgets[count]);
         }
     }
     res.json(results);
@@ -122,13 +123,16 @@ function uploadImage(req, res) {
 }
 
 function moveWidget(req, res){
-    var initialIndex = req.query['initial'];
-    var finalIndex = req.query['final'];
+    var initialIndex = parseInt(req.query['initial']);
+    var finalIndex = parseInt(req.query['final']);
 
-    var originalWidget = widgets[initialIndex];
+    var originalWidget =  JSON.parse(JSON.stringify(widgets[initialIndex]));
 
-    console.log("Start:" + initialIndex)
-    console.log("End:" + finalIndex)
+    // console.log("Start:" + initialIndex)
+    // console.log("End:" + finalIndex)
+    // console.log(widgets)
+    console.log(widgets)
+
 
     if(finalIndex < initialIndex){
         console.log("Cowboy");
@@ -140,7 +144,7 @@ function moveWidget(req, res){
         widgets.splice(finalIndex+1,0,originalWidget);
         widgets.splice(initialIndex, 1)
     }
-
-;
+    console.log(widgets)
     res.sendStatus(200);
+    return;
 }
