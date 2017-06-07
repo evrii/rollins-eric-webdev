@@ -6,6 +6,8 @@
     function widgetNewController($routeParams,
                                $location,
                                widgetService) {
+
+
         var model = this;
 
         model.userId = $routeParams['userId'];
@@ -14,9 +16,15 @@
         model.createWidget = createWidget;
 
         function init() {
-            model.widgets = widgetService.findAllWidgetsForPage(model.pageId);
+            model.widgets = widgetService
+                .findAllWidgetsForPage(model.pageId)
+                .then(renderWidgets);
         }
         init();
+
+        function renderWidgets(response) {
+            model.widgets = response;
+        }
 
         function createWidget(widgetType) {
             var widget = {};
@@ -35,8 +43,12 @@
                 widget.text = "Default Heading";
             }
 
-            widget = widgetService.createWidget(widget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+widget._id);
+            widget = widgetService
+                .createWidget(widget, model.pageId)
+                .then(function (response) {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+response._id);
+                });
+
         }
 
     }
