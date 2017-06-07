@@ -34,9 +34,9 @@
             model.widgets = response;
         }
 
-        function updateWidget(widgetId) {
+        function updateWidget(widget) {
             widgetService
-                .updateWidget(widgetId)
+                .updateWidget(widget._id, widget)
                 .then(function () {
                     $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
                 })

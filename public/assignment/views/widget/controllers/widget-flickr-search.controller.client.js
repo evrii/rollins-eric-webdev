@@ -5,6 +5,7 @@
 
     function FlickrImageSearchController ($routeParams,
                                           $sce,
+                                          $location,
                                           flickrService,
                                           widgetService) {
         var model = this;
@@ -21,9 +22,9 @@
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             widgetService
-                .updateWidget(model.websiteId, model.pageId, widgetId, {url: url})
+                .updateWidgetUrl(model.widgetId, url)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget'+model.pageId);
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+model.widgetId);
                 })
         }
 
