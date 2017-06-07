@@ -8,6 +8,7 @@
         var api = {
             findAllWidgetsForPage: findAllWidgetsForPage,
             findWidgetById: findWidgetById,
+            updateWidget: updateWidget,
             createWidget: createWidget,
             deleteWidget: deleteWidget
         }
@@ -55,6 +56,14 @@
             var url = "/api/assignment/widget/"+widgetId;
             return $http.get(url)
                 .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateWidget(widgetId, widget){
+            var url = "/api/assignment/widget/"+widgetId;
+            return $http.put(url, widget)
+                .then(function(response){
                     return response.data;
                 });
         }
