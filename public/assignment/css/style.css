@@ -86,3 +86,7 @@ nav.navbar.navbar-default a {
 .wd-standalone-link {
     padding-top: 10px;
 }
+
+.wd-padded-btn {
+    margin-top: 5px;
+}

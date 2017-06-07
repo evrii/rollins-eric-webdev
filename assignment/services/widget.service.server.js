@@ -23,7 +23,7 @@ app.get('/api/assignment/widget/:widgetId', findWidgetById);
 app.put('/api/assignment/widget/:widgetId', updateWidget);
 app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
-app.post ("/api/upload", upload.single('myFile'), uploadImage);
+app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
 
 
 function createWidget(req, res) {
@@ -50,13 +50,23 @@ function findAllWidgetsForPage(req, res) {
 
 function findWidgetById(req, res) {
     var widgetId = req.params['widgetId'];
+    var widget = getWidgetById(widgetId);
+    if(widget){
+        res.send(widget);
+        return;
+    }
+    else{
+        res.sendStatus(404);
+    }
+}
+
+function getWidgetById(widgetId){
     for(var w in widgets) {
         if(widgets[w]._id === widgetId){
-            res.send(widgets[w]);
-            return;
+            return widgets[w];
         }
     }
-    res.sendStatus(404);
+    return null;
 }
 
 function updateWidget(req, res) {
@@ -87,7 +97,6 @@ function deleteWidget(req, res) {
 }
 
 function uploadImage(req, res) {
-
     var widgetId      = req.body.widgetId;
     var width         = req.body.width;
     var myFile        = req.file;
@@ -104,9 +113,9 @@ function uploadImage(req, res) {
     var mimetype      = myFile.mimetype;
 
     widget = getWidgetById(widgetId);
-    widget.url = '/uploads/'+filename;
+    widget.url = '/assignment/uploads/'+filename;
 
-    var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId;
+    var callbackUrl   = "/assignment/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
 
     res.redirect(callbackUrl);
 }
