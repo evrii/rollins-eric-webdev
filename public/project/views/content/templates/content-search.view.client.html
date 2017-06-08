@@ -1,0 +1,24 @@
+<span>Hi!</span>
+
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control"
+               placeholder="Search Content">
+        <span class="input-group-btn">
+            <a ng-click="model.searchContent(searchText)"
+               class="btn btn-default"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+    {{model.photos}}
+    <!--<div class="row">-->
+    <!--<div class="col-xs-4 col-sm-3 col-md-2 col-lg-1" ng-repeat="photo in model.photos.photo">-->
+    <!--<img ng-click="model.selectPhoto(photo)"-->
+    <!--ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
