@@ -26,15 +26,20 @@
         </div>
 
         <div ng-switch="widget.widgetType">
-            <div ng-switch-when="HTML"
-                 ng-bind-html="model.trust(widget.text)">
-            </div>
-            <div ng-switch-default>
-                <div ng-include="model.widgetUrl(widget)"></div>
-            </div>
-        </div>
+    <div ng-switch-when="HTML"
+         ng-bind-html="model.trust(widget.text)">
     </div>
+    <div ng-switch-default>
+        <div ng-include="model.widgetUrl(widget)"></div>
+    </div>
+</div>
+</div>
 
 </div>
+
+
+
+
+
 
 <div ng-include="'views/common/footer.view.client.html'"></div>

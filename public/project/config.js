@@ -21,7 +21,7 @@
                 templateUrl: 'experiment.html',
             })
             .when('/content', {
-                templateUrl: 'views/content/templates/content-search.view.client.html',
+                templateUrl: 'views/content/templates/course-search.view.client.html',
                 controller: 'ContentSearchController',
                 controllerAs: 'model'
             })
