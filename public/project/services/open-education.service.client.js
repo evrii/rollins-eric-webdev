@@ -4,17 +4,24 @@
         .service('openEducationService', openEducationService)
 
     function openEducationService ($http) {
+        
+        var urlBase = "http://data.oeconsortium.org/api/v1/courses/search/?q=SEARCH_TERM";
 
-        var key = "feb996c6dadf0ad8068fb3bee2df851f";
-        var secret = "a9311d4f5c62c2e6";
-        var urlBase = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT";
+        var detailBaseUrl = "http://data.oeconsortium.org/api/v1/courses/view/COURSE_ID/?format=json"
 
         this.searchContent = searchContent;
+        this.getCourseDetails = getCourseDetails;
 
         function searchContent(searchTerm) {
             var url = urlBase
-                .replace("API_KEY", key)
-                .replace("TEXT", searchTerm);
+                .replace("SEARCH_TERM", searchTerm)
+                .replace(" ", "+");
+            return $http.get(url);
+        }
+        
+        function getCourseDetails(courseId) {
+            var url = detailBaseUrl
+                .replace("COURSE_ID", courseId)
             return $http.get(url);
         }
 
