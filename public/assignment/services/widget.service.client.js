@@ -31,11 +31,13 @@
                 .post(url, widget)
                 .then(function (response) {
                     return response.data;
+                }, function () {
+                    var dog = 888;
                 });
         }
 
-        function deleteWidget(widgetId) {
-            var url = "/api/assignment/widget/"+widgetId;
+        function deleteWidget(pageId, widgetId) {
+            var url = "/api/assignment/page/"+pageId+"/widget/"+widgetId;
             return $http.delete(url)
                 .then(function(response){
                     return response.data;
