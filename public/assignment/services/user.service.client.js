@@ -56,7 +56,7 @@
             var url = "/api/assignment/user?username="+username;
             return $http.get(url)
                 .then(function (response) {
-                    return response.data
+                    return response.data;
                 });
         }
 
@@ -72,7 +72,7 @@
             var url = "/api/assignment/user/"+userId;
             return $http.delete(url)
                 .then(function(response){
-                    return respons.data;
+                    return response;
                 })
         }
 

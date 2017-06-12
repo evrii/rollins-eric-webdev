@@ -25,7 +25,6 @@
         init();
 
         function renderWebsite(response) {
-            console.log("RENDER WEBSITE: "+response);
             model.website = response;
         }
 
@@ -55,7 +54,6 @@
                 .then(function (status) {
                     $location.url('/user/'+model.userId+'/website');
                 });
-
         }
 
     }
