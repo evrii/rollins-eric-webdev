@@ -8,7 +8,7 @@ websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.findAllWebsites = findAllWebsites;
 websiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
 websiteModel.updateWebsite = updateWebsite;
-websiteModel.deleteWebsiteFromUser = deleteWebsiteFromUser;
+websiteModel.deleteWebsite = deleteWebsite;
 
 module.exports = websiteModel;
 
@@ -40,12 +40,12 @@ function updateWebsite(websiteId, newWebsite) {
     return websiteModel.update({_id: websiteId}, {$set: newWebsite})
 }
 
-function deleteWebsiteFromUser(userId, websiteId) {
+function deleteWebsite(userId, websiteId) {
     return websiteModel
         .remove({_id: websiteId})
         .then(function (website) {
             return userModel
-                .removeWebsite(website.userId,);
+                .removeWebsite(website.userId, websiteId);
         })
 
 }

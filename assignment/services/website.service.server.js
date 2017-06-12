@@ -34,42 +34,29 @@ function findAllWebsitesForUser(req, res) {
         .findAllWebsitesForUser(userId)
         .then(function (websites) {
             res.json(websites);
-        })
-    // results = []
-    // var userId = req.params['userId'];
-    // console.log(websites)
-    // for (var v in websites){
-    //     if(websites[v].developerId === userId){
-    //         websites[v].accessed = new Date();
-    //         results.push(websites[v]);
-    //     }
-    // }
-    //
-    // res.json(results);
+        });
 }
 
 function findWebsiteById(req, res) {
     var websiteId = req.params['websiteId'];
-    for(var w in websites) {
-        if(websites[w]._id === websiteId){
-            res.send(websites[w]);
-            return;
-        }
-    }
-    res.sendStatus(404);
+
+    websiteModel
+        .findWebsiteById(websiteId)
+        .then(function (website) {
+            res.json(website);
+        });
+
 }
 
 function updateWebsite(req, res) {
     var website = req.body;
+    var websiteId = req.params['websiteId'];
 
-    for(var w in websites) {
-        if(websites[w]._id === req.params['websiteId']){
-            websites[w] = website;
-            res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    websiteModel
+        .updateWebsite(websiteId, website)
+        .then(function (status) {
+            res.json(status);
+        });
 }
 
 function deleteWebsiteFromUser(req, res) {
