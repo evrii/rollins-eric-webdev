@@ -1,4 +1,6 @@
 var app = require('../../express');
+var userModel = require('../models/user/user.model.server')
+
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -13,10 +15,18 @@ app.put('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', deleteUser);
 
 function createUser(req, res){
+
     var user = req.body;
-    user._id = (new Date()).getTime() + "";
-    users.push(user);
-    res.json(user);
+    userModel
+        .createUser(user)
+        .then(function (user) {
+            res.json(user);
+        });
+
+
+    // user._id = (new Date()).getTime() + "";
+    // users.push(user);
+
 }
 
 function findAllUsers(req, res) {
@@ -24,27 +34,28 @@ function findAllUsers(req, res) {
     var password = req.query['password'];
 
     if(username && password){
-        for(var u in users) {
-            var user = users[u];
-            if (user.username === username &&
-                user.password === password) {
-                res.json(user);
-                return;
-            }
-        }
-        res.sendStatus(404);
-        return;
+        userModel
+            .findUserByCredentials(username, password)
+            .then(function (user) {
+                if(user){
+                    res.json(user);
+                }
+                else{
+                    res.sendStatus(404);
+                }
+            });
     }
     else if(username){
-        for(var u in users) {
-            var user = users[u];
-            if (user.username === username) {
-                res.json(user);
-                return;
-            }
-        }
-        res.sendStatus(404);
-        return;
+        userModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                if(user){
+                    res.json(user);
+                }
+                else{
+                    res.sendStatus(404);
+                }
+            });
     }
     else {
         res.send(users);
@@ -54,13 +65,19 @@ function findAllUsers(req, res) {
 
 function findUserById(req, res) {
     var userId = req.params['userId'];
-    for(var u in users) {
-        if(users[u]._id === userId){
-            res.send(users[u]);
-            return;
-        }
-    }
-    res.sendStatus(404);
+
+    userModel
+        .findUserById(userId)
+        .then(function (user) {
+            res.json(user)
+        })
+    // for(var u in users) {
+    //     if(users[u]._id === userId){
+    //         res.send(users[u]);
+    //         return;
+    //     }
+    // }
+    // res.sendStatus(404);
 }
 
 function updateUser(req, res) {
