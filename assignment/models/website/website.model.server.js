@@ -45,7 +45,7 @@ function deleteWebsite(userId, websiteId) {
         .remove({_id: websiteId})
         .then(function (website) {
             return userModel
-                .removeWebsite(website.userId, websiteId);
+                .deleteWebsite(website.userId, websiteId);
         })
 
 }
