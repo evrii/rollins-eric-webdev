@@ -1,5 +1,5 @@
 var app = require('../../express');
-var userModel = require('../models/user/user.model.server')
+var userModel = require('../models/user/user.model.server');
 
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -22,11 +22,6 @@ function createUser(req, res){
         .then(function (user) {
             res.json(user);
         });
-
-
-    // user._id = (new Date()).getTime() + "";
-    // users.push(user);
-
 }
 
 function findAllUsers(req, res) {
@@ -58,7 +53,11 @@ function findAllUsers(req, res) {
             });
     }
     else {
-        res.send(users);
+        userModel
+            .findAllUsers()
+            .then(function (users) {
+                res.json(users);
+            });
     }
 
 }
@@ -71,37 +70,25 @@ function findUserById(req, res) {
         .then(function (user) {
             res.json(user)
         })
-    // for(var u in users) {
-    //     if(users[u]._id === userId){
-    //         res.send(users[u]);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 function updateUser(req, res) {
     var user = req.body;
+    var userId = req.params['userId'];
 
-    for(var u in users) {
-        if(users[u]._id === req.params['userId']){
-            users[u] = user;
-            res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    userModel
+        .updateUser(userId, user)
+        .then(function (status) {
+            res.send(status);
+        });
 }
 
 function deleteUser(req, res) {
     var userId = req.params['userId'];
 
-    for(var u in users) {
-        if(users[u]._id === userId){
-            users.splice(u, 1);
-            res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    userModel
+        .deleteUser(userId)
+        .then(function (status) {
+            res.send(status);
+        });
 }

@@ -20,8 +20,11 @@
         function createWebsite(website) {
             website.developerId = model.userId;
             websiteService
-                .createWebsite(website);
-            $location.url('/user/'+model.userId+'/website');
+                .createWebsiteForUser(model.userId, website)
+                .then(function (response) {
+                    $location.url('/user/'+model.userId+'/website');
+                })
+
         }
         function renderWebsites(response) {
             console.log("RENDER WEBSITES: "+response);

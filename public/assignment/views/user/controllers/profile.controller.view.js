@@ -40,8 +40,7 @@
                     $location.url('/')
                 },
                 function () {
-
-
+                    model.error('Unable to register you')
                 })
 
         }

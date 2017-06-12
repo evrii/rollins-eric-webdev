@@ -6,7 +6,7 @@
     function websiteService($http) {
 
         var api = {
-            createWebsite: createWebsite,
+            createWebsiteForUser: createWebsiteForUser,
             findWebsiteById: findWebsiteById,
             findAllWebsitesForUser: findAllWebsitesForUser,
             updateWebsite: updateWebsite,
@@ -23,8 +23,8 @@
                 });
         }
 
-        function createWebsite(website) {
-            var url = "/api/assignment/user/"+website.developerId+"/website";
+        function createWebsiteForUser(userId, website) {
+            var url = "/api/assignment/user/"+userId+"/website";
             return $http
                 .post(url, website)
                 .then(function (response) {
@@ -40,11 +40,11 @@
                 })
         }
 
-        function deleteWebsite(websiteId) {
+        function deleteWebsite(userId, websiteId) {
             var url = "/api/assignment/website/"+websiteId;
             return $http.delete(url)
-                .then(function(){
-
+                .then(function(response){
+                    return response.data;
                 })
         }
 
