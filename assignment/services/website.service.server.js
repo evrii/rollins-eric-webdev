@@ -15,7 +15,7 @@ app.post('/api/assignment/user/:userId/website', createWebsiteForUser);
 app.get('/api/assignment/user/:userId/website', findAllWebsitesForUser);
 app.get('/api/assignment/website/:websiteId', findWebsiteById);
 app.put('/api/assignment/website/:websiteId', updateWebsite);
-app.delete('/api/assignment/website/:websiteId', deleteWebsiteFromUser);
+app.delete('/api/assignment/user/:userId/website/:websiteId', deleteWebsiteFromUser);
 
 
 function createWebsiteForUser(req, res) {
@@ -45,7 +45,6 @@ function findWebsiteById(req, res) {
         .then(function (website) {
             res.json(website);
         });
-
 }
 
 function updateWebsite(req, res) {
