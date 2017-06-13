@@ -25,7 +25,6 @@
         init();
 
         function renderWebsite(response) {
-            console.log("RENDER WEBSITE: "+response);
             model.website = response;
         }
 
@@ -34,7 +33,6 @@
         }
 
         function renderWebsites(response) {
-            console.log("RENDER WEBSITES: "+response);
             model.websites = response;
         }
 
@@ -52,8 +50,10 @@
 
         function deleteWebsite(websiteId) {
             websiteService
-                .deleteWebsite(websiteId);
-            $location.url('/user/'+model.userId+'/website');
+                .deleteWebsite(model.userId, websiteId)
+                .then(function (status) {
+                    $location.url('/user/'+model.userId+'/website');
+                });
         }
 
     }

@@ -15,8 +15,9 @@
                 },
                 stop: function( event, ui ) {
                     finalIndex = ui.item.index();
-                    widgetService
-                        .moveWidget(initialIndex, finalIndex, pageId);
+                    var x = widgetService
+                        .reorderWidget(pageId, initialIndex, finalIndex);
+                    return x;
                 }
             });
         }
