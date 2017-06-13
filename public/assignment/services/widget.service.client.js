@@ -31,7 +31,7 @@
                 .post(url, widget)
                 .then(function (response) {
                     return response.data;
-                }, function () {
+                }, function (response) {
                     var dog = 888;
                 });
         }
