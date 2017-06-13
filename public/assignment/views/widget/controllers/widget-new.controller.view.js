@@ -42,7 +42,14 @@
                 widget.size = 3;
                 widget.text = "Default Heading";
             }
-
+            else if("html" == widgetType.toLowerCase()){
+                widget.size = 3;
+                widget.text = "Default Heading";
+            }
+            else if("text" == widgetType.toLowerCase()){
+                widget.size = 3;
+                widget.text = "Default Heading";
+            }
             widget = widgetService
                 .createWidget(widget, model.pageId)
                 .then(function (response) {
