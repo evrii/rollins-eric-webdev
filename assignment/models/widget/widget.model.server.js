@@ -8,7 +8,7 @@ widgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
 widgetModel.findWidgetById = findWidgetById;
 widgetModel.updateWidget = updateWidget;
 widgetModel.deleteWidget = deleteWidget;
-//widgetModel.reorderWidget = reorderWidget;
+widgetModel.reorderWidget = reorderWidget;
 
 module.exports = widgetModel;
 
@@ -32,6 +32,7 @@ function findWidgetById(widgetId){
 function findAllWidgetsForPage(pageId){
     return widgetModel
         .find({_page: pageId})
+        .sort({ index : 1})
         .populate('_page')
         .exec();
 }
@@ -49,3 +50,31 @@ function deleteWidget(pageId, widgetId) {
         });
 
 }
+
+
+function reorderWidget(pageId, start, end) {
+    if (start < end){
+        return widgetModel
+            .update({index:{ $gt: start, $lte: end }}, {$inc:{index:-1}}, {multi:true})
+            .then(function (response) {
+                return widgetModel
+                    .update({index: start}, {index: end});
+            });
+    }
+
+    else if(start > end){
+        return widgetModel
+            .update({index:{ $gte: end, $lt: start }}, {$inc:{index:1}}, {multi:true})
+            .then(function (response) {
+                return widgetModel
+                    .update({index: start}, {index: end});
+            });
+    }
+
+}
+
+
+function findWidgetByIndex(pageId, index){
+    return userModel.findOne({'index': index, '_page': pageId});
+}
+

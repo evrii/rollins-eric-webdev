@@ -68,5 +68,7 @@ function deletePage(websiteId, pageId) {
             var index =  website.pages.indexOf(pageId);
             website.pages.splice(index, 1);
             return website.save();
+        },function () {
+
         });
 }

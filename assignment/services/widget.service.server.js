@@ -22,7 +22,7 @@ app.post('/api/assignment/page/:pageId/widget', createWidget);
 app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
 app.get('/api/assignment/widget/:widgetId', findWidgetById);
 app.put('/api/assignment/widget/:widgetId', updateWidget);
-app.put('/api/assignment/page/:pageId/widget', moveWidget);
+app.put('/api/assignment/page/:pageId/widget', reorderWidget);
 app.delete('/api/assignment/page/:pageId/widget/:widgetId', deleteWidget);
 
 app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
@@ -31,8 +31,15 @@ app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
 function createWidget(req, res) {
     var widget = req.body;
     var pageId = req.params['pageId'];
+    var index = -1;
     widgetModel
-        .createWidget(pageId, widget)
+        .findAllWidgetsForPage(pageId)
+        .then(function (widgets) {
+            index = widgets.length;
+            widget.index = index;
+            return widgetModel
+                .createWidget(pageId, widget)
+        })
         .then(function (widget) {
             res.json(widget);
         }, function (widget) {
@@ -114,28 +121,20 @@ function uploadImage(req, res) {
     res.redirect(callbackUrl);
 }
 
-function moveWidget(req, res){
+function reorderWidget(req, res){
     var initialIndex = parseInt(req.query['initial']);
     var finalIndex = parseInt(req.query['final']);
+    var pageId = req.params['pageId'];
 
-    var originalWidget =  JSON.parse(JSON.stringify(widgets[initialIndex]));
+    widgetModel
+        .reorderWidget(pageId, initialIndex, finalIndex)
+        .then(function (widget) {
+            res.json(widget);
+        },
+        function (widget) {
+            var x = 7;
+        });
 
-    // console.log("Start:" + initialIndex)
-    // console.log("End:" + finalIndex)
-    // console.log(widgets)
-    console.log(widgets)
-
-
-    if(finalIndex < initialIndex){
-        console.log("Cowboy");
-        widgets.splice(finalIndex,0,originalWidget);
-        widgets.splice(initialIndex+1, 1)
-    }
-    else if(finalIndex > initialIndex){
-        console.log("Space Ranger");
-        widgets.splice(finalIndex+1,0,originalWidget);
-        widgets.splice(initialIndex, 1)
-    }
     console.log(widgets)
     res.sendStatus(200);
     return;
