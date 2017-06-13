@@ -27,13 +27,13 @@
                             password: password
                         }
                         return userService
-                            .createUser(newUser);
+                            .createUser(newUser)
+                            .then(function (user){
+                                $location.url('/user/'+user._id)
+                            });
 
                     }
-                )
-                .then(function (user){
-                    $location.url('/user/'+user._id)
-                });
+                );
 
             /*if(password === null ||
                 typeof password === 'undefined'){

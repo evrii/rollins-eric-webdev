@@ -12,7 +12,7 @@
             updateWidgetUrl: updateWidgetUrl,
             createWidget: createWidget,
             deleteWidget: deleteWidget,
-            moveWidget: moveWidget
+            reorderWidget: reorderWidget
         }
         return api;
 
@@ -31,11 +31,13 @@
                 .post(url, widget)
                 .then(function (response) {
                     return response.data;
+                }, function () {
+                    var dog = 888;
                 });
         }
 
-        function deleteWidget(widgetId) {
-            var url = "/api/assignment/widget/"+widgetId;
+        function deleteWidget(pageId, widgetId) {
+            var url = "/api/assignment/page/"+pageId+"/widget/"+widgetId;
             return $http.delete(url)
                 .then(function(response){
                     return response.data;
@@ -74,12 +76,14 @@
                 })
         }
 
-        function moveWidget(initialIndex, finalIndex, pageId){
-            var url = "/api/assignment/page/"+pageId+"/widget/?initial="+initialIndex+"+&final="+finalIndex;
-            return $http.put(url)
-                .then(function(response){
-                    return response.data;
-                })
+        function reorderWidget(pageId, initialIndex, finalIndex){
+            if(initialIndex != finalIndex) {
+                var url = "/api/assignment/page/" + pageId + "/widget/?initial=" + initialIndex + "+&final=" + finalIndex;
+                return $http.put(url)
+                    .then(function (response) {
+                        return response.data;
+                    })
+            }
         }
     }
 })();

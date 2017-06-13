@@ -29,7 +29,7 @@
         function createWidget(widgetType) {
             var widget = {};
             widget.pageId = model.pageId;
-            widget.widgetType = widgetType;
+            widget.type = widgetType.toUpperCase();
             if("youtube" === widgetType.toLowerCase()){
                 widget.url = 'https://youtu.be/WLIfbiTUMiU';
                 widget.width = "100%";
@@ -47,6 +47,8 @@
                 .createWidget(widget, model.pageId)
                 .then(function (response) {
                     $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+response._id);
+                }, function (response) {
+                        var cat = 777;
                 });
 
         }

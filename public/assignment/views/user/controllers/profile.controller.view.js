@@ -21,7 +21,7 @@
         }
 
         function userError(error) {
-            model.error = "User not found"
+            model.error = "User not found";
 
         }
 
@@ -29,7 +29,7 @@
             userService
                 .updateUser(user._id, user)
                 .then(function () {
-                    model.message = "User update was succesful"
+                    model.message = "User update was succesful";
             });
         }
 
@@ -40,8 +40,7 @@
                     $location.url('/')
                 },
                 function () {
-
-
+                    model.error = 'Unable to register you';
                 })
 
         }

@@ -31,8 +31,10 @@
             page.userId = model.userId;
             page.websiteId = model.websiteId;
             pageService
-                .createPage(page, model.websiteId);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                .createPage(page, model.websiteId)
+                .then(function (response) {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                })
         }
 
     }
