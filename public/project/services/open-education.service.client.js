@@ -5,9 +5,9 @@
 
     function openEducationService ($http) {
         
-        var urlBase = "http://data.oeconsortium.org/api/v1/courses/search/?q=SEARCH_TERM?format=jsonp";
+        var urlBase = "http://data.oeconsortium.org/api/v1/courses/search/?q=SEARCH_TERM";
 
-        var detailBaseUrl = "http://data.oeconsortium.org/api/v1/courses/view/COURSE_ID/?format=jsonp"
+        var detailBaseUrl = "http://data.oeconsortium.org/api/v1/courses/view/COURSE_ID/"
 
         this.searchContent = searchContent;
         this.getCourseDetails = getCourseDetails;

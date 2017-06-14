@@ -32,6 +32,11 @@
                 controller: 'friendProfileController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/content/search', {
+                templateUrl: 'views/content/templates/content-search.view.client.html',
+                controller: 'ContentSearchController',
+                controllerAs: 'model'
+            })
             .when('/experiment', {
                 templateUrl: 'experiment.html',
             })

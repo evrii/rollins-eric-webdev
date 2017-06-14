@@ -14,7 +14,8 @@
             deleteUser: deleteUser,
             findAllUsers: findAllUsers,
             findAllUserTypes: findAllUserTypes,
-            addFriend: addFriend
+            addFriend: addFriend,
+            addCourseToUser: addCourseToUser
         }
         return api;
         
@@ -35,8 +36,6 @@
                 });
 
         }
-
-
 
         function findUserByCredentials(username, password){
             var url = "/api/project/user?username="+username+"&password="+password;
@@ -94,6 +93,15 @@
                 .then(function(response){
                     return response.data;
                 })
+        }
+        
+        function addCourseToUser(userId, courseId) {
+            var url = '/api/project/user/'+userId+'/course/'+courseId;
+            //Fix this to be a put
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                });
         }
 
     }

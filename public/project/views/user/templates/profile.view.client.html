@@ -26,11 +26,18 @@
                href="#!/login">Logout</a>
         </div>
         <div class="col-xs-6">
-            <div class="col-xs-6">
-                <div ng-include="'views/user/templates/friend-list.view.client.html'"></div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div ng-include="'views/user/templates/friend-list.view.client.html'"></div>
+                </div>
+                <div class="col-xs-6">
+                    <div ng-include="'views/user/templates/follower-list.view.client.html'"></div>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <div ng-include="'views/user/templates/follower-list.view.client.html'"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div ng-include="'views/user/templates/followed-content-list.view.client.html'"></div>
+                </div>
             </div>
         </div>
     </div>
