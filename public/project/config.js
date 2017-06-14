@@ -28,8 +28,8 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/friend/:friendId', {
-                templateUrl: 'views/user/templates/friend.view.client.html',
-                controller: 'friendController',
+                templateUrl: 'views/user/templates/friend-profile.view.client.html',
+                controller: 'friendProfileController',
                 controllerAs: 'model'
             })
             .when('/experiment', {

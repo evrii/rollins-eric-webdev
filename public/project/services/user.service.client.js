@@ -13,7 +13,8 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             findAllUsers: findAllUsers,
-            findAllUserTypes: findAllUserTypes
+            findAllUserTypes: findAllUserTypes,
+            addFriend: addFriend
         }
         return api;
         
@@ -85,6 +86,14 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function addFriend(userId,friendId){
+            var url = "/api/project/user/"+userId+"/friend/"+friendId;
+            return $http.put(url)
+                .then(function(response){
+                    return response.data;
+                })
         }
 
     }

@@ -16,6 +16,7 @@
                 .then(renderUsers, userError);
             userService
                 .findUserById(model.userId)
+                .then(renderUser, userError)
         }
         init();
 
@@ -34,12 +35,12 @@
 
         }
 
-        function addFriend(user){
+        function addFriend(friendId){
             userService
-                .addFriend(user._id, user)
+                .addFriend(model.userId, friendId)
                 .then(function () {
-                    model.message = "User update was succesful"
-            });
+                    $location.url('/user/'+model.userId);
+                })
         }
 
         function deleteFriend(user) {

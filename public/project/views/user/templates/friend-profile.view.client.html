@@ -1,8 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.originalId}}">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
             <a class="navbar-brand">
-                Profile
+                User Profile
             </a>
         </div>
     </div>
@@ -18,12 +21,6 @@
         </div>
         <div class="col-xs-6">
             <div ng-include="'views/user/templates/user-details.view.client.html'"></div>
-            <a class="btn btn-success btn-block"
-               ng-click="model.updateUser(model.user)">Update</a>
-            <a class="btn btn-danger btn-block"
-               ng-click="model.deleteUser(model.user)">Unregister</a>
-            <a class="btn btn-danger  btn-block"
-               href="#!/login">Logout</a>
         </div>
         <div class="col-xs-6">
             <div class="col-xs-6">
