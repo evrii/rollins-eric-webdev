@@ -6,13 +6,11 @@
     function ContentSearchController ($routeParams,
                                       $sce,
                                       $location,
-                                      openEducationService,
-                                      userService) {
+                                      openEducationService) {
         var model = this;
 
         model.searchContent = searchContent;
         model.getCourseDetails = getCourseDetails;
-        model.addCourseToUser =addCourseToUser;
 
         function init() {
             model.userId = $routeParams['userId'];
@@ -39,12 +37,8 @@
 
         }
 
-        function addCourseToUser(userId, courseId) {
-            userService
-                .addCourseToUser(userId, courseId)
-                .then(function (response) {
-                    $location.url('/');
-                });
+        function addCourseToUser(courseId, userId) {
+
         }
 
     }

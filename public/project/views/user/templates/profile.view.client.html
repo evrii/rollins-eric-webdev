@@ -4,63 +4,44 @@
             <a class="navbar-brand">
                 Profile
             </a>
-            <p class="navbar-text pull-right">
-                <a class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </p>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-    <div ng-show="model.error"
-         class="alert alert-danger">{{model.error}}</div>
-    <div ng-show="model.message"
-         class="alert alert-info">{{model.message}}</div>
-    <form>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input ng-model="model.user.username"
-                   type="text"
-                   class="form-control"
-                   id="username"
-                   placeholder="Username">
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-show="model.error"
+                 class="alert alert-danger">{{model.error}}</div>
+            <div ng-show="model.message"
+                 class="alert alert-info">{{model.message}}</div>
         </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email"
-                   ng-model="model.user.email"
-                   class="form-control"
-                   id="email"
-                   placeholder="alice@wonderland.com">
+        <div class="col-xs-6">
+            <div ng-include="'views/user/templates/user-details.view.client.html'"></div>
+            <a class="btn btn-success btn-block"
+               ng-click="model.updateUser(model.user)">Update</a>
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteUser(model.user)">Unregister</a>
+            <a class="btn btn-danger  btn-block"
+               href="#!/login">Logout</a>
         </div>
-        <div class="form-group">
-            <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName"
-                   type="text"
-                   class="form-control"
-                   id="first-name"
-                   placeholder="Alice">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div ng-include="'views/user/templates/friend-list.view.client.html'"></div>
+                </div>
+                <div class="col-xs-6">
+                    <div ng-include="'views/user/templates/follower-list.view.client.html'"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div ng-include="'views/user/templates/followed-content-list.view.client.html'"></div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName"
-                   type="text"
-                   class="form-control"
-                   id="last-name"
-                   placeholder="Wonderland">
-        </div>
-    </form>
+    </div>
 
-    <a class="btn btn-success btn-block"
-       ng-click="model.updateUser(model.user)">Update</a>
-    <a class="btn btn-success btn-block"
-       ng-click="model.deleteUser(model.user)">Unregister</a>
-    <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/website">Websites</a>
-    <a class="btn btn-danger  btn-block"
-       href="#!/login">Logout</a>
 </div>
 
 <div ng-include="'views/common/footer.view.client.html'"></div>

@@ -1,0 +1,68 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Content Query
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid ">
+    <div id="courseSearchBar" class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control"
+               placeholder="Search Content">
+        <span class="input-group-btn">
+            <a ng-click="model.searchContent(searchText)"
+               class="btn btn-default"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+    <div id="searchResults"
+         class="row"
+         ng-show="model.courses">
+        <div class="col-xs-6">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    <div class="row">
+                        <div class="col-xs-1">
+                        </div>
+                        <div class="col-md-4 col-sm-7 col-xs-9">Course</div>
+                        <div class="col-sm-3 visible-sm visible-md visible-lg">Institution</div>
+                        <div class="col-md-3 visible-lg visible-md">Author</div>
+                    </div>
+                </li>
+                <li ng-repeat="course in model.courses" class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <a href="#!/user/{{model.userId}}/users">
+                                <span class="glyphicon glyphicon-plus pull-right"></span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-7 col-xs-9"><a href="#">{{course.title}}</a></div>
+                        <div class="col-sm-3 visible-sm visible-md visible-lg">{{course.source}}</div>
+                        <div class="col-md-3 visible-lg visible-md">{{course.author}}</div>
+                        <div class="col-xs-1">
+                            <a ng-click="model.getCourseDetails(course.id)"><span class="glyphicon glyphicon-chevron-right pull-left"></span></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div ng-show="model.selectedCourse" class="col-xs-6">
+            <h1>{{model.selectedCourse.title}}</h1>
+            <h2>Institution: {{model.selectedCourse.provider_name}}</h2>
+            <h2>Author(s): {{model.selectedCourse.author}}</h2>
+            <span>{{model.selectedCourse.description}}</span>
+
+        </div>
+    </div>
+
+</div>

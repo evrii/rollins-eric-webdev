@@ -1,16 +1,17 @@
 (function () {
     angular
         .module('LEARN')
-        .controller('profileController', profileController);
+        .controller('friendProfileController', friendProfileController);
     
-    function profileController($location, $routeParams, userService) {
+    function friendProfileController($location, $routeParams, userService) {
         var model = this;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
 
         function init() {
-            model.userId = $routeParams['userId'];
+            model.userId = $routeParams['friendId'];
+            model.originalId = $routeParams['userId'];
             userService
                 .findUserById(model.userId)
                 .then(renderUser, userError);

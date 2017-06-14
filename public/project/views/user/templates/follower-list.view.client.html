@@ -1,0 +1,13 @@
+<h3>Followers List</h3>
+<ul class="list-group">
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-xs-12">Follower ID</div>
+        </div>
+    </li>
+    <li ng-repeat="friend in model.user.followers" class="list-group-item">
+        <div class="row">
+            <div class="col-xs-12"><a href="#!/user/{{model.userId}}/friend/{{friend}}">{{friend}}</a></div>
+        </div>
+    </li>
+</ul>
