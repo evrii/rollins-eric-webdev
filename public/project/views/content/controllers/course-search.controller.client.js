@@ -43,7 +43,7 @@
             userService
                 .addCourseToUser(userId, courseId)
                 .then(function (response) {
-                    $location.url('/');
+                    $location.url('/user/'+model.userId);
                 });
         }
 

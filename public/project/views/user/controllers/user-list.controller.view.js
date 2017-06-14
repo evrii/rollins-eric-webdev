@@ -40,7 +40,7 @@
                 .addFriend(model.userId, friendId)
                 .then(function () {
                     $location.url('/user/'+model.userId);
-                })
+                });
         }
 
         function deleteFriend(user) {
