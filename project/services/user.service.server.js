@@ -1,12 +1,19 @@
 console.log("WE HAVE LIFT OFF!")
 var app = require('../../express');
 var users = [
-    {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-    {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-    {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+    {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",
+        lastName: "Wonder", friends: [234, 345], followers: [234], userType: "student"},
+    {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",
+        lastName: "Marley",  friends: [123, 345], followers: [123, 345, 456], userType: "teacher"},
+    {_id: "345", username: "charly",   password: "charly",   firstName: "Charly",
+        lastName: "Garcia",  friends: [234, 123], followers: [123, 234, 456], userType: "student"},
+    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",
+        lastName: "Annunzi", friends: [234, 345], followers: [], userType: "teacher"}
 ];
 
+const USER_TYPES = ["teacher", "student", "admin"]
+
+app.get('/api/project/user/types', findAllUserTypes);
 app.get('/api/project/user/:userId', findUserById);
 app.get('/api/project/user', findAllUsers);
 app.post('/api/project/user', createUser);
@@ -87,5 +94,10 @@ function deleteUser(req, res) {
             return;
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(USER_TYPES);
+}
+
+function findAllUserTypes(req, res) {
+    res.json(USER_TYPES);
+    return;
 }

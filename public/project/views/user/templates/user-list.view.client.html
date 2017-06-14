@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                User List
+            </a>
+            <p class="navbar-text pull-right">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<h3>Followers List</h3>
+<ul class="list-group">
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-md-5 col-sm-8 col-xs-10">Friend ID</div>
+        </div>
+    </li>
+    <li ng-repeat="user in model.users" class="list-group-item">
+        <div class="row">
+            <div class="col-xs-10 col-sm-11"><a href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{user.username}}</a></div>
+
+            <div ng-if="model.user.friends.indexOf(user._id) !== -1"></div>
+            <div class="col-sm-1 col-xs-2 "><a href="#!/user/{{model.userId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+        </div>
+    </li>
+</ul>

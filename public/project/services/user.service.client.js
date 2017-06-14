@@ -11,12 +11,14 @@
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            findAllUsers: findAllUsers,
+            findAllUserTypes: findAllUserTypes
         }
         return api;
         
         function createUser(user) {
-            var url = "/api/assignment/user";
+            var url = "/api/project/user";
             return $http
                 .post(url, user)
                 .then(function (response) {
@@ -25,7 +27,7 @@
         }
 
         function findUserById(userId) {
-            var url = '/api/assignment/user/'+userId;
+            var url = '/api/project/user/'+userId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -46,14 +48,7 @@
         }
 
         function findUserByUsername(username){
-            /*var user = users.find(function (user) {
-                return user.username === username;
-            });
-            if(typeof user === 'undefined') {
-                return null;
-            }
-            return user;*/
-            var url = "/api/assignment/user?username="+username;
+            var url = "/api/project/user?username="+username;
             return $http.get(url)
                 .then(function (response) {
                     return response.data
@@ -61,7 +56,7 @@
         }
 
         function updateUser(userId, user){
-            var url = "/api/assignment/user/"+userId;
+            var url = "/api/project/user/"+userId;
             return $http.put(url, user)
                 .then(function(response){
                     return response.data;
@@ -69,11 +64,27 @@
         }
 
         function deleteUser(userId){
-            var url = "/api/assignment/user/"+userId;
+            var url = "/api/project/user/"+userId;
             return $http.delete(url)
                 .then(function(){
 
                 })
+        }
+
+        function findAllUserTypes(){
+            var url = "/api/project/user/types";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllUsers(){
+            var url = '/api/project/user';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
     }

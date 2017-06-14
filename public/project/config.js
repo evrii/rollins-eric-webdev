@@ -12,9 +12,24 @@
                 controller: 'loginController',
                 controllerAs: 'model'
             })
+            .when('/register', {
+                templateUrl: 'views/user/templates/register.view.client.html',
+                controller: 'registerController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/users', {
+                templateUrl: 'views/user/templates/user-list.view.client.html',
+                controller: 'userListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/friend/:friendId', {
+                templateUrl: 'views/user/templates/friend.view.client.html',
+                controller: 'friendController',
                 controllerAs: 'model'
             })
             .when('/experiment', {
