@@ -9,11 +9,24 @@
             createUser: createUser,
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
+            login: login,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             deleteUser: deleteUser
         }
         return api;
+
+        function login(username, password) {
+            var url = "/api/assignment/login";
+            var credentials = {
+                username: username,
+                password: password
+            }
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
         
         function createUser(user) {
             var url = "/api/assignment/user";

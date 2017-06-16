@@ -1,11 +1,36 @@
 var app = require('../../express');
 var userModel = require('../models/user/user.model.server');
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
 
 app.get('/api/assignment/user/:userId', findUserById);
 app.get('/api/assignment/user', findAllUsers);
 app.post('/api/assignment/user', createUser);
 app.put('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', deleteUser);
+
+app.post('/api/assignment/login', passport.authenticate('local'), login);
+
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(function (user) {
+            if(user){
+                done(null, user);
+            }
+            else{
+                done(null, false);
+            }
+        }, function (error) {
+            return done(error, false);
+        })
+}
+function login(req, res) {
+    res.json(req.user);
+}
 
 function createUser(req, res){
 
@@ -84,4 +109,21 @@ function deleteUser(req, res) {
         .then(function (status) {
             res.send(status);
         });
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
 }
