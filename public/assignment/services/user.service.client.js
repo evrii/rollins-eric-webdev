@@ -10,6 +10,7 @@
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
             login: login,
+            loggedin: loggedin,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             deleteUser: deleteUser
@@ -23,6 +24,14 @@
                 password: password
             }
             return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function loggedin() {
+            var url = "/api/assignment/loggedin";
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
