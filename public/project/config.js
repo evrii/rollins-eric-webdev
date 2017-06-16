@@ -17,13 +17,10 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/profile', {
+            .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model',
-                resolve: {
-                    currentUser: checkedLoggedIn
-                }
+                controllerAs: 'model'
             })
             .when('/user/:userId/users', {
                 templateUrl: 'views/user/templates/user-list.view.client.html',
@@ -48,23 +45,6 @@
                 controller: 'ContentSearchController',
                 controllerAs: 'model'
             })
-    }
-
-    function checkLoggedIn(userService, $q, $location) {
-        var deferred = $q.defer();
-
-        userService
-            .loggedin()
-            .then(function (user) {
-                if(user === '0') {
-                    deferred.reject();
-                    $location.url('/login');
-                } else {
-                    deferred.resolve(user);
-                }
-            });
-
-        return deferred.promise;
     }
 }
 )();
