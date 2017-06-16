@@ -13,7 +13,6 @@ app.put('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', deleteUser);
 
 app.post('/api/assignment/login', passport.authenticate('local'), login);
-app.get('/api/assignment/loggedin', loggedin);
 
 function localStrategy(username, password, done) {
     userModel
@@ -31,15 +30,6 @@ function localStrategy(username, password, done) {
 }
 function login(req, res) {
     res.json(req.user);
-}
-
-function loggedin(req, res) {
-    console.log(req.user);
-    if(req.isAuthenticated()) {
-        res.json(req.user);
-    } else {
-        res.send('0');
-    }
 }
 
 function createUser(req, res){

@@ -14,7 +14,7 @@
                 .login(username, password)
                 .then(function (found) {
                     if (found !== null) {
-                        $location.url('/profile');
+                        $location.url('/user/' + found._id)
                     } else {
                         model.message = "Sorry, " + username + ", you do not exist!"
                     }
