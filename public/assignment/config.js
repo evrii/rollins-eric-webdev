@@ -26,10 +26,13 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website', {
+            .when('/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html',
                 controller: 'websiteListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:userId/website/new', {
                 templateUrl: 'views/website/templates/website-new.view.client.html',
