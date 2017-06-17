@@ -16,7 +16,8 @@
             checkAdmin: checkAdmin,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            findAllUsers: findAllUsers
         }
         return api;
 
@@ -79,7 +80,14 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
 
+        function findAllUsers() {
+            var url = '/api/assignment/user';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
 

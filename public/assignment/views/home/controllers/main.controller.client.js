@@ -8,7 +8,6 @@
         var model = this;
         model.currentUser = currentUser;
         model.logout = logout;
-    }
 
     function logout() {
         userService
@@ -17,4 +16,6 @@
                 $location.url('/login');
             });
     }
+
+}
 })();
