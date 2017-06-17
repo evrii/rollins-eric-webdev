@@ -3,7 +3,8 @@
         .module('WAM')
         .controller('mainController', mainController);
 
-    function mainController(currentUser,
+    function mainController($location,
+                            currentUser,
                             userService) {
         var model = this;
         model.currentUser = currentUser;
