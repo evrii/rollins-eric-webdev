@@ -5,12 +5,13 @@
 
     function websiteNewController($routeParams,
                                    $location,
+                                   currentUser,
                                    websiteService) {
         var model = this;
         model.createWebsite = createWebsite;
 
         function init() {
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
             websiteService
                 .findAllWebsitesForUser(model.userId)
                 .then(renderWebsites, websitesError);
@@ -22,7 +23,7 @@
             websiteService
                 .createWebsiteForUser(model.userId, website)
                 .then(function (response) {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/website');
                 })
 
         }

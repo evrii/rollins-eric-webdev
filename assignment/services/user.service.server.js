@@ -14,6 +14,8 @@ app.delete('/api/assignment/user/:userId', deleteUser);
 
 app.post('/api/assignment/login', passport.authenticate('local'), login);
 app.get('/api/assignment/loggedin', loggedin);
+app.post('/api/assignment/logout', logout);
+app.post('/api/assignment/register', register);
 
 function localStrategy(username, password, done) {
     userModel
@@ -29,6 +31,19 @@ function localStrategy(username, password, done) {
             return done(error, false);
         })
 }
+
+function register(req, res) {
+    var userObj = req.body;
+    userModel
+        .createUser(userObj)
+        .then(function (user) {
+            req
+                .login(user, function (status) {
+                    res.send(status);
+                });
+        });
+}
+
 function login(req, res) {
     res.json(req.user);
 }
@@ -40,6 +55,11 @@ function loggedin(req, res) {
     } else {
         res.send('0');
     }
+}
+
+function logout(req, res) {
+    req.logout();
+    res.sendStatus(200);
 }
 
 function createUser(req, res){

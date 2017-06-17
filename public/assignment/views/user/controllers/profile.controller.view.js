@@ -12,6 +12,7 @@
         model.userId = currentUser._id;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
         function init() {
             renderUser(currentUser);
@@ -45,7 +46,14 @@
                 function () {
                     model.error = 'Unable to register you';
                 })
+        }
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
         }
 
 

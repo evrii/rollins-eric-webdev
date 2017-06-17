@@ -8,10 +8,10 @@
                                    websiteService) {
         var model = this;
 
-        model.userId = currentUser._id;
+
 
         function init() {
-            //model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            model.userId = currentUser._id;
             websiteService
                 .findAllWebsitesForUser(model.userId)
                 .then(renderWebsites);
