@@ -9,7 +9,6 @@
         model.login = login;
 
         function login(username, password) {
-            //var found = userService.findUserByCredentials(username, password);
             userService
                 .login(username, password)
                 .then(function (found) {

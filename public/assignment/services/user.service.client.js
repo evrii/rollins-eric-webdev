@@ -13,6 +13,7 @@
             login: login,
             logout: logout,
             loggedin: loggedin,
+            checkAdmin: checkAdmin,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             deleteUser: deleteUser
@@ -49,6 +50,14 @@
 
         function loggedin() {
             var url = "/api/assignment/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/assignment/checkAdmin";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

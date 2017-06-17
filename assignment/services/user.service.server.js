@@ -14,6 +14,7 @@ app.delete('/api/assignment/user/:userId', deleteUser);
 
 app.post('/api/assignment/login', passport.authenticate('local'), login);
 app.get('/api/assignment/loggedin', loggedin);
+app.get('/api/assignment/checkAdmin', checkAdmin);
 app.post('/api/assignment/logout', logout);
 app.post('/api/assignment/register', register);
 
@@ -49,8 +50,15 @@ function login(req, res) {
 }
 
 function loggedin(req, res) {
-    console.log(req.user);
     if(req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
+}
+
+function checkAdmin(req, res) {
+    if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN')>-1) {
         res.json(req.user);
     } else {
         res.send('0');
