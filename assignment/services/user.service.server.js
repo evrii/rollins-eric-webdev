@@ -7,10 +7,10 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 app.get('/api/assignment/user/:userId', findUserById);
-app.get('/api/assignment/user', isAdmin, findAllUsers);
-app.post('/api/assignment/user', isAdmin, createUser);
-app.put('/api/assignment/user/:userId', isAdmin, updateUser);
-app.delete('/api/assignment/user/:userId', isAdmin, deleteUser);
+app.get('/api/assignment/user', findAllUsers);
+app.post('/api/assignment/user', createUser);
+app.put('/api/assignment/user/:userId', updateUser);
+app.delete('/api/assignment/user/:userId', deleteUser);
 
 app.post('/api/assignment/login', passport.authenticate('local'), login);
 app.get('/api/assignment/loggedin', loggedin);
