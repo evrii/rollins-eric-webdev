@@ -17,6 +17,8 @@
                     } else {
                         model.message = "Sorry, " + username + ", you do not exist!"
                     }
+                }, function (response) {
+                    model.message = "Sorry, " + username + ", those credentials are incorrect!"
                 });
         }
     }

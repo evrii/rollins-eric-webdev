@@ -2,6 +2,8 @@ var app = require('../../express');
 var userModel = require('../models/user/user.model.server');
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -19,10 +21,11 @@ app.post('/api/assignment/logout', logout);
 app.post('/api/assignment/register', register);
 
 function localStrategy(username, password, done) {
+
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(function (user) {
-            if(user){
+            if(user && bcrypt.compareSync(password, user.password)){
                 done(null, user);
             }
             else{
@@ -34,9 +37,11 @@ function localStrategy(username, password, done) {
 }
 
 function register(req, res) {
-    var userObj = req.body;
+    var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+
     userModel
-        .createUser(userObj)
+        .createUser(user)
         .then(function (user) {
             req
                 .login(user, function (status) {
