@@ -34,8 +34,8 @@ app.post('/api/assignment/register', register);
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['publish_actions, email'] }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/#/profile',
-        failureRedirect: '/#/login'
+        successRedirect: '/assignment/index.html#!/profile',
+        failureRedirect: '/assignment/index.html#!/login'
     }));
 
 function localStrategy(username, password, done) {
