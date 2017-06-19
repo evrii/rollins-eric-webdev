@@ -19,6 +19,7 @@
         init();
 
         function createWebsite(website) {
+            if(website && website.name)
             {
                 website.developerId = model.userId;
                 websiteService

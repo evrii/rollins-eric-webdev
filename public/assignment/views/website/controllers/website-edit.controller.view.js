@@ -42,6 +42,7 @@
         }
 
         function updateWebsite(website) {
+            if (website && website.name)
             {
                 websiteService
                     .updateWebsite(website._id, website)
