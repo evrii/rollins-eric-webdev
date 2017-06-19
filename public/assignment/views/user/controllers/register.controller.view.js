@@ -15,6 +15,11 @@
                 model.error = "Please enter a valid username"
                 return;
             }
+
+            if(password !== password2){
+                model.error = "Passwords must match"
+                return;
+            }
             userService
                 .findUserByUsername(username)
                 .then(
