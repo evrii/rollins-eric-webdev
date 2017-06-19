@@ -41,11 +41,13 @@
         }
 
         function updatePage(page) {
-            pageService
-                .updatePage(page._id, page)
-                .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+"/page");
-                })
+            if(page && page.name) {
+                pageService
+                    .updatePage(page._id, page)
+                    .then(function () {
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + "/page");
+                    })
+            }
         }
 
         function deletePage(pageId) {

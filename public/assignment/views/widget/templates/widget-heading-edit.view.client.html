@@ -1,24 +1,31 @@
 <div class="container-fluid">
-
-            <label for="name">Name</label>
-            <input ng-model="model.widget.name"
-                   class="form-control"
-                   id="name"
-                   placeholder="top heading">
-            <label for="text">Text</label>
-            <textarea ng-model="model.widget.text"
-                      class="form-control"
-                      id="text"
-                      rows="5"
-                      placeholder="news site">
-            </textarea>
-            <label for="heading-size">Size</label>
-            <input id="heading-size"
-                   ng-model="model.widget.size"
-                   type="number"
-                   placeholder="1"
-                   min="1"
-                   max="6">
+    <h3 ng-show="editWidgetForm.$submitted && editWidgetForm.name.$invalid"
+        class="alert alert-danger">Widget name is required</h3>
+    <label for="name">Name</label>
+    <input ng-model="model.widget.name"
+           name="name"
+           class="form-control"
+           id="name"
+           placeholder="top heading"
+           required>
+    <label for="text">Text</label>
+    <textarea ng-model="model.widget.text"
+              class="form-control"
+              id="text"
+              rows="5"
+              placeholder="news site">
+    </textarea>
+    <label for="heading-size">Size</label>
+    <input id="heading-size"
+           ng-model="model.widget.size"
+           type="number"
+           placeholder="1"
+           min="1"
+           max="6">
+    <input type="submit"
+           value="Update"
+           ng-click="model.updateWidget(model.widget)"
+           class="btn btn-block btn-success"/>
     <a ng-click="model.deleteWidget(model.pageId, model.widgetId)"
        class="btn btn-block btn-danger">Delete</a>
 

@@ -3,17 +3,21 @@
         .module('WAM')
         .controller('profileController', profileController);
     
-    function profileController($location, $routeParams, userService) {
+    function profileController($location,
+                               $routeParams,
+                               currentUser,
+                               userService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
-        //model.user = userService.findUserById(model.userId);
-        userService
-            .findUserById(model.userId)
-            .then(renderUser, userError);
+        function init() {
+            renderUser(currentUser);
+        }
+        init();
 
         function renderUser(response) {
             console.log(response);
@@ -42,7 +46,14 @@
                 function () {
                     model.error = 'Unable to register you';
                 })
+        }
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
         }
 
 

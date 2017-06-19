@@ -43,21 +43,29 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-md-8">
-            <label for="name">Name</label>
-            <input id="name"
-                   ng-model="page.name"
-                   class="form-control"
-                   placeholder="Home Page">
-            <label for="title">Title</label>
-            <textarea id="title"
-                      ng-model="page.description"
-                      class="form-control"
-                      rows="5"
-                      placeholder="CNN - Home"></textarea>
-            <a ng-click="model.createPage(page)"
-               class="btn btn-block btn-success">Create</a>
-        </div>
+        <form name="newPageForm" novalidate>
+            <div class="col-xs-12 col-md-8">
+                <h3 ng-show="newPageForm.$submitted && newPageForm.name.$invalid"
+                    class="alert alert-danger">Page name is required</h3>
+                <label for="name">Name</label>
+                <input id="name"
+                       name="name"
+                       ng-model="page.name"
+                       class="form-control"
+                       placeholder="Home Page"
+                       required>
+                <label for="title">Title</label>
+                <textarea id="title"
+                          ng-model="page.description"
+                          class="form-control"
+                          rows="5"
+                          placeholder="CNN - Home"></textarea>
+                <input type="submit"
+                       value="Create"
+                       ng-click="model.createPage(page)"
+                       class="btn btn-block btn-success"/>
+            </div>
+        </form>
     </div>
 </div>
 

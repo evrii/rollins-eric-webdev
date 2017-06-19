@@ -1,30 +1,45 @@
 <div class="container-fluid">
     <h1>Register</h1>
-
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.error}}
-    </div>
-
-    <label for="username">Username</label>
-    <input id="username"
-           ng-model="username"
-           type="text"
-           class="form-control"
-           placeholder="username"/>
-    <label for="password">Password</label>
-    <input id="password"
-           ng-model="password"
-           type="password"
-           class="form-control"
-           placeholder="password"/>
-    <label for="verify_password">Verify Password</label>
-    <input id="verify_password"
-           ng-model="password2"
-           type="password"
-           class="form-control"
-           placeholder="verify password"/>
-    <a ng-click="model.register(username, password, password2)"
-       class="btn btn-primary btn-block">Register</a>
-    <a class="btn btn-danger  btn-block"
-       href="#!/login">Cancel</a>
+    <form name="registerForm" novalidate>
+        <div ng-show="registerForm.$submitted">
+            <h3 ng-show="registerForm.username.$invalid"
+                class="alert alert-danger">User name is required</h3>
+            <h3 ng-show="registerForm.password.$invalid"
+                class="alert alert-danger">Password is required</h3>
+            <h3 ng-show="registerForm.verify_password.$invalid"
+                class="alert alert-danger">Verification password is required</h3>
+            <h3 ng-show="registerForm.verify_password !== registerForm.password"
+                class="alert alert-danger">Passwords must match</h3>
+        </div>
+        <label for="username">Username</label>
+        <input id="username"
+               name="username"
+               ng-model="username"
+               type="text"
+               class="form-control"
+               placeholder="username"
+               required/>
+        <label for="password">Password</label>
+        <input id="password"
+               name="password"
+               ng-model="password"
+               type="password"
+               class="form-control"
+               placeholder="password"
+               required/>
+        <label for="verify_password">Verify Password</label>
+        <input id="verify_password"
+               name="verify_password"
+               ng-model="password2"
+               type="password"
+               class="form-control"
+               placeholder="verify password"
+               required/>
+        <input type="submit"
+               value="Register"
+               ng-click="model.register(username, password, password2)"
+               class="btn btn-primary btn-block"/>
+        <a class="btn btn-danger  btn-block"
+           href="#!/login">Cancel</a>
+    </form>
 </div>

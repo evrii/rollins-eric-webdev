@@ -6,14 +6,64 @@
     function userService($http) {
 
         var api = {
+            register: register,
             createUser: createUser,
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
+            login: login,
+            logout: logout,
+            loggedin: loggedin,
+            checkAdmin: checkAdmin,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            findAllUsers: findAllUsers
         }
         return api;
+
+        function register(userObj) {
+            var url = "/api/assignment/register";
+            return $http.post(url, userObj)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function login(username, password) {
+            var url = "/api/assignment/login";
+            var credentials = {
+                username: username,
+                password: password
+            }
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            var url = "/api/assignment/logout";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function loggedin() {
+            var url = "/api/assignment/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/assignment/checkAdmin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
         
         function createUser(user) {
             var url = "/api/assignment/user";
@@ -30,7 +80,14 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
 
+        function findAllUsers() {
+            var url = '/api/assignment/user';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
 

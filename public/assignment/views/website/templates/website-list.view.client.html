@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}">
+            <a class="navbar-brand" href="#!/profile">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand">
                 Websites
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
+                <a href="#!/website/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -30,7 +30,7 @@
             <div class="col-md-5 col-sm-8 col-xs-10"><a href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a></div>
             <div class="col-sm-3 visible-sm visible-md visible-lg">{{website.dateCreated | date : 'short'}}</div>
             <div class="col-md-3 visible-lg visible-md">{{website._user.username}}</div>
-            <div class="col-sm-1 col-xs-2 "><a href="#!/user/{{model.userId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+            <div class="col-sm-1 col-xs-2 "><a href="#!/website/{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
         </div>
     </li>
 </ul>

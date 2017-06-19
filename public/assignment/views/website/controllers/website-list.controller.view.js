@@ -4,13 +4,14 @@
         .controller('websiteListController', websiteListController)
 
     function websiteListController($routeParams,
+                                   currentUser,
                                    websiteService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+
 
         function init() {
-            //model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            model.userId = currentUser._id;
             websiteService
                 .findAllWebsitesForUser(model.userId)
                 .then(renderWebsites);
