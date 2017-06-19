@@ -2,14 +2,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand"
-               href="#!/user/{{model.userId}}/website">
+               href="#!/website">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand">
                 New Website
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                <a ng-click="model.createWebsite(website)"
+                   class="navbar-link">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -37,21 +38,29 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-md-8">
-            <label for="name">Name</label>
-            <input id="name"
-                   ng-model="website.name"
-                   class="form-control"
-                   placeholder="cnn">
-            <label for="description">Description</label>
-            <textarea id="description"
-                      ng-model="website.description"
-                      class="form-control"
-                      rows="5"
-                      placeholder="news site"></textarea>
-            <a ng-click="model.createWebsite(website)"
-               class="btn btn-block btn-success">Create</a>
-        </div>
+        <form name="newWebsiteForm" novalidate>
+            <div class="col-xs-12 col-md-8">
+                <h3 ng-show="newWebsiteForm.$submitted && newWebsiteForm.name.$invalid"
+                    class="alert alert-danger">Website name is required</h3>
+                <label for="name">Name</label>
+                <input id="name"
+                       name="name"
+                       ng-model="website.name"
+                       class="form-control"
+                       placeholder="cnn"
+                       required>
+                <label for="description">Description</label>
+                <textarea id="description"
+                          ng-model="website.description"
+                          class="form-control"
+                          rows="5"
+                          placeholder="news site"></textarea>
+                <input type="submit"
+                       value="Create"
+                       ng-click="model.createWebsite(website)"
+                       class="btn btn-block btn-success"/>
+            </div>
+        </form>
     </div>
 </div>
 

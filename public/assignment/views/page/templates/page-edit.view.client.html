@@ -43,24 +43,32 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-md-8">
-            <label for="name">Name</label>
-            <input ng-model="model.page.name"
-                   id="name"
-                   class="form-control"
-                   placeholder="Homepage">
-            <label for="title">Description</label>
-            <textarea id="title"
-                      ng-model="model.page.description"
-                      class="form-control"
-                      rows="5"
-                      placeholder="CNN - Home">
-            </textarea>
-            <a ng-click="model.updatePage(model.page)"
-               class="btn btn-block btn-success">Update</a>
-            <a ng-click="model.deletePage(model.page._id)"
-               class="btn btn-block btn-danger">Delete</a>
-        </div>
+        <form name="editPageForm" novalidate>
+            <div class="col-xs-12 col-md-8">
+                <h3 ng-show="editPageForm.$submitted && editPageForm.name.$invalid"
+                    class="alert alert-danger">Page name is required</h3>
+                <label for="name">Name</label>
+                <input ng-model="model.page.name"
+                       id="name"
+                       name="name"
+                       class="form-control"
+                       placeholder="Homepage"
+                       required>
+                <label for="title">Description</label>
+                <textarea id="title"
+                          ng-model="model.page.description"
+                          class="form-control"
+                          rows="5"
+                          placeholder="CNN - Home">
+                </textarea>
+                <input type="submit"
+                       value="Update"
+                       ng-click="model.updatePage(model.page)"
+                       class="btn btn-block btn-success"/>
+                <a ng-click="model.deletePage(model.page._id)"
+                   class="btn btn-block btn-danger">Delete</a>
+            </div>
+        </form>
     </div>
 </div>
 

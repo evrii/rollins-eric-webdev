@@ -27,14 +27,15 @@
         }
 
         function createPage(page) {
-            //Look into this
-            page.userId = model.userId;
-            page.websiteId = model.websiteId;
-            pageService
-                .createPage(page, model.websiteId)
-                .then(function (response) {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
-                })
+            if(page && page.name) {
+                page.userId = model.userId;
+                page.websiteId = model.websiteId;
+                pageService
+                    .createPage(page, model.websiteId)
+                    .then(function (response) {
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                    })
+            }
         }
 
     }

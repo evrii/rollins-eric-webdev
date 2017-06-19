@@ -5,12 +5,13 @@
 
     function websiteNewController($routeParams,
                                    $location,
+                                   currentUser,
                                    websiteService) {
         var model = this;
         model.createWebsite = createWebsite;
 
         function init() {
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
             websiteService
                 .findAllWebsitesForUser(model.userId)
                 .then(renderWebsites, websitesError);
@@ -18,12 +19,15 @@
         init();
 
         function createWebsite(website) {
-            website.developerId = model.userId;
-            websiteService
-                .createWebsiteForUser(model.userId, website)
-                .then(function (response) {
-                    $location.url('/user/'+model.userId+'/website');
-                })
+            if(website && website.name)
+            {
+                website.developerId = model.userId;
+                websiteService
+                    .createWebsiteForUser(model.userId, website)
+                    .then(function (response) {
+                        $location.url('/website');
+                    }, websitesError);
+            }
 
         }
         function renderWebsites(response) {

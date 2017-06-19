@@ -35,12 +35,13 @@
         }
 
         function updateWidget(widget) {
-            widgetService
-                .updateWidget(widget._id, widget)
-                .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
-                })
-
+            if(widget && widget.name) {
+                widgetService
+                    .updateWidget(widget._id, widget)
+                    .then(function () {
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+                    })
+            }
         }
 
         function deleteWidget(pageId, widgetId) {

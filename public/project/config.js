@@ -45,5 +45,6 @@
                 controller: 'ContentSearchController',
                 controllerAs: 'model'
             })
-    }}
+    }
+}
 )();

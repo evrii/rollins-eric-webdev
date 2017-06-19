@@ -12,36 +12,48 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="wd-standalone-link">
-        <a ng-click="model.createWidget('heading')"
-           class="btn btn-block btn-success">
-            <span>Create Header Widget</span>
-        </a>
-    </div>
-    <div class="wd-standalone-link">
-        <a ng-click="model.createWidget('image')"
-           class="btn btn-block btn-success">
-            <span>Create Image Widget</span>
-        </a>
-    </div>
-    <div class="wd-standalone-link">
-        <a ng-click="model.createWidget('youtube')"
-           class="btn btn-block btn-success">
-            <span>Create Youtube Widget</span>
-        </a>
-    </div>
-    <div class="wd-standalone-link">
-        <a ng-click="model.createWidget('html')"
-           class="btn btn-block btn-success">
-            <span>Create HTML Widget</span>
-        </a>
-    </div>
-    <div class="wd-standalone-link">
-        <a ng-click="model.createWidget('input')"
-           class="btn btn-block btn-success">
-            <span>Create Input Widget</span>
-        </a>
-    </div>
+    <h3 ng-show="newWidgetForm.$submitted && newWidgetForm.name.$invalid"
+        class="alert alert-danger">Widget name is required</h3>
+    <form name="newWidgetForm" novalidate>
+        <label for="name">Name</label>
+        <input id="name"
+               name="name"
+               ng-model="widget.name"
+               class="form-control"
+               placeholder="Widget A"
+               required>
+        <div class="wd-standalone-link">
+            <input type="submit"
+                   ng-click="model.createWidget('heading', widget.name)"
+                   class="btn btn-block btn-success"
+                   value="Create Header Widget" />
+
+        </div>
+        <div class="wd-standalone-link">
+            <input type="submit"
+                   ng-click="model.createWidget('image', widget.name)"
+                   class="btn btn-block btn-success"
+                   value="Create Image Widget"/>
+        </div>
+        <div class="wd-standalone-link">
+            <input type="submit"
+                   ng-click="model.createWidget('youtube', widget.name)"
+                   class="btn btn-block btn-success"
+                   value="Create Youtube Widget"/>
+        </div>
+        <div class="wd-standalone-link">
+            <input type="submit"
+                   ng-click="model.createWidget('html', widget.name)"
+                   class="btn btn-block btn-success"
+                   value="Create HTML Widget"/>
+        </div>
+        <div class="wd-standalone-link">
+            <input type="submit"
+                   ng-click="model.createWidget('input', widget.name)"
+                   class="btn btn-block btn-success"
+                   value="Create Input Widget">
+        </div>
+    </form>
 </div>
 
 <div ng-include="'views/common/footer.view.client.html'"></div>

@@ -1,4 +1,14 @@
 <div class="container-fluid">
+    <h3 ng-show="editWidgetForm.$submitted && editWidgetForm.name.$invalid"
+        class="alert alert-danger">Widget name is required</h3>
+    <label for="name">Name</label>
+    <input ng-model="model.widget.name"
+           name="name"
+           class="form-control"
+           id="name"
+           placeholder="Cat Picture"
+           required>
+
     <label for="text">Text</label>
     <input ng-model="model.widget.text"
            class="form-control"
@@ -24,7 +34,10 @@
                id="formatted"
                type="checkbox">
     </label>
-
+    <input type="submit"
+           value="Update"
+           ng-click="model.updateWidget(model.widget)"
+           class="btn btn-block btn-success"/>
     <a ng-click="model.deleteWidget(model.pageId, model.widgetId)"
        class="btn btn-block btn-danger">Delete</a>
 

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Rollins</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#!/">Home</a></li>
+                <li><a ng-show="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+                <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
+                <li ng-show="!model.currentUser._id"><a href="#!/register">Register</a></li>
+                <li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>
+                <li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Assignment 6</h1>
+        <p>This is my submission for Assignment 6. I secured the program.</p>
+        <p ng-show="!model.currentUser._id"><a href="#!/login">Click here to login.</a></p>
+        <p ng-show="model.currentUser._id"><a href="#!/profile">Click here to go to your profile.</a></p>
+    </div>
+
+    <div class="page-header">
+        <h1>CS 5610 Assignments</h1>
+    </div>
+    <h3>Assignment 1</h3>
+    <p>This assignment served as a way of setting up a development environment for this course.</p>
+    <h3>Assignment 2</h3>
+    <p>This assignment served as a means of setting up static pages to map out the core functionality of this application.</p>
+    <h3>Assignment 3</h3>
+    <p>This assignment served as a means of setting up dynamic pages to map out the core functionality of this application.</p>
+    <h3>Assignment 4</h3>
+    <p>This is my submission for Assignment 4. I have created server side services.</p>
+    <h1>Assignment 5</h1>
+    <p>This is my submission for Assignment 5. I have created database services.</p>
+
+</div>
