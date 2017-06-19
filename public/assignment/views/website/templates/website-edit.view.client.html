@@ -36,23 +36,31 @@
             </ul>
         </div>
     </div>
+    <form name="editWebsiteForm" novalidate>
         <div class="col-xs-12 col-md-8">
+            <h3 ng-show="editWebsiteForm.$submitted && editWebsiteForm.name.$invalid"
+                class="alert alert-danger">Website name is required</h3>
             <label for="name">Name</label>
-            <input ng-model="model.website.name"
-                    class="form-control"
+            <input name="name"
+                   ng-model="model.website.name"
+                   class="form-control"
                    id="name"
-                   placeholder="cnn">
+                   placeholder="cnn"
+                   required>
             <label for="description">Description</label>
             <textarea ng-model="model.website.description"
                       id="description"
                       class="form-control"
                       rows="5"
                       placeholder="news site"></textarea>
-            <a ng-click="model.updateWebsite(model.website)"
-               class="btn btn-block btn-success">Update</a>
+            <input type="submit"
+                   value="Update"
+                   ng-click="model.updateWebsite(model.website)"
+                   class="btn btn-block btn-success"/>
             <a ng-click="model.deleteWebsite(model.website._id)"
                class="btn btn-block btn-danger">Delete</a>
         </div>
+    </form>
     </div>
 </div>
 

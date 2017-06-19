@@ -1,10 +1,13 @@
 <div class="container-fluid">
-
+    <h3 ng-show="editWidgetForm.$submitted && editWidgetForm.name.$invalid"
+        class="alert alert-danger">Widget name is required</h3>
     <label for="name">Name</label>
     <input ng-model="model.widget.name"
+           name="name"
            class="form-control"
            id="name"
-           placeholder="Cat Picture">
+           placeholder="Cat Picture"
+           required>
     <label for="text">Text</label>
     <textarea ng-model="model.widget.text"
               class="form-control"
@@ -57,12 +60,10 @@
 
 
 
-    <!--<label for="file">Upload</label>-->
-    <!--<input ng-model="model.widget.file"-->
-           <!--id="file"-->
-           <!--type="file"-->
-           <!--class="form-control" />-->
-    <!--<a class="btn btn-block btn-primary">Upload Image</a>-->
+    <input type="submit"
+           value="Update"
+           ng-click="model.updateWidget(model.widget)"
+           class="btn btn-block btn-success"/>
     <a ng-click="model.deleteWidget(model.widgetId)"
        class="btn btn-block btn-danger wd-padded-btn">Delete</a>
 

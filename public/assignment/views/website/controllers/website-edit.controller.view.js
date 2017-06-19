@@ -42,11 +42,13 @@
         }
 
         function updateWebsite(website) {
-            websiteService
-                .updateWebsite(website._id, website)
-                .then(function () {
-                    $location.url('/website');
-                })
+            {
+                websiteService
+                    .updateWebsite(website._id, website)
+                    .then(function () {
+                        $location.url('/website');
+                    })
+            }
         }
 
         function deleteWebsite(websiteId) {
