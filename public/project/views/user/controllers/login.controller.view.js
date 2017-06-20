@@ -9,15 +9,16 @@
         model.login = login;
 
         function login(username, password) {
-            //var found = userService.findUserByCredentials(username, password);
             userService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (found) {
                     if (found !== null) {
-                        $location.url('/user/' + found._id)
+                        $location.url('/profile');
                     } else {
                         model.message = "Sorry, " + username + ", you do not exist!"
                     }
+                }, function (response) {
+                    model.message = "Sorry, " + username + ", those credentials are incorrect!"
                 });
         }
     }

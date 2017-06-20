@@ -20,7 +20,10 @@
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:userId/users', {
                 templateUrl: 'views/user/templates/user-list.view.client.html',
@@ -45,6 +48,54 @@
                 controller: 'ContentSearchController',
                 controllerAs: 'model'
             })
+            .when('/curriculum/new', {
+                templateUrl: 'views/curriculum/templates/curriculum-new.view.client.html',
+                controller: 'curriculumNewController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: testFunction
+                }
+            })
     }
-}
-)();
+
+    function testFunction() {
+        var t = 7;
+        var user = {};
+        user.name = "Fred";
+        return {};
+    }
+
+    function checkLoggedIn(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkCurrentUser() {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.resolve({});
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+})();

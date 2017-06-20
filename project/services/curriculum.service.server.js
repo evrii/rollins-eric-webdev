@@ -1,11 +1,5 @@
+console.log("WE HAVE LIFT OFF!")
 var app = require('../../express');
-var userModel = require('../models/projectUser/projectUser.model.server');
-var passport      = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require("bcrypt-nodejs");
-
-passport.use(new LocalStrategy(localStrategy));
-
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",
         lastName: "Wonder", friends: ["234", "345"], followers: ["234"], userType: "student",
@@ -33,9 +27,6 @@ app.post('/api/project/user', createUser);
 
 app.put('/api/project/user/:userId', updateUser);
 app.delete('/api/project/user/:userId', deleteUser);
-
-app.get('/api/project/loggedin', loggedin);
-app.post('/api/project/login', passport.authenticate('local'), login);
 
 function createUser(req, res){
     var user = req.body;
@@ -165,32 +156,4 @@ function addCourse(req, res) {
 
     res.sendStatus(200);
     return;
-}
-
-function loggedin(req, res) {
-    if(req.isAuthenticated()) {
-        res.json(req.user);
-    } else {
-        res.send('0');
-    }
-}
-
-function login(req, res) {
-    res.json(req.user);
-}
-
-function localStrategy(username, password, done) {
-
-    userModel
-        .findUserByUsername(username)
-        .then(function (user) {
-            if(user && bcrypt.compareSync(password, user.password)){
-                done(null, user);
-            }
-            else{
-                done(null, false);
-            }
-        }, function (error) {
-            return done(error, false);
-        })
 }

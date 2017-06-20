@@ -15,7 +15,9 @@
             findAllUsers: findAllUsers,
             findAllUserTypes: findAllUserTypes,
             addFriend: addFriend,
-            addCourseToUser: addCourseToUser
+            addCourseToUser: addCourseToUser,
+            loggedin: loggedin,
+            login: login
         }
         return api;
         
@@ -100,6 +102,26 @@
             //Fix this to be a put
             return $http.get(url)
                 .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function loggedin() {
+            var url = "/api/project/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function login(username, password) {
+            var url = "/api/assignment/login";
+            var credentials = {
+                username: username,
+                password: password
+            }
+            return $http.post(url, credentials)
+                .then(function (response) {
                     return response.data;
                 });
         }

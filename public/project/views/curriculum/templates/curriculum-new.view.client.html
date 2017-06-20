@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+               href="#!/">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">
+                New Curriculum
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.createCurriculum()"
+                   class="navbar-link">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 visible-lg visible-md">
+            <div class="container-fluid">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-8 col-xs-10">Name</div>
+                        </div>
+                    </li>
+                    <li ng-repeat="curriculum in model.curriculum" class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-10"><a href="#!/user/{{model.userId}}/curriculum/{{curriculum._id}}/page">{{curriculum.name}}</a></div>
+                            <div class="col-xs-2 "><a href="#!/user/{{model.userId}}/curriculum/{{curriculum._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <form name="newCurriculumForm" method="post" novalidate>
+            <div class="col-xs-12 col-md-8">
+                <h3 ng-show="newCurriculumForm.$submitted && newCurriculumForm.name.$invalid"
+                    class="alert alert-danger">Curriculum name is required</h3>
+                <label for="name">Name</label>
+                <input id="name"
+                       name="name"
+                       ng-model="curriculum.name"
+                       class="form-control"
+                       placeholder="Teach Me Calculus"
+                       required>
+                <label for="description">Description</label>
+                <textarea id="description"
+                          ng-model="curriculum.description"
+                          class="form-control"
+                          rows="5"
+                          placeholder="Follow this set of courses to teach yourself Calculus."></textarea>
+                <input type="submit"
+                       value="Create"
+                       ng-click="model.createCurriculum(curriculum)"
+                       class="btn btn-block btn-success"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
