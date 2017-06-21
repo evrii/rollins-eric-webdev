@@ -17,7 +17,7 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId', {
+            .when('/profile', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
                 controllerAs: 'model',
@@ -77,6 +77,8 @@
                 } else {
                     deferred.resolve(user);
                 }
+            }, function (response) {
+                var t = 7;
             });
 
         return deferred.promise;

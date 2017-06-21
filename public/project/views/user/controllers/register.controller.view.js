@@ -24,6 +24,11 @@
                 model.error = "Please enter a valid username"
                 return;
             }
+
+            if(password !== password2){
+                model.error = "Passwords must match"
+                return;
+            }
             userService
                 .findUserByUsername(username)
                 .then(
@@ -33,13 +38,12 @@
                     function(){
                         var newUser = {
                             username: username,
-                            password: password,
-                            userType: userType
+                            password: password
                         }
                         return userService
-                            .createUser(newUser)
-                            .then(function (user){
-                                $location.url('/user/'+user._id)
+                            .register(newUser)
+                            .then(function (usr){
+                                $location.url('/profile');
                             });
 
                     }

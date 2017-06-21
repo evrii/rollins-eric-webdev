@@ -8,13 +8,13 @@ var projectUserSchema = mongoose.Schema({
     roles: [{type: String,
         default: 'USER',
         enum: ['USER', 'FACULTY', 'STUDENT', 'ADMIN']}],
-    facebook: {
-        id: String,
-        token: String
-    },
+    // google: {
+    //     id: String,
+    //     token: String
+    // },
     email: String,
     phone: String,
-    websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
+    //curriculum: [{type: mongoose.Schema.Types.ObjectId, ref: "CurriculumModel"}],
     dateCreated : {type: Date, default: Date.now()}
 }, {collection: "projectUser"});
 
