@@ -1,15 +1,13 @@
 var mongoose = require('mongoose');
 var contentSchema = require('./content.schema.server');
-var contentModel = mongoose.model('ConentModel', contentSchema);
+var contentModel = mongoose.model('ContentModel', contentSchema);
 var userModel = require('../projectUser/projectUser.model.server');
 
 contentModel.createContentForUser = createContentForUser;
+contentModel.findAllContentForUser = findAllContentForUser;
 contentModel.findConentById = findConentById;
-contentModel.findAllConents = findAllConents;
 contentModel.updateConent = updateConent;
 contentModel.deleteConent = deleteConent;
-contentModel.addPage = addPage;
-contentModel.deletePage = deletePage;
 
 module.exports = contentModel;
 
@@ -31,10 +29,6 @@ function findConentById(contentId){
     return contentModel.findById(contentId);
 }
 
-function findAllConents() {
-    return contentModel.find();
-}
-
 function updateConent(contentId, newConent) {
     return contentModel.update({_id: contentId}, {$set: newConent})
 }
@@ -46,26 +40,11 @@ function deleteConent(userId, contentId) {
             return userModel
                 .deleteConent(userId, contentId);
         })
-
 }
 
-function addPage(contentId, pageId) {
-    contentModel
-        .findById(contentId)
-        .then(function (content) {
-            content.pages.push(pageId);
-            return content.save();
-        });
-}
-
-function deletePage(contentId, pageId) {
-    contentModel
-        .findById(contentId)
-        .then(function (content) {
-            var index =  content.pages.indexOf(pageId);
-            content.pages.splice(index, 1);
-            return content.save();
-        },function () {
-
-        });
+function findAllContentForUser(userId){
+    return userModel
+        .findUserById(userId)
+        .populate('content')
+        .exec();
 }

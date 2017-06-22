@@ -1,4 +1,4 @@
-<h3>Content List</h3>
+<h3>Completed Content</h3>
 <ul class="list-group">
     <li class="list-group-item active">
         <div class="row">
@@ -10,9 +10,9 @@
             </div>
         </div>
     </li>
-    <li ng-repeat="content in model.user.content" class="list-group-item">
+    <li ng-repeat="content in model.content" class="list-group-item">
         <div class="row">
-            <div class="col-xs-12"><a href="#!/user/{{model.userId}}/content/{{content}}">{{content}}</a></div>
+            <div class="col-xs-12"><a href="#!/user/{{model.userId}}/content/{{content._id}}">{{content.name}}</a></div>
         </div>
     </li>
 </ul>

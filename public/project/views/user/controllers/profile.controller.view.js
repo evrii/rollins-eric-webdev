@@ -7,7 +7,8 @@
                                $routeParams,
                                currentUser,
                                userService,
-                               curriculumService
+                               curriculumService,
+                               contentService
     ) {
         var model = this;
 
@@ -21,6 +22,9 @@
             curriculumService
                 .findAllCurriculumForUser(model.userId)
                 .then(renderCurriculum);
+            contentService
+                .findAllContentForUser(model.userId)
+                .then(renderContent);
 
         }
         init();
@@ -64,10 +68,13 @@
                 });
         }
 
-        function renderCurriculum(response) {
-            model.curriculum = response;
+        function renderCurriculum(curriculum) {
+            model.curriculum = curriculum;
         }
 
+        function renderContent(content) {
+            model.content = content;
+        }
 
     }
 })();

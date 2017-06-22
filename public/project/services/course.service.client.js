@@ -28,8 +28,11 @@
 
         function addCourseToUser(course, userId){
             //May have to change url
-            var url = "/api/project/content/"+course.id+"/user/"+userId;
+            var url = '/api/project/user/'+userId+'/content'
             var courseObj = {
+                name: course.title,
+                author: course.author,
+                organization: course.source,
                 searchKey: course.id
             }
             return $http
