@@ -6,7 +6,9 @@
     function profileController($location,
                                $routeParams,
                                currentUser,
-                               userService) {
+                               userService,
+                               curriculumService
+    ) {
         var model = this;
 
         model.userId = currentUser._id;
@@ -16,13 +18,16 @@
 
         function init() {
             renderUser(currentUser);
+            curriculumService
+                .findAllCurriculumForUser(model.userId)
+                .then(renderCurriculum);
+
         }
         init();
 
 
 
         function renderUser(response) {
-            console.log(response);
             model.user = response;
         }
 
@@ -57,6 +62,10 @@
                 .then(function () {
                     $location.url('/login');
                 });
+        }
+
+        function renderCurriculum(response) {
+            model.curriculum = response;
         }
 
 

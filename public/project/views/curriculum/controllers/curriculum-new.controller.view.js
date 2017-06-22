@@ -12,31 +12,22 @@
 
         function init() {
             model.userId = currentUser._id;
-            curriculumService
-                .findAllCurriculumForCurator(model.userId)
-                .then(renderCurriculum, curriculumError);
         }
         init();
 
-        function createCurriculum() {
+        function createCurriculum(curriculum) {
             if(curriculum && curriculum.name)
             {
                 curriculum.developerId = model.userId;
                 curriculumService
-                    .createCurriculumForCurator(model.userId, curriculum)
+                    .createCurriculumForCurator(curriculum, model.userId)
                     .then(function (response) {
-                        $location.url('/curriculum');
-                    }, curriculumError);
+                        $location.url('/profile');
+                    }, function(response){
+                        var t = 4;
+                    });
             }
 
-        }
-        function renderCurriculum(response) {
-            console.log("RENDER WEBSITES: "+response);
-            model.curriculum = response;
-        }
-
-        function curriculumError(response) {
-            model.error = "Curriculum not found."
         }
 
     }

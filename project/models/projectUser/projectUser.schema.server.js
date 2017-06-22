@@ -15,6 +15,7 @@ var projectUserSchema = mongoose.Schema({
     email: String,
     phone: String,
     content: [{type: mongoose.Schema.Types.ObjectId, ref: "ContentModel"}],
+    curriculum: [{type: mongoose.Schema.Types.ObjectId, ref: "CurriculumModel"}],
     dateCreated : {type: Date, default: Date.now()}
 }, {collection: "projectUser"});
 

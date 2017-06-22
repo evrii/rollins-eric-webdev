@@ -53,7 +53,7 @@
                 controller: 'curriculumNewController',
                 controllerAs: 'model',
                 resolve: {
-                    currentUser: testFunction
+                    currentUser: checkLoggedIn
                 }
             })
     }
