@@ -6,15 +6,15 @@ var projectUserSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     roles: [{type: String,
-        default: 'USER',
-        enum: ['USER', 'FACULTY', 'STUDENT', 'ADMIN']}],
+        default: 'STUDENT',
+        enum: ['FACULTY', 'STUDENT', 'ADMIN']}],
     // google: {
     //     id: String,
     //     token: String
     // },
     email: String,
     phone: String,
-    //curriculum: [{type: mongoose.Schema.Types.ObjectId, ref: "CurriculumModel"}],
+    content: [{type: mongoose.Schema.Types.ObjectId, ref: "ContentModel"}],
     dateCreated : {type: Date, default: Date.now()}
 }, {collection: "projectUser"});
 

@@ -35,9 +35,9 @@
                 controller: 'friendProfileController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/content/search', {
-                templateUrl: 'views/content/templates/content-search.view.client.html',
-                controller: 'ContentSearchController',
+            .when('/user/:userId/course/search', {
+                templateUrl: 'views/content/templates/course-search.view.client.html',
+                controller: 'CourseSearchController',
                 controllerAs: 'model'
             })
             .when('/experiment', {

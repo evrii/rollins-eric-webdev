@@ -9,7 +9,7 @@ projectUserModel.findUserByUsername = findUserByUsername;
 projectUserModel.findUserByCredentials = findUserByCredentials;
 projectUserModel.updateUser = updateUser;
 projectUserModel.deleteUser = deleteUser;
-projectUserModel.addWebsite = addWebsite;
+projectUserModel.addContent = addContent;
 projectUserModel.deleteWebsite = deleteWebsite;
 projectUserModel.findUserByFacebookId = findUserByFacebookId;
 
@@ -20,7 +20,7 @@ function createUser(user) {
         user.roles = user.roles.split(',');
     }
     else{
-        user.roles = ['USER'];
+        user.roles = ['STUDENT'];
     }
 
     return projectUserModel.create(user)
@@ -55,13 +55,18 @@ function deleteUser(userId) {
     return projectUserModel.remove({_id: userId})
 }
 
-function addWebsite(userId, websiteId) {
+function addContent(userId, contentId) {
     projectUserModel
         .findById(userId)
         .then(function (user) {
-            user.websites.push(websiteId);
+            user.content.push(contentId)
             return user.save();
+        },
+        function (response) {
+            var y = 8;
+            return y;
         });
+
 }
 
 function deleteWebsite(userId, websiteId) {

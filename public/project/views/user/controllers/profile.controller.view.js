@@ -3,17 +3,19 @@
         .module('LEARN')
         .controller('profileController', profileController);
     
-    function profileController($location, $routeParams, userService) {
+    function profileController($location,
+                               $routeParams,
+                               currentUser,
+                               userService) {
         var model = this;
 
+        model.userId = currentUser._id;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
         function init() {
-            model.userId = $routeParams['userId'];
-            userService
-                .findUserById(model.userId)
-                .then(renderUser, userError);
+            renderUser(currentUser);
         }
         init();
 
@@ -41,13 +43,20 @@
             userService
                 .deleteUser(user._id)
                 .then(function () {
-                    $location.url('/')
-                },
-                function () {
+                        $location.url('/')
+                    },
+                    function () {
+                        model.error = 'Unable to register you';
+                    })
 
+        }
 
-                })
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
         }
 
 

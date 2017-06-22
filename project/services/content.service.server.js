@@ -1,40 +1,42 @@
 const app = require('../../express');
-
+var contentModel = require('../models/content/content.model.server');
 var multer = require('multer'); // npm install multer --save
-var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
+var upload = multer({ dest: __dirname+'/../../public/project/uploads' });
 
 var results = []
 
-var widgets = [
-    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-        "url": "http://lorempixel.com/400/200/"},
-    { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-        "url": "https://youtu.be/AM2Ivdi9c4E" },
-    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": '<p>Having guided you through <a href="http://fieldguide.gizmodo.com/how-to-abandon-android-and-switch-to-ios-1794659232" target="_blank" rel="noopener">the not-all-that-straightforward process</a> of switching from Android to iOS, we’re back to tell you how to go in the opposite direction. (Make your mind up will you?) Going from Apple-powered devices to Google’s platform is either ridiculously easy or rather taxing, depending on your current…<span class="read-more-placeholder"></span></p>'}
-];
+// var widgets = [
+//     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
+//     { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+//     { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
+//         "url": "http://lorempixel.com/400/200/"},
+//     { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+//     { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+//     { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+//         "url": "https://youtu.be/AM2Ivdi9c4E" },
+//     { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": '<p>Having guided you through <a href="http://fieldguide.gizmodo.com/how-to-abandon-android-and-switch-to-ios-1794659232" target="_blank" rel="noopener">the not-all-that-straightforward process</a> of switching from Android to iOS, we’re back to tell you how to go in the opposite direction. (Make your mind up will you?) Going from Apple-powered devices to Google’s platform is either ridiculously easy or rather taxing, depending on your current…<span class="read-more-placeholder"></span></p>'}
+// ];
 
-app.post('/api/assignment/page/:pageId/widget', createWidget);
-app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
-app.get('/api/assignment/widget/:widgetId', findWidgetById);
-app.put('/api/assignment/widget/:widgetId', updateWidget);
-app.put('/api/assignment/page/:pageId/widget', moveWidget);
-app.delete('/api/assignment/widget/:widgetId', deleteWidget);
+app.post('/api/project/content/:contentId/user/:userId', addContentToUser);
+app.get('/api/project/page/:pageId/widget', findAllWidgetsForPage);
+app.get('/api/project/widget/:widgetId', findWidgetById);
+app.put('/api/project/widget/:widgetId', updateWidget);
+app.put('/api/project/page/:pageId/widget', moveWidget);
+app.delete('/api/project/widget/:widgetId', deleteWidget);
 
-app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
+app.post ("/api/project/upload", upload.single('myFile'), uploadImage);
 
 
-function createWidget(req, res) {
-    var widget = req.body;
-    var currentDate = new Date();
-    widget._id = (currentDate).getTime() + "";
-    widget.created = currentDate;
-    widget.accessed = currentDate;
-    widgets.push(widget);
-    res.json(widget);
+function addContentToUser(req, res) {
+    var content = req.body;
+    var userId = req.params['userId'];
+    contentModel
+        .createContentForUser(userId, content)
+        .then(function (website) {
+            res.json(website);
+        }, function (response) {
+            var t = 7;
+        });
 }
 
 function findAllWidgetsForPage(req, res) {
@@ -115,9 +117,9 @@ function uploadImage(req, res) {
     var mimetype      = myFile.mimetype;
 
     widget = getWidgetById(widgetId);
-    widget.url = '/assignment/uploads/'+filename;
+    widget.url = '/project/uploads/'+filename;
 
-    var callbackUrl   = "/assignment/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+    var callbackUrl   = "/project/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
 
     res.redirect(callbackUrl);
 }

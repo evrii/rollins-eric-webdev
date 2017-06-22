@@ -1,16 +1,16 @@
 (function () {
     angular
         .module('LEARN')
-        .controller('ContentSearchController', ContentSearchController)
+        .controller('CourseSearchController', CourseSearchController)
 
-    function ContentSearchController ($routeParams,
+    function CourseSearchController ($routeParams,
                                       $sce,
                                       $location,
-                                      openEducationService,
+                                     courseService,
                                       userService) {
         var model = this;
 
-        model.searchContent = searchContent;
+        model.searchCourses = searchCourses;
         model.getCourseDetails = getCourseDetails;
         model.addCourseToUser =addCourseToUser;
 
@@ -19,9 +19,9 @@
         }
         init();
 
-        function searchContent(searchTerm) {
-            openEducationService
-                .searchContent(searchTerm)
+        function searchCourses(searchTerm) {
+            courseService
+                .searchCourses(searchTerm)
                 .then(function (response) {
                     console.log(response)
                     model.courses = response.data.documents;
@@ -30,7 +30,7 @@
         }
 
         function getCourseDetails(courseId) {
-            openEducationService
+            courseServive
                 .getCourseDetails(courseId)
                 .then(function (response) {
                 console.log(response)
@@ -39,11 +39,11 @@
 
         }
 
-        function addCourseToUser(userId, courseId) {
-            userService
-                .addCourseToUser(userId, courseId)
+        function addCourseToUser(course, userId) {
+            courseService
+                .addCourseToUser(course, userId)
                 .then(function (response) {
-                    $location.url('/user/'+model.userId);
+                    $location.url('/profile');
                 });
         }
 

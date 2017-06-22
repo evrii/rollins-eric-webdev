@@ -235,3 +235,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
             }
         );
 }
+
+function addCourse(){
+
+}
