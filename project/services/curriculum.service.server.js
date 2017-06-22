@@ -33,7 +33,7 @@ function findAllCurriculumForUser(req, res) {
 function findCurriculumById(req, res) {
     var curriculumId = req.params['curriculumId'];
     curriculumModel
-        .findAllCurriculumForUser(userId)
+        .findCurriculumById(curriculumId)
         .then(function (curriculum) {
             res.json(curriculum);
         }, function (response) {

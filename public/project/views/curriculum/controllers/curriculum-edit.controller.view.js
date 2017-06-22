@@ -16,9 +16,9 @@
             curriculumService
                 .findAllCurriculumForUser(model.userId)
                 .then(renderCurriculumList);
-            // curriculumService
-            //     .findCurriculumById(model.curriculumId)
-            //     .then(renderCurriculum);
+            curriculumService
+                .findCurriculumById(model.curriculumId)
+                .then(renderCurriculum);
         }
         init();
 

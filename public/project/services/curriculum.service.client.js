@@ -31,11 +31,11 @@
         }
         
         function findCurriculumById(curriculumId) {
-            var url = "/api/project/curriculum"+curriculumId;
+            var url = "/api/project/curriculum/"+curriculumId;
             return $http
                 .get(url)
                 .then(function (response) {
-                    return response.data.curriculum;
+                    return response.data;
                 });
         }
 

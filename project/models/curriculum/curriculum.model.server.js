@@ -5,6 +5,7 @@ var userModel = require('../projectUser/projectUser.model.server');
 
 curriculumModel.createCurriculumForCurator = createCurriculumForCurator;
 curriculumModel.findAllCurriculumForUser = findAllCurriculumForUser;
+curriculumModel.findCurriculumById = findCurriculumById;
 
 
 module.exports = curriculumModel;
@@ -28,4 +29,8 @@ function findAllCurriculumForUser(userId){
         .findUserById(userId)
         .populate('curriculum')
         .exec();
+}
+
+function findCurriculumById(curriculumId) {
+    return curriculumModel.findById(curriculumId);
 }
