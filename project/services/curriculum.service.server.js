@@ -5,6 +5,7 @@ const USER_TYPES = ["curator", "student", "admin"]
 
 app.post('/api/project/user/:userId/curriculum', createCurriculumForCurator);
 app.get('/api/project/user/:userId/curriculum', findAllCurriculumForUser);
+app.get('/api/project/curriculum/:curriculumId', findCurriculumById);
 
 function createCurriculumForCurator(req, res) {
     var curriculum = req.body;
@@ -20,6 +21,17 @@ function createCurriculumForCurator(req, res) {
 
 function findAllCurriculumForUser(req, res) {
     var userId = req.params['userId'];
+    curriculumModel
+        .findAllCurriculumForUser(userId)
+        .then(function (curriculum) {
+            res.json(curriculum);
+        }, function (response) {
+            var t = 6;
+        });
+}
+
+function findCurriculumById(req, res) {
+    var curriculumId = req.params['curriculumId'];
     curriculumModel
         .findAllCurriculumForUser(userId)
         .then(function (curriculum) {
