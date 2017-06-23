@@ -67,7 +67,6 @@ function addContent(userId, contentId) {
                 var y = 8;
                 return y;
             });
-
 }
 
 function addCurriculum(userId, curriculumId) {

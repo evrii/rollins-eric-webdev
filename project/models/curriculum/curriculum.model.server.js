@@ -6,6 +6,7 @@ var userModel = require('../projectUser/projectUser.model.server');
 curriculumModel.createCurriculumForCurator = createCurriculumForCurator;
 curriculumModel.findAllCurriculumForUser = findAllCurriculumForUser;
 curriculumModel.findCurriculumById = findCurriculumById;
+curriculumModel.addContent = addContent;
 
 
 module.exports = curriculumModel;
@@ -33,4 +34,17 @@ function findAllCurriculumForUser(userId){
 
 function findCurriculumById(curriculumId) {
     return curriculumModel.findById(curriculumId);
+}
+
+function addContent(curriculumId, contentId) {
+    curriculumModel
+        .findById(curriculumId)
+        .then(function (curriculum) {
+                curriculum.content.push(contentId)
+                return curriculum.save();
+            },
+            function (response) {
+                var y = 8;
+                return y;
+            });
 }

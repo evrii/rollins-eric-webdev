@@ -14,16 +14,24 @@
             model.userId = currentUser._id;
             model.curriculumId = $routeParams['curriculumId'];
             curriculumService
+                .findCurriculumById(model.curriculumId)
+                .then(renderCurriculum);
+            curriculumService
                 .findAllCurriculumForUser(model.userId)
                 .then(renderCurriculumList);
             curriculumService
-                .findCurriculumById(model.curriculumId)
-                .then(renderCurriculum);
+                .findAllContentForCurriculum(model.curriculumId)
+                .then(renderContentList);
+
         }
         init();
 
         function renderCurriculumList(curriculumList) {
             model.curriculumList = curriculumList;
+        }
+
+        function renderContentList(contentList) {
+            model.contentList = contentList;
         }
 
         function renderCurriculum(curriculum) {

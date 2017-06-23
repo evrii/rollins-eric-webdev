@@ -58,12 +58,18 @@
                                ng-click="model.addCourseToUser(course, model.userId)">
                                 <span class="glyphicon glyphicon-plus pull-left"></span>
                             </a>
+                            <a ng-show="model.curriculumId"
+                               ng-click="model.addCourseToCurriculum(course, model.curriculumId)">
+                                <span class="glyphicon glyphicon-plus pull-left"></span>
+                            </a>
                         </div>
                         <div class="col-md-4 col-sm-7 col-xs-9"><a href="#">{{course.title}}</a></div>
                         <div class="col-sm-3 visible-sm visible-md visible-lg">{{course.source}}</div>
                         <div class="col-md-3 visible-lg visible-md">{{course.author}}</div>
                         <div class="col-xs-1">
-                            <a ng-click="model.getCourseDetails(course.id)"><span class="glyphicon glyphicon-chevron-right pull-left"></span></a>
+                            <a ng-click="model.getCourseDetails(course.id)">
+                                <span class="glyphicon glyphicon-chevron-right pull-left"></span>
+                            </a>
                         </div>
                     </div>
                 </li>

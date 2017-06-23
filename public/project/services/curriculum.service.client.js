@@ -8,7 +8,8 @@
         var api = {
             createCurriculumForCurator: createCurriculumForCurator,
             findAllCurriculumForUser: findAllCurriculumForUser,
-            findCurriculumById: findCurriculumById
+            findCurriculumById: findCurriculumById,
+            findAllContentForCurriculum: findAllContentForCurriculum
         }
         return api;
         
@@ -36,6 +37,15 @@
                 .get(url)
                 .then(function (response) {
                     return response.data;
+                });
+        }
+        
+        function findAllContentForCurriculum(curriculumId) {
+            var url = "/api/project/curriculum/"+curriculumId+"/content";
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data.content;
                 });
         }
 

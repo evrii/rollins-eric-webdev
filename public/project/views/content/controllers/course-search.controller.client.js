@@ -13,7 +13,8 @@
 
         model.searchCourses = searchCourses;
         model.getCourseDetails = getCourseDetails;
-        model.addCourseToUser =addCourseToUser;
+        model.addCourseToUser = addCourseToUser;
+        model.addCourseToCurriculum = addCourseToCurriculum;
 
         function init() {
             model.userId = currentUser._id;
@@ -46,6 +47,14 @@
                 .addCourseToUser(course, userId)
                 .then(function (response) {
                     $location.url('/profile');
+                });
+        }
+
+        function addCourseToCurriculum(course, curriculumId) {
+            courseService
+                .addCourseToCurriculum(course, curriculumId)
+                .then(function (response) {
+                    $location.url('/curriculum/'+curriculumId+'/edit');
                 });
         }
 
