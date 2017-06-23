@@ -10,7 +10,9 @@
             </div>
         </div>
     </li>
-    <li ng-repeat="curriculum in model.curriculum" class="list-group-item">
+    <li ng-show="model.user"
+        ng-repeat="curriculum in model.user.curriculumList"
+        class="list-group-item">
         <div class="row">
             <div class="col-xs-12"><a href="#!/curriculum/{{curriculum._id}}/edit">{{curriculum.name}}</a></div>
         </div>

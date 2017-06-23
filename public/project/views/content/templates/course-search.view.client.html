@@ -1,11 +1,23 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}">
+            <a ng-hide="model.curriculumId"
+               class="navbar-brand"
+               href="#!/profile">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
-            <a class="navbar-brand">
-                Course Query
+            <a ng-show="model.curriculumId"
+               class="navbar-brand"
+               href="#!/curriculum/{{model.curriculumId}}/edit">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a ng-hide="model.curriculumId"
+               class="navbar-brand">
+                Add Completed Course
+            </a>
+            <a ng-show="model.curriculumId"
+               class="navbar-brand">
+                Add Course to Curriculum
             </a>
         </div>
     </div>
@@ -42,7 +54,8 @@
                 <li ng-repeat="course in model.courses" class="list-group-item">
                     <div class="row">
                         <div class="col-xs-1">
-                            <a ng-click="model.addCourseToUser(course, model.userId)">
+                            <a ng-hide="model.curriculumId"
+                               ng-click="model.addCourseToUser(course, model.userId)">
                                 <span class="glyphicon glyphicon-plus pull-left"></span>
                             </a>
                         </div>

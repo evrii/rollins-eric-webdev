@@ -21,10 +21,10 @@
             renderUser(currentUser);
             curriculumService
                 .findAllCurriculumForUser(model.userId)
-                .then(renderCurriculum);
+                .then(renderCurriculumList);
             contentService
                 .findAllContentForUser(model.userId)
-                .then(renderContent);
+                .then(renderContentList);
 
         }
         init();
@@ -68,12 +68,12 @@
                 });
         }
 
-        function renderCurriculum(curriculum) {
-            model.curriculum = curriculum;
+        function renderCurriculumList(curriculumList) {
+            model.user.curriculumList = curriculumList;
         }
 
-        function renderContent(content) {
-            model.content = content;
+        function renderContentList(contentList) {
+            model.user.contentList = contentList;
         }
 
     }

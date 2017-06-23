@@ -38,7 +38,10 @@
             .when('/user/:userId/course/search', {
                 templateUrl: 'views/content/templates/course-search.view.client.html',
                 controller: 'CourseSearchController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/experiment', {
                 templateUrl: 'experiment.html',
@@ -59,6 +62,14 @@
             .when('/curriculum/:curriculumId/edit', {
                 templateUrl: 'views/curriculum/templates/curriculum-edit.view.client.html',
                 controller: 'curriculumEditController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/curriculum/:curriculumId/course/search', {
+                templateUrl: 'views/content/templates/course-search.view.client.html',
+                controller: 'CourseSearchController',
                 controllerAs: 'model',
                 resolve: {
                     currentUser: checkLoggedIn

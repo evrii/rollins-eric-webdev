@@ -4,10 +4,11 @@
         .controller('CourseSearchController', CourseSearchController)
 
     function CourseSearchController ($routeParams,
-                                      $sce,
-                                      $location,
+                                     $sce,
+                                     $location,
+                                     currentUser,
                                      courseService,
-                                      userService) {
+                                     userService) {
         var model = this;
 
         model.searchCourses = searchCourses;
@@ -15,7 +16,8 @@
         model.addCourseToUser =addCourseToUser;
 
         function init() {
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
+            model.curriculumId = $routeParams['curriculumId'];
         }
         init();
 
