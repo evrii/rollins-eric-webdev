@@ -8,6 +8,7 @@ curriculumModel.findAllCurriculumForUser = findAllCurriculumForUser;
 curriculumModel.findCurriculumById = findCurriculumById;
 curriculumModel.addContent = addContent;
 curriculumModel.findAllCurriculum = findAllCurriculum;
+curriculumModel.deleteCurriculum = deleteCurriculum;
 
 
 module.exports = curriculumModel;
@@ -42,15 +43,26 @@ function addContent(curriculumId, contentId) {
         .findById(curriculumId)
         .then(function (curriculum) {
                 curriculum.content.push(contentId)
-return curriculum.save();
-},
-function (response) {
-    var y = 8;
-    return y;
-});
+                return curriculum.save();
+              },
+              function (response) {
+                var y = 8;
+                return y;
+              });
 }
 
 function findAllCurriculum(){
     return curriculumModel
         .find()
+}
+
+function deleteCurriculum(curriculumId) {
+    return userModel.updateMany(
+        {},
+        { $pull: {"curriculum": curriculumId}},
+        { safe: true})
+        .then(function (response) {
+            curriculumModel.remove()
+        });
+
 }

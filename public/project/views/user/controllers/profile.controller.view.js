@@ -17,6 +17,7 @@
         model.deleteUser = deleteUser;
         model.logout = logout;
         model.removeCurriculumFromStudent = removeCurriculumFromStudent;
+        model.deleteCurriculum = deleteCurriculum;
 
         function init() {
             renderUser(currentUser);
@@ -84,6 +85,18 @@
                         .then(renderCurriculumList);
                 }, function (response) {
                     var o = 1;
+                })
+        }
+
+        function deleteCurriculum(curriculum){
+            curriculumService
+                .deleteCurriculum(curriculum._id)
+                .then(function(response){
+                    curriculumService
+                        .findAllCurriculumForUser(model.userId)
+                        .then(renderCurriculumList);
+                }, function (response) {
+                    var y = 9;
                 })
         }
 

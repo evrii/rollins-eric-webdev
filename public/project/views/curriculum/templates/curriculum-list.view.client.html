@@ -20,15 +20,16 @@
         class="list-group-item">
         <div class="row">
             <div class="col-xs-11"><a href="#!/curriculum/{{curriculum._id}}/edit">{{curriculum.name}}</a></div>
-            <div class="col-xs-1">
-                <a ng-click="model.removeCurriculumFromStudent(curriculum)">
+            <div class="col-xs-1"
+                 ng-switch="model.user.userType">
+                <a ng-switch-when="student"
+                   ng-click="model.removeCurriculumFromStudent(curriculum)">
                     <span class="glyphicon glyphicon-trash pull-right"></span>
                 </a>
-                <!--<a ng-show="model.user"-->
-                   <!--href="#!/user/{{model.userId}}/course/search"-->
-                   <!--class="wd-iconLink">-->
-                    <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                <!--</a>-->
+                <a ng-switch-when="curator"
+                   ng-click="model.deleteCurriculum(curriculum)">
+                    <span class="glyphicon glyphicon-trash pull-right"></span>
+                </a>
             </div>
         </div>
     </li>

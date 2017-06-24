@@ -7,6 +7,7 @@ app.post('/api/project/user/:userId/curriculum', createCurriculumForCurator);
 app.get('/api/project/user/:userId/curriculum', findAllCurriculumForUser);
 app.get('/api/project/curriculum/:curriculumId', findCurriculumById);
 app.get('/api/project/curriculum', findAllCurriculum);
+app.delete('/api/project/curriculum/:curriculumId', deleteCurriculum);
 
 function createCurriculumForCurator(req, res) {
     var curriculum = req.body;
@@ -47,6 +48,17 @@ function findAllCurriculum(req, res) {
         .findAllCurriculum()
         .then(function (curriculumList) {
             res.json(curriculumList);
+        }, function (response) {
+            var t = 6;
+        });
+}
+
+function deleteCurriculum(req, res) {
+    var curriculumId = req.params['curriculumId'];
+    curriculumModel
+        .deleteCurriculum(curriculumId)
+        .then(function (response) {
+            res.json(response);
         }, function (response) {
             var t = 6;
         });
