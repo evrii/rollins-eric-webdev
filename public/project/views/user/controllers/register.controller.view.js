@@ -13,6 +13,9 @@
                 .findAllUserTypes()
                 .then(function (userTypes) {
                     model.userTypes = userTypes;
+                    model.userType = model.userTypes[0];
+                }, function (res) {
+                    var f = 0;
                 });
         }
         init();
@@ -38,7 +41,8 @@
                     function(){
                         var newUser = {
                             username: username,
-                            password: password
+                            password: password,
+                            userType: userType
                         }
                         return userService
                             .register(newUser)

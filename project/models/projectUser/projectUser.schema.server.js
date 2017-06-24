@@ -1,13 +1,13 @@
 var mongoose = require('mongoose')
 
 var projectUserSchema = mongoose.Schema({
-    username: {type: String, unique: true},
+    username: {type: String},
     password: String,
     firstName: String,
     lastName: String,
-    roles: [{type: String,
-        default: 'STUDENT',
-        enum: ['FACULTY', 'STUDENT', 'ADMIN']}],
+    userType: {type: String,
+        default: 'Student',
+        enum: ['curator', 'student', 'admin']},
     // google: {
     //     id: String,
     //     token: String

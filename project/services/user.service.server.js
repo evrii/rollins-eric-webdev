@@ -19,8 +19,10 @@ passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
+app.get('/api/project/user/types', findAllUserTypes);
 app.get('/api/project/user/:userId', findUserById);
 app.get('/api/project/user', findAllUsers);
+
 app.post('/api/project/user', createUser);
 app.put('/api/project/user/:userId', updateUser);
 app.delete('/api/project/user/:userId', deleteUser);
@@ -66,7 +68,11 @@ function register(req, res) {
             req
                 .login(user, function (status) {
                     res.send(status);
+                }, function (res) {
+                    var y = 8;
                 });
+        }, function (res) {
+            var error = res;
         });
 }
 
@@ -236,6 +242,5 @@ function facebookStrategy(token, refreshToken, profile, done) {
         );
 }
 
-function addCourse(){
-
+function findAllUserTypes(req, res) {
 }

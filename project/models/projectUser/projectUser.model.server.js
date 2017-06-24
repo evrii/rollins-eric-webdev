@@ -17,14 +17,7 @@ projectUserModel.findUserByFacebookId = findUserByFacebookId;
 module.exports = projectUserModel;
 
 function createUser(user) {
-    if(user.roles){
-        user.roles = user.roles.split(',');
-    }
-    else{
-        user.roles = ['STUDENT'];
-    }
-
-    return projectUserModel.create(user)
+    return projectUserModel.create(user);
 }
 
 function findUserById(userId){
@@ -46,9 +39,9 @@ function findUserByCredentials(username, password) {
 function updateUser(userId, newUser) {
     delete newUser.username;
     delete newUser.password;
-    if(typeof user.roles === 'string'){
-        user.roles = user.roles.split(',');
-    }
+    // if(typeof user.roles === 'string'){
+    //     user.roles = user.roles.split(',');
+    // }
     return projectUserModel.update({_id: userId}, {$set: newUser})
 }
 
