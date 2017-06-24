@@ -62,7 +62,7 @@ function deleteCurriculum(curriculumId) {
         { $pull: {"curriculum": curriculumId}},
         { safe: true})
         .then(function (response) {
-            curriculumModel.remove()
+            return curriculumModel.findByIdAndRemove(curriculumId);
         });
 
 }
