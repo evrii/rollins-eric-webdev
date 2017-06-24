@@ -12,6 +12,9 @@
 
         function init() {
             model.userId = currentUser._id;
+            curriculumService
+                .findAllCurriculumForUser(model.userId)
+                .then(renderCurriculumList);
         }
         init();
 
@@ -29,6 +32,11 @@
             }
 
         }
+
+        function renderCurriculumList(curriculumList) {
+            model.curriculumList = curriculumList;
+        }
+
 
     }
 })();

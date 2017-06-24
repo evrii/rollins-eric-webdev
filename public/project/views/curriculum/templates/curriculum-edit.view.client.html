@@ -24,10 +24,10 @@
                     <li ng-repeat="curriculum in model.curriculumList" class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10">
-                                <a href="#!/user/{{model.userId}}/curriculum/{{curriculum._id}}/page">{{curriculum.name}}</a>
+                                <a href="#!/curriculum/{{curriculum._id}}/edit">{{curriculum.name}}</a>
                             </div>
                             <div class="col-xs-2 ">
-                                <a href="#!/user/{{model.userId}}/curriculum/{{curriculum._id}}">
+                                <a href="#!/curriculum/{{curriculum._id}}/edit">
                                     <span class="glyphicon glyphicon-cog pull-right"></span>
                                 </a>
                             </div>
