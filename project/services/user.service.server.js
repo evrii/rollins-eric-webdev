@@ -243,4 +243,5 @@ function facebookStrategy(token, refreshToken, profile, done) {
 }
 
 function findAllUserTypes(req, res) {
+    res.send(['student', 'curator', 'admin']);
 }
