@@ -26,6 +26,8 @@ app.get('/api/project/user', findAllUsers);
 app.post('/api/project/user', createUser);
 app.put('/api/project/user/:userId', updateUser);
 app.delete('/api/project/user/:userId', deleteUser);
+app.put('/api/project/user/:userId/curriculum/:curriculumId', addCurriculumToUser);
+app.delete('/api/project/user/:userId/curriculum/:curriculumId', removeCurriculumFromStudent);
 
 app.post('/api/project/login', passport.authenticate('local'), login);
 app.get('/api/project/loggedin', loggedin);
@@ -244,4 +246,44 @@ function facebookStrategy(token, refreshToken, profile, done) {
 
 function findAllUserTypes(req, res) {
     res.send(['student', 'curator', 'admin']);
+}
+
+function addCurriculumToUser(req, res) {
+    var userId = req.params['userId'];
+    var curriculumId = req.params['curriculumId'];
+    userModel
+        .findUserById(userId)
+        .then(function (user) {
+                userModel
+                    .addCurriculum(user, curriculumId)
+            },
+            function (error) {
+                res.send(error);
+            })
+        .then(function (response) {
+                res.send({"msg":"Successfully saved"});
+            },
+            function (response) {
+                res.send({"msg":"Unsuccessfully saved"});
+            });
+}
+
+function removeCurriculumFromStudent(req, res) {
+    var userId = req.params['userId'];
+    var curriculumId = req.params['curriculumId'];
+    userModel
+        .findUserById(userId)
+        .then(function (user) {
+                userModel
+                    .removeCurriculum(user, curriculumId)
+            },
+            function (error) {
+                res.send(error);
+            })
+        .then(function (response) {
+                res.send({"msg":"Successfully removed"});
+            },
+            function (response) {
+                res.send({"msg":"Unsuccessfully removed"});
+            });
 }

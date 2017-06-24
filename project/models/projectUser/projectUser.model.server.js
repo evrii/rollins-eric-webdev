@@ -11,7 +11,7 @@ projectUserModel.updateUser = updateUser;
 projectUserModel.deleteUser = deleteUser;
 projectUserModel.addContent = addContent;
 projectUserModel.addCurriculum = addCurriculum;
-projectUserModel.deleteWebsite = deleteWebsite;
+projectUserModel.removeCurriculum = removeCurriculum;
 projectUserModel.findUserByFacebookId = findUserByFacebookId;
 
 module.exports = projectUserModel;
@@ -53,7 +53,7 @@ function addContent(userId, contentId) {
     projectUserModel
         .findById(userId)
         .then(function (user) {
-                user.content.push(contentId)
+                user.curriculum.push(curriculumId)
                 return user.save();
             },
             function (response) {
@@ -73,17 +73,12 @@ function addCurriculum(userId, curriculumId) {
                 var y = 8;
                 return y;
             });
-
 }
 
-function deleteWebsite(userId, websiteId) {
-    projectUserModel
-        .findById(userId)
-        .then(function (user) {
-            var index =  user.websites.indexOf(websiteId);
-            user.websites.splice(index, 1);
-            return user.save();
-        });
+function removeCurriculum(user, curriculumId) {
+    var index =  user.curriculum.indexOf(curriculumId);
+    user.curriculum.splice(index, 1);
+    return user.save();
 }
 
 function findUserByFacebookId(facebookId) {

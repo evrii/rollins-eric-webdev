@@ -6,6 +6,7 @@ const USER_TYPES = ["curator", "student", "admin"]
 app.post('/api/project/user/:userId/curriculum', createCurriculumForCurator);
 app.get('/api/project/user/:userId/curriculum', findAllCurriculumForUser);
 app.get('/api/project/curriculum/:curriculumId', findCurriculumById);
+app.get('/api/project/curriculum', findAllCurriculum);
 
 function createCurriculumForCurator(req, res) {
     var curriculum = req.body;
@@ -15,7 +16,7 @@ function createCurriculumForCurator(req, res) {
         .then(function (curriculum) {
             res.json(curriculum);
         }, function (response) {
-            var y = 7;
+            res.send({"msg":"Unable to add curriculum"})
         });
 }
 
@@ -36,6 +37,16 @@ function findCurriculumById(req, res) {
         .findCurriculumById(curriculumId)
         .then(function (curriculum) {
             res.json(curriculum);
+        }, function (response) {
+            var t = 6;
+        });
+}
+
+function findAllCurriculum(req, res) {
+    curriculumModel
+        .findAllCurriculum()
+        .then(function (curriculumList) {
+            res.json(curriculumList);
         }, function (response) {
             var t = 6;
         });

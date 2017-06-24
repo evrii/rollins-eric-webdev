@@ -18,7 +18,9 @@
             addFriend: addFriend,
             addCourseToUser: addCourseToUser,
             loggedin: loggedin,
-            login: login
+            login: login,
+            addCurriculumToUser: addCurriculumToUser,
+            removeCurriculumFromStudent: removeCurriculumFromStudent
         }
         return api;
 
@@ -134,6 +136,24 @@
                     return response.data;
                 }, function (response) {
                     var d = 8;
+                });
+        }
+
+        function addCurriculumToUser(curriculumId, userId) {
+            var url = "/api/project/user/"+userId+"/curriculum/"+curriculumId;
+            return $http
+                .put(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function removeCurriculumFromStudent(curriculumId, userId) {
+            var url = "/api/project/user/"+userId+"/curriculum/"+curriculumId;
+            return $http
+                .delete(url)
+                .then(function (response) {
+                    return response.data;
                 });
         }
 

@@ -59,6 +59,14 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/curriculum/search', {
+                templateUrl: 'views/curriculum/templates/curriculum-search.view.client.html',
+                controller: 'curriculumSearchController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when('/curriculum/:curriculumId/edit', {
                 templateUrl: 'views/curriculum/templates/curriculum-edit.view.client.html',
                 controller: 'curriculumEditController',
