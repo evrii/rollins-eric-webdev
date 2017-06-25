@@ -7,6 +7,7 @@
         var model = this;
 
         model.login = login;
+        model.guestBrowse = guestBrowse;
 
         function login(username, password) {
             userService
@@ -20,6 +21,10 @@
                 }, function (response) {
                     model.message = "Sorry, " + username + ", those credentials are incorrect!"
                 });
+        }
+        
+        function guestBrowse() {
+            $location.url('/guestHome');
         }
     }
 })();

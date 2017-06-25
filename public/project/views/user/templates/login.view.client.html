@@ -10,15 +10,20 @@
            type="text"
            class="form-control"
            placeholder="eric_1"/>
-    <label for="password">Password</label>
+    <label for="password"
+           class="wd-spacedField">Password</label>
     <input ng-model="password"
             id="password"
            type="password"
            class="form-control"
            placeholder="whgn9687piunvh"/>
     <a ng-click="model.login(username, password)"
-       class="btn btn-primary btn-block">
+       class="btn btn-primary btn-block wd-spacedField">
         Login
+    </a>
+    <a ng-click="model.guestBrowse()"
+       class="btn btn-info btn-block">
+        Browse as a Guest
     </a>
     <a class="btn btn-success btn-block"
        href="#!/register">Register</a>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/login">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Guest View
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xs-12">
+            <a class="btn btn-primary btn-block"
+               ng-click="model.updateUser(model.user)">Browser Users</a>
+            <a class="btn btn-primary btn-block"
+               ng-click="model.deleteUser(model.user)">Browse Curriculum</a>
+            <a class="btn btn-primary btn-block"
+               ng-click="model.deleteUser(model.user)">Search Courses</a>
+            <a class="btn btn-primary  btn-block"
+               href="#!/login">Register</a>
+        </div>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

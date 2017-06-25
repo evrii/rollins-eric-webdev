@@ -89,6 +89,16 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/guestHome', {
+                templateUrl: 'views/user/templates/guest-home.view.client.html',
+                // controller: 'CourseSearchController',
+                // controllerAs: 'model',
+                // resolve: {
+                //     currentUser: {_id:"Guest"}
+                // }
+            })
+
+
     }
 
     function testFunction() {
