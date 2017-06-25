@@ -41,19 +41,18 @@
                        class="form-control"
                        placeholder="cnn"
                        required>
-                <label for="description">Description</label>
+                <label for="description"
+                       class="wd-spacedField">Description</label>
                 <textarea id="description"
                           ng-model="curriculum.description"
-                          class="form-control"
+                          class="form-control wd-spacedField"
                           rows="5"
                           placeholder="news site"></textarea>
                 <input type="submit"
                        value="Create"
                        ng-click="model.createCurriculum(curriculum)"
-                       class="btn btn-block btn-success"/>
+                       class="btn btn-block btn-success wd-submitButton"/>
             </div>
         </form>
     </div>
 </div>
-
-<!--<div ng-include="'views/common/footer.view.client.html'"></div>-->

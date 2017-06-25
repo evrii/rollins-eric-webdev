@@ -48,7 +48,8 @@
                        class="form-control"
                        placeholder="cnn"
                        required>
-                <label for="description">Description</label>
+                <label for="description"
+                       class="wd-spacedField">Description</label>
                 <textarea id="description"
                           ng-model="model.curriculum.description"
                           class="form-control"
@@ -57,7 +58,7 @@
                 <input type="submit"
                        value="Update"
                        ng-click="model.updateCurriculum(model.curriculum)"
-                       class="btn btn-block btn-success"/>
+                       class="btn btn-block btn-success wd-submitButton"/>
             </form>
             <h3>Curriculum Content</h3>
             <div ng-include="'views/content/templates/content-list.view.client.html'"></div>
