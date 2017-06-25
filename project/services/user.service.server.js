@@ -36,7 +36,8 @@ app.post('/api/project/logout', logout);
 app.post('/api/project/register', register);
 
 app.put('/api/project/user/:userId/friend/:friendId', addFriend);
-app.get('/api/project/user/:userId/friends',findAllFriendsOfUser)
+app.get('/api/project/user/:userId/friends',findAllFriendsOfUser);
+app.get('/api/project/user/:userId/followers',findAllFollowersOfUser);
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['publish_actions, email'] }));
 app.get('/auth/facebook/callback',
@@ -307,5 +308,14 @@ function findAllFriendsOfUser(req, res) {
         .findAllFriendsOfUser(userId)
         .then(function (user) {
             res.json(user.friends);
+        });
+}
+
+function findAllFollowersOfUser(req, res) {
+    var userId = req.params['userId'];
+    userModel
+        .findAllFollowersOfUser(userId)
+        .then(function (user) {
+            res.json(user.followers);
         });
 }

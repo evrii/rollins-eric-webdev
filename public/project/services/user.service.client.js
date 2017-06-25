@@ -21,7 +21,8 @@
             login: login,
             addCurriculumToUser: addCurriculumToUser,
             removeCurriculumFromStudent: removeCurriculumFromStudent,
-            findAllFriendsOfUser: findAllFriendsOfUser
+            findAllFriendsOfUser: findAllFriendsOfUser,
+            findAllFollowersOfUser: findAllFollowersOfUser
         }
         return api;
 
@@ -160,6 +161,15 @@
 
         function findAllFriendsOfUser(userId){
             var url = "/api/project/user/"+userId+"/friends";
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllFollowersOfUser(userId){
+            var url = "/api/project/user/"+userId+"/followers";
             return $http
                 .get(url)
                 .then(function (response) {

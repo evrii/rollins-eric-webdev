@@ -30,6 +30,9 @@
             userService
                 .findAllFriendsOfUser(model.userId)
                 .then(renderFriendList);
+            userService
+                .findAllFollowersOfUser(model.userId)
+                .then(renderFollowerList);
 
         }
         init();
@@ -81,6 +84,10 @@
 
         function renderFriendList(friendList) {
             model.user.friendList = friendList;
+        }
+
+        function renderFollowerList(followerList) {
+            model.user.followerList = followerList;
         }
         
         function removeCurriculumFromStudent(curriculum) {

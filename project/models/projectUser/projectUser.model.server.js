@@ -15,6 +15,7 @@ projectUserModel.removeCurriculum = removeCurriculum;
 projectUserModel.findUserByFacebookId = findUserByFacebookId;
 projectUserModel.addFriend = addFriend;
 projectUserModel.findAllFriendsOfUser = findAllFriendsOfUser;
+projectUserModel.findAllFollowersOfUser = findAllFollowersOfUser;
 
 module.exports = projectUserModel;
 
@@ -114,5 +115,12 @@ function findAllFriendsOfUser(userId){
     return projectUserModel
         .findUserById(userId)
         .populate('friends')
+        .exec();
+}
+
+function findAllFollowersOfUser(userId){
+    return projectUserModel
+        .findUserById(userId)
+        .populate('followers')
         .exec();
 }

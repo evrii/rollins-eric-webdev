@@ -5,9 +5,9 @@
             <div class="col-xs-12">Follower ID</div>
         </div>
     </li>
-    <li ng-repeat="friend in model.user.followers" class="list-group-item">
+    <li ng-repeat="follower in model.user.followerList" class="list-group-item">
         <div class="row">
-            <div class="col-xs-12"><a href="#!/user/{{model.userId}}/friend/{{friend}}">{{friend}}</a></div>
+            <div class="col-xs-12"><a href="#!/user/{{follower._id}}">{{follower.username}}</a></div>
         </div>
     </li>
 </ul>
