@@ -1,9 +1,9 @@
 (function () {
     angular
         .module('LEARN')
-        .controller('friendProfileController', friendProfileController);
+        .controller('otherProfileController', otherProfileController);
     
-    function friendProfileController($location, $routeParams, userService) {
+    function otherProfileController($location, $routeParams, userService) {
         var model = this;
 
         model.updateUser = updateUser;

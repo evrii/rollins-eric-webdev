@@ -34,8 +34,8 @@
                 }
             })
             .when('/user/:friendId', {
-                templateUrl: 'views/user/templates/friend-profile.view.client.html',
-                controller: 'friendProfileController',
+                templateUrl: 'views/user/templates/other-profile.view.client.html',
+                controller: 'otherProfileController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/course/search', {
