@@ -8,7 +8,7 @@
                                    currentUser,
                                    curriculumService) {
         var model = this;
-        // model.createCurriculum = createCurriculum;
+        model.updateCurriculum = updateCurriculum;
 
         function init() {
             model.userId = currentUser._id;
@@ -36,6 +36,14 @@
 
         function renderCurriculum(curriculum) {
             model.curriculum = curriculum;
+        }
+
+        function updateCurriculum(newCurriculum){
+            curriculumService
+                .updateCurriculum(newCurriculum)
+                .then(function (response) {
+                    $location.url('/profile');
+                });
         }
 
 

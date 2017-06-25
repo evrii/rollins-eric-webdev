@@ -9,7 +9,7 @@ curriculumModel.findCurriculumById = findCurriculumById;
 curriculumModel.addContent = addContent;
 curriculumModel.findAllCurriculum = findAllCurriculum;
 curriculumModel.deleteCurriculum = deleteCurriculum;
-
+curriculumModel.updateCurriculum = updateCurriculum;
 
 module.exports = curriculumModel;
 
@@ -64,5 +64,8 @@ function deleteCurriculum(curriculumId) {
         .then(function (response) {
             return curriculumModel.findByIdAndRemove(curriculumId);
         });
+}
 
+function updateCurriculum(curriculumId, newCurriculum) {
+    return curriculumModel.update({_id: curriculumId}, {$set: newCurriculum})
 }

@@ -8,6 +8,7 @@ app.get('/api/project/user/:userId/curriculum', findAllCurriculumForUser);
 app.get('/api/project/curriculum/:curriculumId', findCurriculumById);
 app.get('/api/project/curriculum', findAllCurriculum);
 app.delete('/api/project/curriculum/:curriculumId', deleteCurriculum);
+app.put('/api/project/curriculum/:curriculumId', updateCurriculum)
 
 function createCurriculumForCurator(req, res) {
     var curriculum = req.body;
@@ -61,5 +62,17 @@ function deleteCurriculum(req, res) {
             res.json(response);
         }, function (response) {
             var t = 6;
+        });
+}
+
+function updateCurriculum(req, res) {
+    var curriculumId = req.params['curriculumId'];
+    var newCurriculum = req.body;
+    curriculumModel
+        .updateCurriculum(curriculumId, newCurriculum)
+        .then(function (curriculum) {
+            res.json(curriculum);
+        }, function (response) {
+            res.send({"msg":"Unable to add curriculum"})
         });
 }

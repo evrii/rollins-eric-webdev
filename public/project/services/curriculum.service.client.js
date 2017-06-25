@@ -11,7 +11,8 @@
             findCurriculumById: findCurriculumById,
             findAllContentForCurriculum: findAllContentForCurriculum,
             findAllCurriculum: findAllCurriculum,
-            deleteCurriculum: deleteCurriculum
+            deleteCurriculum: deleteCurriculum,
+            updateCurriculum: updateCurriculum
         }
         return api;
         
@@ -64,6 +65,15 @@
             var url = "/api/project/curriculum/"+curriculumId;
             return $http
                 .delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateCurriculum(newCurriculum) {
+            var url = "/api/project/curriculum/"+newCurriculum._id;
+            return $http
+                .put(url, newCurriculum)
                 .then(function (response) {
                     return response.data;
                 });
