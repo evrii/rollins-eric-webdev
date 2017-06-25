@@ -56,7 +56,7 @@ function addContent(userId, contentId) {
     projectUserModel
         .findById(userId)
         .then(function (user) {
-                user.curriculum.push(curriculumId)
+                user.content.push(contentId)
                 return user.save();
             },
             function (response) {
@@ -64,6 +64,20 @@ function addContent(userId, contentId) {
                 return y;
             });
 }
+
+
+// function addContent(userId, contentId) {
+//     projectUserModel
+//         .findById(userId)
+//         .then(function (user) {
+//                 user.curriculum.push(curriculumId)
+//                 return user.save();
+//             },
+//             function (response) {
+//                 var y = 8;
+//                 return y;
+//             });
+// }
 
 function addCurriculum(userId, curriculumId) {
     projectUserModel
