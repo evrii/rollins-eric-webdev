@@ -3,22 +3,34 @@
         .module('LEARN')
         .controller('otherProfileController', otherProfileController);
     
-    function otherProfileController($location, $routeParams, userService) {
+    function otherProfileController($location,
+                                    $routeParams,
+                                    currentUser,
+                                    userService,
+                                    curriculumService,
+                                    contentService) {
         var model = this;
-
-        model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
 
         function init() {
             model.userId = $routeParams['friendId'];
-            model.originalId = $routeParams['userId'];
+            model.originalId = currentUser._id;
             userService
                 .findUserById(model.userId)
                 .then(renderUser, userError);
+            curriculumService
+                .findAllCurriculumForUser(model.userId)
+                .then(renderCurriculumList);
+            contentService
+                .findAllContentForUser(model.userId)
+                .then(renderContentList);
+            userService
+                .findAllFriendsOfUser(model.userId)
+                .then(renderFriendList);
+            userService
+                .findAllFollowersOfUser(model.userId)
+                .then(renderFollowerList);
         }
         init();
-
-
 
         function renderUser(response) {
             console.log(response);
@@ -30,25 +42,20 @@
 
         }
 
-        function updateUser(user){
-            userService
-                .updateUser(user._id, user)
-                .then(function () {
-                    model.message = "User update was succesful"
-            });
+        function renderCurriculumList(curriculumList) {
+            model.user.curriculumList = curriculumList;
         }
 
-        function deleteUser(user) {
-            userService
-                .deleteUser(user._id)
-                .then(function () {
-                    $location.url('/')
-                },
-                function () {
+        function renderContentList(contentList) {
+            model.user.contentList = contentList;
+        }
 
+        function renderFriendList(friendList) {
+            model.user.friendList = friendList;
+        }
 
-                })
-
+        function renderFollowerList(followerList) {
+            model.user.followerList = followerList;
         }
 
 

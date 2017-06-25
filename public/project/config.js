@@ -36,7 +36,10 @@
             .when('/user/:friendId', {
                 templateUrl: 'views/user/templates/other-profile.view.client.html',
                 controller: 'otherProfileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:userId/course/search', {
                 templateUrl: 'views/content/templates/course-search.view.client.html',
