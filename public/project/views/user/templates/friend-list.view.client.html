@@ -4,7 +4,9 @@
         <div class="row">
             <div class="col-xs-8">Friend ID</div>
             <div class="col-xs-4">
-                <a href="#!/users" class="wd-iconLink">
+                <a ng-show="!model.originalId"
+                   href="#!/users"
+                   class="wd-iconLink">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>
             </div>
