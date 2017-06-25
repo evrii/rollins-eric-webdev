@@ -8,10 +8,8 @@ var projectUserSchema = mongoose.Schema({
     userType: {type: String,
         default: 'Student',
         enum: ['curator', 'student', 'admin']},
-    // google: {
-    //     id: String,
-    //     token: String
-    // },
+    friends: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"}],
+    followers: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"}],
     email: String,
     phone: String,
     content: [{type: mongoose.Schema.Types.ObjectId, ref: "ContentModel"}],

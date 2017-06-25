@@ -20,7 +20,8 @@
             loggedin: loggedin,
             login: login,
             addCurriculumToUser: addCurriculumToUser,
-            removeCurriculumFromStudent: removeCurriculumFromStudent
+            removeCurriculumFromStudent: removeCurriculumFromStudent,
+            findAllFriendsOfUser: findAllFriendsOfUser
         }
         return api;
 
@@ -152,6 +153,15 @@
             var url = "/api/project/user/"+userId+"/curriculum/"+curriculumId;
             return $http
                 .delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllFriendsOfUser(userId){
+            var url = "/api/project/user/"+userId+"/friends";
+            return $http
+                .get(url)
                 .then(function (response) {
                     return response.data;
                 });

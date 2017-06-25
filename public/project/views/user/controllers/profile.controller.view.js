@@ -27,6 +27,9 @@
             contentService
                 .findAllContentForUser(model.userId)
                 .then(renderContentList);
+            userService
+                .findAllFriendsOfUser(model.userId)
+                .then(renderFriendList);
 
         }
         init();
@@ -74,6 +77,10 @@
 
         function renderContentList(contentList) {
             model.user.contentList = contentList;
+        }
+
+        function renderFriendList(friendList) {
+            model.user.friendList = friendList;
         }
         
         function removeCurriculumFromStudent(curriculum) {

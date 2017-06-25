@@ -35,6 +35,9 @@ app.get('/api/project/checkAdmin', checkAdmin);
 app.post('/api/project/logout', logout);
 app.post('/api/project/register', register);
 
+app.put('/api/project/user/:userId/friend/:friendId', addFriend);
+app.get('/api/project/user/:userId/friends',findAllFriendsOfUser)
+
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['publish_actions, email'] }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
@@ -286,4 +289,23 @@ function removeCurriculumFromStudent(req, res) {
             function (response) {
                 res.send({"msg":"Unsuccessfully removed"});
             });
+}
+
+function addFriend(req, res) {
+    var userId = req.params['userId'];
+    var friendId = req.params['friendId'];
+    return userModel
+        .addFriend(userId, friendId)
+        .then(function (response) {
+            res.json(response);
+        });
+}
+
+function findAllFriendsOfUser(req, res) {
+    var userId = req.params['userId'];
+    userModel
+        .findAllFriendsOfUser(userId)
+        .then(function (user) {
+            res.json(user.friends);
+        });
 }

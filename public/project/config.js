@@ -25,12 +25,15 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/users', {
+            .when('/users', {
                 templateUrl: 'views/user/templates/user-list.view.client.html',
                 controller: 'userListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/friend/:friendId', {
+            .when('/user/:friendId', {
                 templateUrl: 'views/user/templates/friend-profile.view.client.html',
                 controller: 'friendProfileController',
                 controllerAs: 'model'

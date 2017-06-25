@@ -13,6 +13,8 @@ projectUserModel.addContent = addContent;
 projectUserModel.addCurriculum = addCurriculum;
 projectUserModel.removeCurriculum = removeCurriculum;
 projectUserModel.findUserByFacebookId = findUserByFacebookId;
+projectUserModel.addFriend = addFriend;
+projectUserModel.findAllFriendsOfUser = findAllFriendsOfUser;
 
 module.exports = projectUserModel;
 
@@ -84,4 +86,33 @@ function removeCurriculum(user, curriculumId) {
 function findUserByFacebookId(facebookId) {
     return projectUserModel
         .findOne({'facebook.id':facebookId});
+}
+
+function addFriend(userId, friendId) {
+    return projectUserModel
+        .findById(userId)
+        .then(function (user) {
+                user.friends.push(friendId)
+                return user.save();
+            })
+        .then(function (user) {
+            return addFollower(friendId, userId);
+        });
+
+}
+
+function addFollower(friendId, userId){
+    return projectUserModel
+        .findById(friendId)
+        .then(function (user) {
+            user.followers.push(userId)
+            return user.save();
+        });
+}
+
+function findAllFriendsOfUser(userId){
+    return projectUserModel
+        .findUserById(userId)
+        .populate('friends')
+        .exec();
 }
