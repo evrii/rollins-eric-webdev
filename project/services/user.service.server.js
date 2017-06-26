@@ -36,6 +36,7 @@ app.post('/api/project/logout', logout);
 app.post('/api/project/register', register);
 
 app.put('/api/project/user/:userId/friend/:friendId', addFriend);
+app.delete('/api/project/user/:userId/friend/:friendId', deleteFriend);
 app.get('/api/project/user/:userId/friends',findAllFriendsOfUser);
 app.get('/api/project/user/:userId/followers',findAllFollowersOfUser);
 
@@ -299,6 +300,18 @@ function addFriend(req, res) {
         .addFriend(userId, friendId)
         .then(function (response) {
             res.json(response);
+        });
+}
+
+function deleteFriend(req, res) {
+    var userId = req.params['userId'];
+    var friendId = req.params['friendId'];
+    return userModel
+        .deleteFriend(userId, friendId)
+        .then(function (response) {
+            res.json(response);
+        }, function (response) {
+            var g = 4
         });
 }
 

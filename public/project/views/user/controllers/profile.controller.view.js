@@ -18,6 +18,8 @@
         model.removeCurriculumFromStudent = removeCurriculumFromStudent;
         model.deleteCurriculum = deleteCurriculum;
         model.hippo = hippo;
+        model.addFriend = addFriend;
+        model.deleteFriend = deleteFriend;
 
         function init() {
             model.userId = currentUser._id;
@@ -148,6 +150,18 @@
 
         function renderMasterCurriculumList(response) {
             model.curriculumList = response;
+        }
+
+        function addFriend(friendId) {
+            userService
+                .addFriend(model.user._id, friendId)
+                .then(renderDetails);
+        }
+
+        function deleteFriend(friendId) {
+            userService
+                .deleteFriend(model.user._id, friendId)
+                .then(renderDetails);
         }
 
     }

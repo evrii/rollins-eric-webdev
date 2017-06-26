@@ -14,6 +14,7 @@ projectUserModel.addCurriculum = addCurriculum;
 projectUserModel.removeCurriculum = removeCurriculum;
 projectUserModel.findUserByFacebookId = findUserByFacebookId;
 projectUserModel.addFriend = addFriend;
+projectUserModel.deleteFriend = deleteFriend;
 projectUserModel.findAllFriendsOfUser = findAllFriendsOfUser;
 projectUserModel.findAllFollowersOfUser = findAllFollowersOfUser;
 
@@ -106,11 +107,25 @@ function addFriend(userId, friendId) {
     return projectUserModel
         .findById(userId)
         .then(function (user) {
-                user.friends.push(friendId)
-                return user.save();
-            })
+            user.friends.push(friendId)
+            return user.save();
+        })
         .then(function (user) {
             return addFollower(friendId, userId);
+        });
+
+}
+
+function deleteFriend(userId, friendId) {
+    return projectUserModel
+        .findById(userId)
+        .then(function (user) {
+            var index =  user.friends.indexOf(friendId);
+            user.friends.splice(index, 1);
+            return user.save();
+        })
+        .then(function (user) {
+            return deleteFollower(friendId, userId);
         });
 
 }
@@ -120,6 +135,16 @@ function addFollower(friendId, userId){
         .findById(friendId)
         .then(function (user) {
             user.followers.push(userId)
+            return user.save();
+        });
+}
+
+function deleteFollower(friendId, userId){
+    return projectUserModel
+        .findById(friendId)
+        .then(function (user) {
+            var index =  user.followers.indexOf(userId);
+            user.followers.splice(index, 1);
             return user.save();
         });
 }
