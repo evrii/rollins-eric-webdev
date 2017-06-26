@@ -17,9 +17,11 @@
         model.logout = logout;
         model.removeCurriculumFromStudent = removeCurriculumFromStudent;
         model.deleteCurriculum = deleteCurriculum;
-        model.hippo = hippo;
+        model.setCurrentUser = setCurrentUser;
         model.addFriend = addFriend;
         model.deleteFriend = deleteFriend;
+        model.addCurriculumToUser = addCurriculumToUser;
+        model.createUser = createUser;
 
         function init() {
             model.userId = currentUser._id;
@@ -32,6 +34,12 @@
                 curriculumService
                     .findAllCurriculum()
                     .then(renderMasterCurriculumList)
+                userService
+                    .findAllUserTypes()
+                    .then(function (userTypes) {
+                        model.userTypes = userTypes;
+                        model.userType = model.userTypes[0];
+                    });
             }
             else{
                 renderUser(currentUser);
@@ -75,8 +83,8 @@
 
         }
 
-        function hippo(mouse) {
-            model.userId = mouse;
+            model.userId = adminUser._id;
+            model.user = adminUser;
             renderDetails();
         }
 
@@ -161,6 +169,18 @@
         function deleteFriend(friendId) {
             userService
                 .deleteFriend(model.user._id, friendId)
+                .then(renderDetails);
+        }
+
+        function addCurriculumToUser(curriculimId){
+            userService
+                .addCurriculumToUser(curriculimId, model.user._id)
+                .then(renderDetails);
+        }
+
+        function createUser(newUser){
+            userService
+                .createUser(newUser)
                 .then(renderDetails);
         }
 
