@@ -12,7 +12,7 @@
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand">
-                User List
+                Curriculum List
             </a>
         </div>
     </div>
@@ -21,24 +21,22 @@
 <ul class="list-group">
     <li class="list-group-item active">
         <div class="row">
-            <div class="col-md-5 col-sm-8 col-xs-10">Friend ID</div>
+            <div class="col-xs-12 col-md-5">Curriculum ID</div>
+            <div class="col-md-7 hidden-sm hidden-xs">Description</div>
         </div>
     </li>
-    <li ng-repeat="user in model.users" class="list-group-item">
+    <li ng-repeat="curriculum in model.curriculumList"
+        class="list-group-item">
         <div class="row">
-            <div ng-show="!model.guest"
-                 class="col-xs-10 col-sm-11">
-                {{user.username}}
+            <div class="col-xs-10 col-md-5">
+                {{curriculum.name}}
             </div>
-            <div ng-show="model.guest"
-                 class="col-xs-10 col-sm-11">
-                <a href="#!/guest/user/{{user._id}}">
-                    {{user.username}}
-                </a>
+            <div class="col-md-5 hidden-sm hidden-xs">
+                {{curriculum.description}}
             </div>
-            <div ng-show="!model.guest"
-                 class="col-sm-1 col-xs-2 ">
-                <a ng-click="model.addFriend(user._id)">
+            <div class="col-xs-2"
+                 ng-hide="model.guest">
+                <a ng-click="model.addCurriculumToUser(curriculum._id, model.userId)">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>
             </div>

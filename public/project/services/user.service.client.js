@@ -6,6 +6,7 @@
     function userService($http) {
 
         var api = {
+            register: register,
             createUser: createUser,
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
@@ -15,10 +16,24 @@
             findAllUsers: findAllUsers,
             findAllUserTypes: findAllUserTypes,
             addFriend: addFriend,
-            addCourseToUser: addCourseToUser
+            addCourseToUser: addCourseToUser,
+            loggedin: loggedin,
+            login: login,
+            addCurriculumToUser: addCurriculumToUser,
+            removeCurriculumFromStudent: removeCurriculumFromStudent,
+            findAllFriendsOfUser: findAllFriendsOfUser,
+            findAllFollowersOfUser: findAllFollowersOfUser
         }
         return api;
-        
+
+        function register(userObj) {
+            var url = "/api/project/register";
+            return $http.post(url, userObj)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
         function createUser(user) {
             var url = "/api/project/user";
             return $http
@@ -100,6 +115,64 @@
             //Fix this to be a put
             return $http.get(url)
                 .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function loggedin() {
+            var url = "/api/project/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function login(username, password) {
+            var url = "/api/project/login";
+            var credentials = {
+                username: username,
+                password: password
+            }
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                }, function (response) {
+                    var d = 8;
+                });
+        }
+
+        function addCurriculumToUser(curriculumId, userId) {
+            var url = "/api/project/user/"+userId+"/curriculum/"+curriculumId;
+            return $http
+                .put(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function removeCurriculumFromStudent(curriculumId, userId) {
+            var url = "/api/project/user/"+userId+"/curriculum/"+curriculumId;
+            return $http
+                .delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllFriendsOfUser(userId){
+            var url = "/api/project/user/"+userId+"/friends";
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllFollowersOfUser(userId){
+            var url = "/api/project/user/"+userId+"/followers";
+            return $http
+                .get(url)
+                .then(function (response) {
                     return response.data;
                 });
         }

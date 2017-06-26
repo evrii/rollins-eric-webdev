@@ -16,3 +16,15 @@ body {
 .wd-iconLink {
     color: white;
 }
+
+.wd-submitButton {
+    margin-top: 15px;
+}
+
+.wd-spacedField {
+    margin-top: 5px;
+}
+
+.wd-userSelection {
+    margin-bottom: 5px;
+}

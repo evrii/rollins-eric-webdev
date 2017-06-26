@@ -1,14 +1,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-
-            <a ng-show="model.admin"
-               class="navbar-brand">
-                Admin
+            <a ng-show="!model.guest"
+               class="navbar-brand" href="#!/profile">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
-            <a ng-hide="model.user.userType === 'admin'"
-               class="navbar-brand">
-                Profile
+            <a ng-show="model.guest"
+               class="navbar-brand" href="#!/guest">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a class="navbar-brand">
+                User Profile
             </a>
         </div>
     </div>
@@ -21,24 +23,9 @@
                  class="alert alert-danger">{{model.error}}</div>
             <div ng-show="model.message"
                  class="alert alert-info">{{model.message}}</div>
-            <div class="wd-userSelection"
-                 ng-show="model.admin">
-                <label for="editUser">User to Edit</label>
-                <select id="editUser"
-                        class="form-control"
-                        placeholder="Select your user type"
-                        data-ng-options="user.username for user in model.users"
-                        data-ng-model="model.user" ng-change="model.hippo(model.user._id)"></select>
-            </div>
         </div>
         <div class="col-xs-12 col-md-6">
             <div ng-include="'views/user/templates/user-details.view.client.html'"></div>
-            <a class="btn btn-success btn-block"
-               ng-click="model.updateUser(model.user)">Update</a>
-            <a class="btn btn-danger btn-block"
-               ng-click="model.deleteUser(model.user)">Unregister</a>
-            <a class="btn btn-danger  btn-block"
-               href="#!/login">Logout</a>
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="row">

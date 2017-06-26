@@ -1,0 +1,51 @@
+<ul class="list-group">
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-xs-10 col-sm-6">Content Name</div>
+            <div class="visible-sm visible-md visible-lg col-sm-5">Organization</div>
+            <div ng-hide="model.originalId || model.guest"
+                 class="col-xs-2 col-sm-1">
+                <a ng-show="model.curriculumList && !model.admin"
+                   href="#!/curriculum/{{model.curriculumId}}/course/search"
+                   class="wd-iconLink">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+                <a ng-show="model.user && !model.admin"
+                   href="#!/user/{{model.userId}}/course/search"
+                   class="wd-iconLink">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+    <div>
+    <li ng-show="model.user && !model.admin"
+        ng-repeat="content in model.user.contentList"
+        class="list-group-item">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">{{content.name}}</div>
+            <div class="visible-sm visible-md visible-lg col-sm-6">{{content.organization}}</div>
+        </div>
+    </li>
+    <li ng-show="model.curriculumId  && !model.admin"
+        ng-repeat="content in model.contentList"
+        class="list-group-item">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">{{content.name}}</div>
+            <div class="visible-sm visible-md visible-lg col-sm-6">{{content.organization}}</div>
+        </div>
+    </li>
+    <li ng-show="model.admin && model.user"
+        ng-repeat="content in model.user.contentList"
+        class="list-group-item">
+        <div class="row">
+            <div class="col-xs-10 col-sm-5">{{content.name}}</div>
+            <div class="visible-sm visible-md visible-lg col-sm-5">{{content.organization}}</div>
+            <div class="col-xs-2">
+                <a ng-click="model.removeContent(content._id)">
+                    <span class="glyphicon glyphicon-minus-sign pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+</ul>

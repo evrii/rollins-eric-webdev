@@ -11,3 +11,5 @@ mongoose.connect(connectionString);
 mongoose.Promise = require('q').Promise;
 
 require("./services/user.service.server.js");
+require("./services/content.service.server.js");
+require("./services/curriculum.service.server.js");

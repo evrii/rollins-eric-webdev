@@ -5,9 +5,42 @@
             <div class="col-xs-12">Follower ID</div>
         </div>
     </li>
-    <li ng-repeat="friend in model.user.followers" class="list-group-item">
+    <li ng-repeat="follower in model.user.followerList" class="list-group-item">
         <div class="row">
-            <div class="col-xs-12"><a href="#!/user/{{model.userId}}/friend/{{friend}}">{{friend}}</a></div>
+            <div class="col-xs-12"
+                 ng-show="!model.admin">
+                <a ng-show="!model.guest"
+                   href="#!/user/{{follower._id}}">{{follower.username}}</a>
+                <a ng-show="model.guest"
+                   href="#!/guest/user/{{follower._id}}">{{follower.username}}</a>
+            </div>
+            <div class="col-xs-10"
+                 ng-show="model.admin">
+                {{follower.username}}
+            </div>
+            <div class="col-xs-2"
+                 ng-show="model.admin">
+                <a ng-click="model.deleteFollower(friend._id)">
+                    <span class="glyphicon glyphicon-minus-sign pull-right"></span>
+                </a>
+            </div>
         </div>
     </li>
 </ul>
+<div ng-show="model.admin">
+    <div class="row">
+        <div class="col-xs-7">
+            <label for="newFollower">New Follower</label>
+            <select id="newFollower"
+                    ng-show="model.admin"
+                    class="form-control"
+                    placeholder="Select your user type"
+                    data-ng-options="user.username for user in model.users"
+                    data-ng-model="model.newFollower"></select>
+        </div>
+        <div class="col-xs-5">
+            <a class="btn btn-success btn-block"
+               ng-click="model.addFriend(model.newFriend)">Add</a>
+        </div>
+    </div>
+</div>

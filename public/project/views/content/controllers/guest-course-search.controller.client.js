@@ -1,24 +1,20 @@
 (function () {
     angular
         .module('LEARN')
-        .controller('CourseSearchController', CourseSearchController)
+        .controller('GuestCourseSearchController', GuestCourseSearchController)
 
-    function CourseSearchController ($routeParams,
+    function GuestCourseSearchController ($routeParams,
                                      $sce,
                                      $location,
-                                     currentUser,
                                      courseService,
                                      userService) {
         var model = this;
 
         model.searchCourses = searchCourses;
         model.getCourseDetails = getCourseDetails;
-        model.addCourseToUser = addCourseToUser;
-        model.addCourseToCurriculum = addCourseToCurriculum;
 
         function init() {
-            model.userId = currentUser._id;
-            model.curriculumId = $routeParams['curriculumId'];
+            model.guest = true;
         }
         init();
 
@@ -39,23 +35,6 @@
                 console.log(response)
                 model.selectedCourse = response.data;
             });
-
-        }
-
-        function addCourseToUser(course, userId) {
-            courseService
-                .addCourseToUser(course, userId)
-                .then(function (response) {
-                    $location.url('/profile');
-                });
-        }
-
-        function addCourseToCurriculum(course, curriculumId) {
-            courseService
-                .addCourseToCurriculum(course, curriculumId)
-                .then(function (response) {
-                    $location.url('/curriculum/'+curriculumId+'/edit');
-                });
         }
 
     }

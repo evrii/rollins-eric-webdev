@@ -13,6 +13,9 @@
                 .findAllUserTypes()
                 .then(function (userTypes) {
                     model.userTypes = userTypes;
+                    model.userType = model.userTypes[0];
+                }, function (res) {
+                    var f = 0;
                 });
         }
         init();
@@ -22,6 +25,11 @@
                 username === '' ||
                 typeof username === 'undefined'){
                 model.error = "Please enter a valid username"
+                return;
+            }
+
+            if(password !== password2){
+                model.error = "Passwords must match"
                 return;
             }
             userService
@@ -37,9 +45,9 @@
                             userType: userType
                         }
                         return userService
-                            .createUser(newUser)
-                            .then(function (user){
-                                $location.url('/user/'+user._id)
+                            .register(newUser)
+                            .then(function (usr){
+                                $location.url('/profile');
                             });
 
                     }

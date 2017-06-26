@@ -3,14 +3,17 @@
         .module('LEARN')
         .controller('userListController', userListController);
     
-    function userListController($location, $routeParams, userService) {
+    function userListController($location,
+                                $routeParams,
+                                currentUser,
+                                userService) {
         var model = this;
 
         model.addFriend = addFriend;
         model.deleteFriend = deleteFriend;
 
         function init() {
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
             userService
                 .findAllUsers()
                 .then(renderUsers, userError);
@@ -39,7 +42,7 @@
             userService
                 .addFriend(model.userId, friendId)
                 .then(function () {
-                    $location.url('/user/'+model.userId);
+                    $location.url('/profile');
                 });
         }
 

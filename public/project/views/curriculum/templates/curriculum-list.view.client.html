@@ -1,0 +1,76 @@
+<h3>Curriculum List</h3>
+
+<ul class="list-group">
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-xs-8">Curriculum ID</div>
+            <div class="col-xs-4"
+                 ng-hide="model.originalId || model.guest || model.admin"
+                 ng-switch="model.user.userType">
+                <a ng-switch-when="student"href="#!/curriculum/search" class="wd-iconLink">
+                    <span class="glyphicon glyphicon-search pull-right"></span>
+                </a>
+                <a ng-switch-when="curator" href="#!/curriculum/new" class="wd-iconLink">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+    <li ng-show="model.user"
+        ng-repeat="curriculum in model.user.curriculumList"
+        class="list-group-item">
+        <div class="row">
+            <div class="col-xs-11"><a href="#!/curriculum/{{curriculum._id}}/edit">{{curriculum.name}}</a></div>
+            <div class="col-xs-1"
+                 ng-hide="model.originalId || model.guest"
+                 ng-switch="model.user.userType">
+                <a ng-switch-when="student"
+                   ng-click="model.removeCurriculumFromStudent(curriculum)">
+                    <span class="glyphicon glyphicon-minus-sign pull-right"></span>
+                </a>
+                <a ng-switch-when="curator"
+                   ng-click="model.deleteCurriculum(curriculum)">
+                    <span class="glyphicon glyphicon-trash pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+</ul>
+<div ng-show="model.admin && model.user">
+    <div class="row"
+         ng-show="model.user.userType == 'student'">
+        <div class="col-xs-8">
+            <label for="newCurriculum">New Curriculum</label>
+            <select id="newCurriculum"
+                    class="form-control"
+                    placeholder="Select your user type"
+                    data-ng-options="curriculum.name for curriculum in model.curriculumList"
+                    data-ng-model="model.newFriend"></select>
+        </div>
+        <div class="col-xs-4">
+            <a class="btn btn-success btn-block"
+               ng-click="model.addFriend(model.newFriend)">Add</a>
+        </div>
+    </div>
+    <div class="row"
+         ng-show="model.user.userType == 'curator'">
+        <div class="col-xs-8">
+            <label for="newCurriculumName">New Curriculum Name</label>
+            <select id="newCurriculumName"
+                    class="form-control"
+                    placeholder="Curriculum Name"
+                    data-ng-model="model.newCurriculumName"></select>
+            <label for="newCurriculumDescription">New Curriculum Description</label>
+            <textarea id="newCurriculumDescription"
+                      ng-model="model.newCurriculumDescription"
+                      class="form-control"
+                      rows="5"
+                      placeholder="news site"></textarea>
+        </div>
+        <div class="col-xs-4">
+            <a class="btn btn-success btn-block"
+               ng-click="model.addFriend(model.newFriend)">Add</a>
+        </div>
+    </div>
+
+</div>
