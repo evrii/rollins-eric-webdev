@@ -33,6 +33,12 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/guest/users', {
+                templateUrl: 'views/user/templates/user-list.view.client.html',
+                controller: 'guestUserListController',
+                controllerAs: 'model'
+            })
+
             .when('/user/:friendId', {
                 templateUrl: 'views/user/templates/other-profile.view.client.html',
                 controller: 'otherProfileController',
@@ -40,6 +46,12 @@
                 resolve: {
                     currentUser: checkLoggedIn
                 }
+            })
+
+            .when('/guest/user/:friendId', {
+                templateUrl: 'views/user/templates/other-profile.view.client.html',
+                controller: 'guestProfileController',
+                controllerAs: 'model',
             })
             .when('/user/:userId/course/search', {
                 templateUrl: 'views/content/templates/course-search.view.client.html',
@@ -73,6 +85,11 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/guest/curriculum', {
+                templateUrl: 'views/curriculum/templates/curriculum-search.view.client.html',
+                controller: 'guestCurriculumSearchController',
+                controllerAs: 'model',
+            })
             .when('/curriculum/:curriculumId/edit', {
                 templateUrl: 'views/curriculum/templates/curriculum-edit.view.client.html',
                 controller: 'curriculumEditController',
@@ -89,13 +106,13 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/guestHome', {
+            .when('/guest/course', {
+                templateUrl: 'views/content/templates/course-search.view.client.html',
+                controller: 'GuestCourseSearchController',
+                controllerAs: 'model'
+            })
+            .when('/guest', {
                 templateUrl: 'views/user/templates/guest-home.view.client.html',
-                // controller: 'CourseSearchController',
-                // controllerAs: 'model',
-                // resolve: {
-                //     currentUser: {_id:"Guest"}
-                // }
             })
 
 

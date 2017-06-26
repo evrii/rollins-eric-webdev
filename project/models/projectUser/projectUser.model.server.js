@@ -40,7 +40,6 @@ function findUserByCredentials(username, password) {
 }
 
 function updateUser(userId, newUser) {
-    delete newUser.username;
     delete newUser.password;
     // if(typeof user.roles === 'string'){
     //     user.roles = user.roles.split(',');

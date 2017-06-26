@@ -1,9 +1,9 @@
 (function () {
     angular
         .module('LEARN')
-        .controller('otherProfileController', otherProfileController);
+        .controller('guestProfileController', guestProfileController);
     
-    function otherProfileController($location,
+    function guestProfileController($location,
                                     $routeParams,
                                     userService,
                                     curriculumService,
@@ -11,6 +11,7 @@
         var model = this;
 
         function init() {
+            model.guest = true;
             model.userId = $routeParams['friendId'];
             userService
                 .findUserById(model.userId)
@@ -31,7 +32,6 @@
         init();
 
         function renderUser(response) {
-            console.log(response);
             model.user = response;
         }
 

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xs-8">Friend ID</div>
             <div class="col-xs-4">
-                <a ng-show="!model.originalId"
+                <a ng-hide="model.originalId || model.guest || model.admin"
                    href="#!/users"
                    class="wd-iconLink">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
@@ -14,7 +14,40 @@
     </li>
     <li ng-repeat="friend in model.user.friendList" class="list-group-item">
         <div class="row">
-            <div class="col-xs-12"><a href="#!/user/{{friend._id}}">{{friend.username}}</a></div>
+            <div class="col-xs-12"
+                 ng-show="!model.admin">
+                <a ng-show="!model.guest"
+                   href="#!/user/{{friend._id}}">{{friend.username}}</a>
+                <a ng-show="model.guest"
+                   href="#!/guest/user/{{friend._id}}">{{friend.username}}</a>
+            </div>
+            <div class="col-xs-10"
+                 ng-show="model.admin">
+                {{friend.username}}
+            </div>
+            <div class="col-xs-2"
+                 ng-show="model.admin">
+                <a ng-click="model.deleteFriend(friend._id)">
+                    <span class="glyphicon glyphicon-minus-sign pull-right"></span>
+                </a>
+            </div>
         </div>
     </li>
 </ul>
+<div ng-show="model.admin">
+    <div class="row">
+        <div class="col-xs-8">
+            <label for="newFriend">New Friend</label>
+            <select id="newFriend"
+                    ng-show="model.admin"
+                    class="form-control"
+                    placeholder="Select your user type"
+                    data-ng-options="user.username for user in model.users"
+                    data-ng-model="model.newFriend"></select>
+        </div>
+        <div class="col-xs-4">
+            <a class="btn btn-success btn-block"
+               ng-click="model.addFriend(model.newFriend)">Add</a>
+        </div>
+    </div>
+</div>

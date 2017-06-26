@@ -1,7 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}">
+            <a ng-show="!model.guest"
+               class="navbar-brand"
+               href="#!/profile">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a ng-show="model.guest"
+               class="navbar-brand"
+               href="#!/guest">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand">
@@ -19,11 +26,18 @@
     </li>
     <li ng-repeat="user in model.users" class="list-group-item">
         <div class="row">
-            <div class="col-xs-10 col-sm-11">
+            <div ng-show="!model.guest"
+                 class="col-xs-10 col-sm-11">
                 {{user.username}}
             </div>
-
-            <div class="col-sm-1 col-xs-2 ">
+            <div ng-show="model.guest"
+                 class="col-xs-10 col-sm-11">
+                <a href="#!/guest/user/{{user._id}}">
+                    {{user.username}}
+                </a>
+            </div>
+            <div ng-show="!model.guest"
+                 class="col-sm-1 col-xs-2 ">
                 <a ng-click="model.addFriend(user._id)">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>

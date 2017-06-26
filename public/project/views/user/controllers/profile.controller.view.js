@@ -12,38 +12,70 @@
     ) {
         var model = this;
 
-        model.userId = currentUser._id;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.logout = logout;
         model.removeCurriculumFromStudent = removeCurriculumFromStudent;
         model.deleteCurriculum = deleteCurriculum;
+        model.hippo = hippo;
 
         function init() {
-            renderUser(currentUser);
-            curriculumService
-                .findAllCurriculumForUser(model.userId)
-                .then(renderCurriculumList);
-            contentService
-                .findAllContentForUser(model.userId)
-                .then(renderContentList);
-            userService
-                .findAllFriendsOfUser(model.userId)
-                .then(renderFriendList);
-            userService
-                .findAllFollowersOfUser(model.userId)
-                .then(renderFollowerList);
+            model.userId = currentUser._id;
+            model.admin = currentUser.userType === 'admin';
+
+            if(model.admin){
+                userService
+                    .findAllUsers()
+                    .then(renderUsers, userError);
+                curriculumService
+                    .findAllCurriculum()
+                    .then(renderMasterCurriculumList)
+            }
+            else{
+                renderUser(currentUser);
+            }
+
 
         }
         init();
 
         function renderUser(response) {
-            model.user = response;
+            if(!model.admin){
+                model.user = response;
+                renderDetails();
+            }
+        }
+
+        function renderDetails() {
+            if (model.user) {
+                curriculumService
+                    .findAllCurriculumForUser(model.userId)
+                    .then(renderCurriculumList);
+                contentService
+                    .findAllContentForUser(model.userId)
+                    .then(renderContentList);
+                userService
+                    .findAllFriendsOfUser(model.userId)
+                    .then(renderFriendList);
+                userService
+                    .findAllFollowersOfUser(model.userId)
+                    .then(renderFollowerList);
+            }
+        }
+
+        function renderUsers(response) {
+            model.users = response;
+            renderDetails();
         }
 
         function userError(error) {
             model.error = "User not found"
 
+        }
+
+        function hippo(mouse) {
+            model.userId = mouse;
+            renderDetails();
         }
 
         function updateUser(user){
@@ -112,6 +144,10 @@
                 }, function (response) {
                     var y = 9;
                 })
+        }
+
+        function renderMasterCurriculumList(response) {
+            model.curriculumList = response;
         }
 
     }

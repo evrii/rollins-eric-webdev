@@ -13,7 +13,7 @@
             userService
                 .login(username, password)
                 .then(function (found) {
-                    if (found !== null) {
+                    if (found) {
                         $location.url('/profile');
                     } else {
                         model.message = "Sorry, " + username + ", you do not exist!"
@@ -24,7 +24,7 @@
         }
         
         function guestBrowse() {
-            $location.url('/guestHome');
+            $location.url('/guest');
         }
     }
 })();

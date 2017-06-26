@@ -1,7 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand">
+
+            <a ng-show="model.admin"
+               class="navbar-brand">
+                Admin
+            </a>
+            <a ng-hide="model.user.userType === 'admin'"
+               class="navbar-brand">
                 Profile
             </a>
         </div>
@@ -15,6 +21,15 @@
                  class="alert alert-danger">{{model.error}}</div>
             <div ng-show="model.message"
                  class="alert alert-info">{{model.message}}</div>
+            <div class="wd-userSelection"
+                 ng-show="model.admin">
+                <label for="editUser">User to Edit</label>
+                <select id="editUser"
+                        class="form-control"
+                        placeholder="Select your user type"
+                        data-ng-options="user.username for user in model.users"
+                        data-ng-model="model.user" ng-change="model.hippo(model.user._id)"></select>
+            </div>
         </div>
         <div class="col-xs-12 col-md-6">
             <div ng-include="'views/user/templates/user-details.view.client.html'"></div>

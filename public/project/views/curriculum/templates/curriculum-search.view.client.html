@@ -1,7 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/profile">
+            <a ng-show="!model.guest"
+               class="navbar-brand"
+               href="#!/profile">
+                <span class="glyphicon glyphicon glyphicon-menu-left"></span>
+            </a>
+            <a ng-show="model.guest"
+               class="navbar-brand"
+               href="#!/guest">
                 <span class="glyphicon glyphicon glyphicon-menu-left"></span>
             </a>
             <a class="navbar-brand">
@@ -22,14 +29,13 @@
         class="list-group-item">
         <div class="row">
             <div class="col-xs-10 col-md-5">
-                <a href="#!/curriculum/{{curriculum._id}}/edit">
-                    {{curriculum.name}}
-                </a>
+                {{curriculum.name}}
             </div>
             <div class="col-md-5 hidden-sm hidden-xs">
                 {{curriculum.description}}
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-2"
+                 ng-hide="model.guest">
                 <a ng-click="model.addCurriculumToUser(curriculum._id, model.userId)">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>
