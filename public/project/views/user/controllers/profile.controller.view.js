@@ -83,6 +83,7 @@
 
         }
 
+        function setCurrentUser(adminUser) {
             model.userId = adminUser._id;
             model.user = adminUser;
             renderDetails();
