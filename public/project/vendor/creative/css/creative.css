@@ -155,7 +155,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../img/header.jpg');
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/1/1a/Tutoring_Center_%283349979270%29.jpg");
   text-align: center;
   color: white;
 }
