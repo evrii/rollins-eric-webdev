@@ -5,16 +5,13 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
 passport.use(new LocalStrategy(localStrategy));
-var FacebookStrategy = require('passport-facebook').Strategy;
-
-var facebookConfig = {
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
-    profileFields: ['id', 'displayName', 'email', 'name']
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
 };
-
-passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -36,14 +33,15 @@ app.post('/api/project/logout', logout);
 app.post('/api/project/register', register);
 
 app.put('/api/project/user/:userId/friend/:friendId', addFriend);
+app.delete('/api/project/user/:userId/friend/:friendId', deleteFriend);
 app.get('/api/project/user/:userId/friends',findAllFriendsOfUser);
 app.get('/api/project/user/:userId/followers',findAllFollowersOfUser);
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['publish_actions, email'] }));
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/project/index.html#!/profile',
-        failureRedirect: '/project/index.html#!/login'
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/#/profile',
+        failureRedirect: '/#/login'
     }));
 
 function localStrategy(username, password, done) {
@@ -62,7 +60,42 @@ function localStrategy(username, password, done) {
         })
 }
 
-
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 function register(req, res) {
     var user = req.body;
@@ -211,43 +244,6 @@ function deserializeUser(user, done) {
         );
 }
 
-function facebookStrategy(token, refreshToken, profile, done) {
-    userModel
-        .findUserByFacebookId(profile.id)
-        .then(
-            function(user) {
-                if(user) {
-                    return done(null, user);
-                } else {
-                    var email = profile.emails[0].value;
-                    var emailParts = email.split("@");
-                    var newFacebookUser = {
-                        username:  emailParts[0],
-                        firstName: profile.name.givenName,
-                        lastName:  profile.name.familyName,
-                        email:     email,
-                        facebook: {
-                            id:    profile.id,
-                            token: token
-                        }
-                    };
-                    return userModel.createUser(newFacebookUser);
-                }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        )
-        .then(
-            function(user){
-                return done(null, user);
-            },
-            function(err){
-                if (err) { return done(err); }
-            }
-        );
-}
-
 function findAllUserTypes(req, res) {
     res.send(['student', 'curator', 'admin']);
 }
@@ -299,6 +295,18 @@ function addFriend(req, res) {
         .addFriend(userId, friendId)
         .then(function (response) {
             res.json(response);
+        });
+}
+
+function deleteFriend(req, res) {
+    var userId = req.params['userId'];
+    var friendId = req.params['friendId'];
+    return userModel
+        .deleteFriend(userId, friendId)
+        .then(function (response) {
+            res.json(response);
+        }, function (response) {
+            var g = 4
         });
 }
 

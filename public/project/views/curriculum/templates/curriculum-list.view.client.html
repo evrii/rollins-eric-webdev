@@ -45,11 +45,11 @@
                     class="form-control"
                     placeholder="Select your user type"
                     data-ng-options="curriculum.name for curriculum in model.curriculumList"
-                    data-ng-model="model.newFriend"></select>
+                    data-ng-model="model.curriculum"></select>
         </div>
         <div class="col-xs-4">
             <a class="btn btn-success btn-block"
-               ng-click="model.addFriend(model.newFriend)">Add</a>
+               ng-click="model.addCurriculumToUser(model.curriculum._id)">Add</a>
         </div>
     </div>
     <div class="row"
@@ -69,7 +69,7 @@
         </div>
         <div class="col-xs-4">
             <a class="btn btn-success btn-block"
-               ng-click="model.addFriend(model.newFriend)">Add</a>
+               ng-click="model.addCurriculum(model.newFriend)">Add</a>
         </div>
     </div>
 

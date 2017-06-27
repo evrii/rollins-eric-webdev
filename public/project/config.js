@@ -5,7 +5,7 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html'
+                redirectTo: "/profile"
             })
             .when('/login', {
                 templateUrl: 'views/user/templates/login.view.client.html',

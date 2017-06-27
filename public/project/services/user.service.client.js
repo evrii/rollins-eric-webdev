@@ -16,6 +16,7 @@
             findAllUsers: findAllUsers,
             findAllUserTypes: findAllUserTypes,
             addFriend: addFriend,
+            deleteFriend: deleteFriend,
             addCourseToUser: addCourseToUser,
             loggedin: loggedin,
             login: login,
@@ -109,7 +110,15 @@
                     return response.data;
                 })
         }
-        
+
+        function deleteFriend(userId,friendId){
+            var url = "/api/project/user/"+userId+"/friend/"+friendId;
+            return $http.delete(url)
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
         function addCourseToUser(userId, courseId) {
             var url = '/api/project/user/'+userId+'/course/'+courseId;
             //Fix this to be a put
